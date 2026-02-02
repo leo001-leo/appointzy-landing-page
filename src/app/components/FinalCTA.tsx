@@ -2,7 +2,7 @@ import React from "react";
 
 export function FinalCTA() {
   return (
-    <section className="py-20 text-center">
+    <section id="demo" className="py-20 text-center">
       <h2 className="text-3xl font-bold mb-4">
         Подготвени сте да внесете ред во вашите термини?
       </h2>

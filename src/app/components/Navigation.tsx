@@ -15,9 +15,11 @@ export function Navigation() {
           <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors hidden sm:inline">
             Цени
           </a>
-          <Button size="sm">
-            Бесплатно демо
-          </Button>
+          <a href="#demo">
+    	    <Button size="sm">
+      		Бесплатно демо
+            </Button>
+  	  </a>
         </div>
       </div>
     </nav>
