@@ -34,23 +34,23 @@ export function Benefits() {
   const benefits = [
     {
       icon: <Calendar className="w-6 h-6" />,
-      title: "Easy scheduling",
-      description: "Book appointments in seconds with an intuitive interface"
+      title: "Лесно закажување",
+      description: "Закажи термин во само 10 секунди"
     },
     {
       icon: <Clock className="w-6 h-6" />,
-      title: "Daily & weekly calendar view",
-      description: "See your entire schedule at a glance, organized by day or week"
+      title: "Дневен, неделен и месечен преглед",
+      description: "Јасен дневен, неделен и месечен распоред по стоматолог"
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Customer management",
-      description: "Keep track of customer details and appointment history"
+      title: "Менаџмент на Пациенти",
+      description: "Историја на пациенти и нивни термини"
     },
     {
       icon: <Smartphone className="w-6 h-6" />,
-      title: "Mobile friendly",
-      description: "Access your schedule anywhere, on any device"
+      title: "Пристап од мобилен",
+      description: "Пристап од секаде, од мобилен телефон"
     }
   ];
 
@@ -64,9 +64,9 @@ export function Benefits() {
           transition={{ duration: 0.6 }}
           className="text-center space-y-4 mb-12"
         >
-          <h2 className="text-3xl md:text-4xl">Everything you need to stay organized</h2>
+          <h2 className="text-3xl md:text-4xl">Останете организирани и ефикасни</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Built for busy professionals who need reliable scheduling
+            Изградено за професионалци кои имаат потреба од ефикасност
           </p>
         </motion.div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

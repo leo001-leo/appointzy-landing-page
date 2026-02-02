@@ -5,18 +5,18 @@ export function HowItWorks() {
   const steps = [
     {
       number: "1",
-      title: "Create your schedule",
-      description: "Set up your working hours and availability in minutes"
+      title: "Подесување на системот",
+      description: "Ние го подесуваме системот за вашата ординација"
     },
     {
       number: "2",
-      title: "Accept bookings",
-      description: "Let customers book appointments directly with you"
+      title: "Внес на термин",
+      description: "Вашиот персонал лесно внесува и менаџира термини"
     },
     {
       number: "3",
-      title: "Manage your day",
-      description: "View and organize all appointments in one place"
+      title: "Менаџирање на денови",
+      description: "Преглед и менаџирање на термините на едно место"
     }
   ];
 
@@ -32,7 +32,7 @@ export function HowItWorks() {
         >
           <h2 className="text-3xl md:text-4xl">How it works</h2>
           <p className="text-lg text-muted-foreground">
-            Get started in three simple steps
+            Започнете во само 3 чекори
           </p>
         </motion.div>
         <div className="space-y-8">

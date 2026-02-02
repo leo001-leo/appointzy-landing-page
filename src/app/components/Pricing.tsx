@@ -6,50 +6,48 @@ import { motion } from "motion/react";
 export function Pricing() {
   const plans = [
     {
-      name: "Starter",
-      price: "$19",
+      name: "Почетен",
+      price: "950 мкд.",
       period: "/month",
-      description: "Perfect for solo practitioners and small teams",
+      description: "Одлично за ординации со 1 вработен",
       features: [
-        "Up to 100 appointments/month",
-        "1 staff member",
-        "Email reminders",
-        "Mobile app access",
-        "Basic analytics"
+        "До 150 термини месечно",
+        "1 вработен",
+        "Пристап од мобилен телефон",
+        "Основна аналитика"
       ],
       popular: false
     },
     {
-      name: "Professional",
-      price: "$49",
+      name: "Стандарден",
+      price: "1.699 мкд.",
       period: "/month",
-      description: "For growing businesses that need more power",
+      description: "За ординации кои имаат голем раст",
       features: [
-        "Unlimited appointments",
-        "Up to 5 staff members",
-        "SMS & email reminders",
-        "Mobile app access",
-        "Advanced analytics",
-        "Custom branding",
-        "Priority support"
+        "Неограничен број на термини",
+        "До 5 вработени",
+        "СМС & емаил потсетници",
+        "Пристап од мобилен телефон",
+        "Напредна аналитика",
+        "Персонализиран брендинг",
+        "Поддршка 24/7"
       ],
       popular: true
     },
     {
-      name: "Business",
-      price: "$99",
+      name: "Бизнис",
+      price: "2.000 мкд.",
       period: "/month",
-      description: "For established businesses with multiple locations",
+      description: "За веќе воспоставени бизниси со повеќе локации",
       features: [
-        "Unlimited appointments",
-        "Unlimited staff members",
-        "SMS & email reminders",
-        "Mobile app access",
-        "Advanced analytics",
-        "Custom branding",
-        "Priority support",
-        "API access",
-        "Multiple locations"
+        "Неограничен број на термини",
+        "Неограничен број на вработени",
+        "СМС & емаил потсетници",
+        "Пристап од мобилен телефон",
+        "Напредна аналитика",
+        "Персонализиран брендинг",
+        "Поддршка 24/7",
+	"Повеќе локации",
       ],
       popular: false
     }
@@ -67,7 +65,7 @@ export function Pricing() {
         >
           <h2 className="text-3xl md:text-4xl">Simple, transparent pricing</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that's right for your business. All plans include a 14-day free trial.
+            Одберете план кој најмногу ви одговара. Сите опции се со 30 дневен тест период.
           </p>
         </motion.div>
 
@@ -85,7 +83,7 @@ export function Pricing() {
                   {plan.popular && (
                     <div className="mb-4">
                       <span className="inline-block px-3 py-1 text-sm bg-primary text-primary-foreground rounded-full">
-                        Most Popular
+                        Најпопуларно
                       </span>
                     </div>
                   )}
@@ -109,7 +107,7 @@ export function Pricing() {
                     className="w-full"
                     variant={plan.popular ? "default" : "outline"}
                   >
-                    Start free trial
+                    Започни бесплатно
                   </Button>
                 </CardContent>
               </Card>
@@ -124,7 +122,7 @@ export function Pricing() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center text-sm text-muted-foreground mt-8"
         >
-          All plans include 14-day free trial. No credit card required.
+          Сите опции вклучуваат 30 дневен тест период. Не е потребна платежна картичка
         </motion.p>
       </div>
     </section>

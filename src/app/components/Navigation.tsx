@@ -10,16 +10,13 @@ export function Navigation() {
         </div>
         <div className="flex items-center gap-4">
           <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors hidden sm:inline">
-            Features
+            Карактеристики
           </a>
           <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors hidden sm:inline">
-            Pricing
+            Цени
           </a>
-          <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
-            Sign in
-          </Button>
           <Button size="sm">
-            Start free trial
+            Бесплатно демо
           </Button>
         </div>
       </div>

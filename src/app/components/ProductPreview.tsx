@@ -12,9 +12,9 @@ export function ProductPreview() {
           transition={{ duration: 0.6 }}
           className="text-center space-y-4 mb-12"
         >
-          <h2 className="text-3xl md:text-4xl">Your schedule, beautifully organized</h2>
+          <h2 className="text-3xl md:text-4xl">Вашиот распоред, убаво организиран</h2>
           <p className="text-lg text-muted-foreground">
-            Clean, intuitive design that makes managing appointments effortless
+            Едноставен, интуитивен дизајн што го олеснува управувањето со термини
           </p>
         </motion.div>
         

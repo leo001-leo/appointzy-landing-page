@@ -3,9 +3,9 @@ import logoImage from "../../assets/logo.png";
 export function Footer() {
   const links = {
     product: [
-      { label: "Features", href: "#features" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "Contact", href: "#" }
+      { label: "Карактеристики", href: "#features" },
+      { label: "Цени", href: "#pricing" },
+      { label: "Контакт", href: "#" }
     ]
   };
 
@@ -19,13 +19,12 @@ export function Footer() {
               <img src={logoImage} alt="Appointzy" className="h-8 w-auto" />
             </div>
             <p className="text-muted-foreground text-sm">
-              Simple appointment scheduling for small and medium businesses
+              Едноставно закажување на термини за мали и средни ординации
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h4 className="mb-4">Product</h4>
             <ul className="space-y-2">
               {links.product.map((link, index) => (
                 <li key={index}>
@@ -46,7 +45,7 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          © 2025 Appointzy. All rights reserved.
+          © 2026 Appointzy. Сите права задржани.
         </div>
       </div>
     </footer>

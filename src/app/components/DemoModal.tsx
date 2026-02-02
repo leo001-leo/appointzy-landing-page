@@ -20,9 +20,9 @@ export function DemoModal({ open, onOpenChange }: DemoModalProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>See Appointzy in action</DialogTitle>
+          <DialogTitle>Погледни го Appointzy</DialogTitle>
           <DialogDescription>
-            Manage your appointments with our intuitive weekly calendar view
+            Менаџирајте ги термините со нашиот неделен преглед
           </DialogDescription>
         </DialogHeader>
         <div className="mt-4">

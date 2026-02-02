@@ -20,11 +20,11 @@ export function Testimonial() {
                 ))}
               </div>
               <blockquote className="text-xl md:text-2xl mb-6 text-center md:text-left">
-                "Appointzy has transformed how we manage our salon. Booking appointments is now effortless, and our customers love how easy it is to schedule online."
+                "Appointzy го трансформираше начинот на кој управуваме со нашата ординација. Резервирањето термини сега е лесно, а на нашите клиенти им се допаѓаат СМС потсетниците."
               </blockquote>
               <div className="text-center md:text-left">
-                <div className="text-muted-foreground">Jessica Martinez</div>
-                <div className="text-sm text-muted-foreground">Owner, Luxe Hair Salon</div>
+                <div className="text-muted-foreground">Срна</div>
+                <div className="text-sm text-muted-foreground">Сопственичка на стоматолошка ординација</div>
               </div>
             </CardContent>
           </Card>
