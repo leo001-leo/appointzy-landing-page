@@ -30,7 +30,7 @@ export function HowItWorks() {
           transition={{ duration: 0.6 }}
           className="text-center space-y-4 mb-12"
         >
-          <h2 className="text-3xl md:text-4xl">How it works</h2>
+          <h2 className="text-3xl md:text-4xl">Како функционира</h2>
           <p className="text-lg text-muted-foreground">
             Започнете во само 3 чекори
           </p>

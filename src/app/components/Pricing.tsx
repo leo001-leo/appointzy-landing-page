@@ -8,7 +8,7 @@ export function Pricing() {
     {
       name: "Почетен",
       price: "950 мкд.",
-      period: "/month",
+      period: "/месец",
       description: "Одлично за ординации со 1 вработен",
       features: [
         "До 150 термини месечно",
@@ -21,7 +21,7 @@ export function Pricing() {
     {
       name: "Стандарден",
       price: "1.699 мкд.",
-      period: "/month",
+      period: "/месец",
       description: "За ординации кои имаат голем раст",
       features: [
         "Неограничен број на термини",
@@ -37,7 +37,7 @@ export function Pricing() {
     {
       name: "Бизнис",
       price: "2.000 мкд.",
-      period: "/month",
+      period: "/месец",
       description: "За веќе воспоставени бизниси со повеќе локации",
       features: [
         "Неограничен број на термини",
@@ -63,7 +63,7 @@ export function Pricing() {
           transition={{ duration: 0.6 }}
           className="text-center space-y-4 mb-12"
         >
-          <h2 className="text-3xl md:text-4xl">Simple, transparent pricing</h2>
+          <h2 className="text-3xl md:text-4xl">Пакети</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Одберете план кој најмногу ви одговара. Сите опции се со 30 дневен тест период.
           </p>
