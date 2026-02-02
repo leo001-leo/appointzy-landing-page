@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import calendarScreenshot from "figma:asset/976d16c8d36906b1f7c4337ef7dcd5146625eaa7.png";
+import calendarScreenshot from "../../assets/calendarScreenshot.png";
 
 export function ProductPreview() {
   return (
