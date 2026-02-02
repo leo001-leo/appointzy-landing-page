@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function FinalCTA() {
+export function FinalCTA() {
   return (
     <section className="py-20 text-center">
       <h2 className="text-3xl font-bold mb-4">
