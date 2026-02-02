@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Hero() {
+export function Hero() {
   return (
     <section className="py-20 text-center">
       <h1 className="text-4xl font-bold mb-4">
