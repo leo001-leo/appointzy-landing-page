@@ -88,9 +88,6 @@ export function Pricing() {
                     </div>
                   )}
                   <h3 className="mb-2">{plan.name}</h3>
-                  <div className="flex items-baseline justify-center gap-1">
-                    <span className="text-muted-foreground">{plan.period}</span>
-                  </div>
                   <p className="text-sm text-muted-foreground mt-4">{plan.description}</p>
                 </CardHeader>
                 <CardContent className="space-y-6">

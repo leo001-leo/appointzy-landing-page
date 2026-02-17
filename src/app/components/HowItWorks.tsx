@@ -51,7 +51,7 @@ export function HowItWorks() {
                 </div>
               </div>
               <div className="flex-1 pt-1">
-                <div className="text-sm text-muted-foreground mb-1">Step {step.number}</div>
+                <div className="text-sm text-muted-foreground mb-1">Чекор {step.number}</div>
                 <h3 className="mb-2">{step.title}</h3>
                 <p className="text-muted-foreground">{step.description}</p>
               </div>
