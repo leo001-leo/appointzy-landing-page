@@ -88,9 +88,9 @@ export function Pricing() {
                     </div>
                   )}
                   <h3 className="mb-2">{plan.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-4">{plan.description}</p>
+                  <p className="text-sm text-muted-foreground mt-3">{plan.description}</p>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="space-y-5">
                   <ul className="space-y-3">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex gap-3 items-start">
@@ -99,12 +99,14 @@ export function Pricing() {
                       </li>
                     ))}
                   </ul>
+		<a href="#demo">
                   <Button
                     className="w-full"
                     variant={plan.popular ? "default" : "outline"}
                   >
                     Започни бесплатно
                   </Button>
+		</a>
                 </CardContent>
               </Card>
             </motion.div>

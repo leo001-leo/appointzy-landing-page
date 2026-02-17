@@ -13,7 +13,7 @@ export function Navigation() {
             Карактеристики
           </a>
           <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors hidden sm:inline">
-            Цени
+            Пакети
           </a>
           <a href="#demo">
     	    <Button size="sm">
