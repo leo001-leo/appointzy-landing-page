@@ -6,7 +6,7 @@ export function HowItWorks() {
     {
       number: "1",
       title: "Подесување на системот",
-      description: "Ние го подесуваме системот за вашата ординација"
+      description: "Ние го подесуваме системот за вашиот бизнис"
     },
     {
       number: "2",

@@ -40,12 +40,12 @@ export function Benefits() {
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Дневен, неделен и месечен преглед",
-      description: "Јасен дневен, неделен и месечен распоред по стоматолог"
+      description: "Јасен дневен, неделен и месечен распоред по вработен"
     },
     {
       icon: <Users className="w-6 h-6" />,
-      title: "Менаџмент на Пациенти",
-      description: "Историја на пациенти и нивни термини"
+      title: "Менаџмент на Клиенти",
+      description: "Историја на клиенти и нивни термини"
     },
     {
       icon: <Smartphone className="w-6 h-6" />,

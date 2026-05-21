@@ -19,7 +19,7 @@ export function Footer() {
               <img src={logoImage} alt="Appointzy" className="h-8 w-auto" />
             </div>
             <p className="text-muted-foreground text-sm">
-              Едноставно закажување на термини за мали и средни ординации
+              Едноставно закажување на термини за мали и средни бизниси
             </p>
           </div>
 
