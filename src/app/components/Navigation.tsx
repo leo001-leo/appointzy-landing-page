@@ -16,8 +16,8 @@ export function Navigation() {
             Пакети
           </a>
           <a href="#demo">
-    	    <Button size="sm">
-      		Бесплатно демо
+            <Button size="sm">
+              Започни бесплатно
             </Button>
   	  </a>
         </div>
