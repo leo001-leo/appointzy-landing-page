@@ -79,7 +79,7 @@ export function InvoicesFeature() {
             <div className="px-5 py-4 border-b border-border flex items-center justify-between">
               <div>
                 <div className="text-sm text-muted-foreground">Добавувач</div>
-                <div>Мебел Плус ДООЕЛ</div>
+                <div>Добавувач 1</div>
               </div>
               <span className="px-3 py-1 text-xs rounded-full bg-accent/15 text-accent-foreground">
                 Платено
@@ -93,8 +93,8 @@ export function InvoicesFeature() {
                 <span className="text-right">ДДВ</span>
               </div>
               {[
-                { name: "Канцелариска столица", qty: "4", price: "1.200", vat: "18%" },
-                { name: "Работна маса", qty: "2", price: "3.500", vat: "18%" },
+                { name: "Стоматолошки ракавици", qty: "10", price: "450", vat: "18%" },
+                { name: "Заштитни маски", qty: "50", price: "180", vat: "18%" },
               ].map((row, i) => (
                 <div key={i} className="grid grid-cols-4 gap-2 text-sm py-1">
                   <span>{row.name}</span>
@@ -107,15 +107,15 @@ export function InvoicesFeature() {
             <div className="px-5 py-4 bg-muted/40 space-y-1 text-sm">
               <div className="flex justify-between text-muted-foreground">
                 <span>Нето</span>
-                <span>11.800 мкд.</span>
+                <span>13.500 мкд.</span>
               </div>
               <div className="flex justify-between text-muted-foreground">
                 <span>ДДВ (18%)</span>
-                <span>2.124 мкд.</span>
+                <span>2.430 мкд.</span>
               </div>
               <div className="flex justify-between pt-1 border-t border-border">
                 <span>Вкупно</span>
-                <span>13.924 мкд.</span>
+                <span>15.930 мкд.</span>
               </div>
             </div>
           </div>

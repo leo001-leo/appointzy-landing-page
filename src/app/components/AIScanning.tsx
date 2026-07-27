@@ -83,11 +83,11 @@ export function AIScanning() {
             <div className="p-5 grid grid-cols-2 gap-4 text-sm">
               <div className="space-y-1">
                 <div className="text-xs text-muted-foreground">Добавувач</div>
-                <div className="px-3 py-2 rounded-lg bg-muted/60">Технопром ДОО</div>
+                <div className="px-3 py-2 rounded-lg bg-muted/60">Добавувач 1</div>
               </div>
               <div className="space-y-1">
                 <div className="text-xs text-muted-foreground">Број на фактура</div>
-                <div className="px-3 py-2 rounded-lg bg-muted/60">ФАК-2026-0417</div>
+                <div className="px-3 py-2 rounded-lg bg-muted/60">123456</div>
               </div>
               <div className="space-y-1">
                 <div className="text-xs text-muted-foreground">Датум на внес</div>
