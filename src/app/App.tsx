@@ -3,6 +3,8 @@ import { Hero } from "./components/Hero";
 import { Benefits } from "./components/Benefits";
 import { HowItWorks } from "./components/HowItWorks";
 import { ProductPreview } from "./components/ProductPreview";
+import { InvoicesFeature } from "./components/InvoicesFeature";
+import { AIScanning } from "./components/AIScanning";
 import { MobileApp } from "./components/MobileApp";
 import { Pricing } from "./components/Pricing";
 import { Testimonial } from "./components/Testimonial";
@@ -18,6 +20,8 @@ export default function App() {
         <Benefits />
         <HowItWorks />
         <ProductPreview />
+        <InvoicesFeature />
+        <AIScanning />
         <MobileApp />
         <Pricing />
         <Testimonial />
