@@ -53,7 +53,7 @@ export function Features() {
             <div className="flex h-full flex-col rounded-2xl border border-border bg-background p-6">
               <h3 className="font-medium">Автоматски СМС потсетници</h3>
               <p className="mt-1 text-muted-foreground">
-                Пораката заминува сама, ден пред терминот. Пациентот не заборава, вие не ѕвоните.
+                Пораката се испраќа сама, ден пред терминот. Пациентот не заборава, вие не ѕвоните.
               </p>
               <div className="mt-5 space-y-2.5 rounded-xl bg-muted p-4">
                 <div className="chat-bubble chat-bubble-1 max-w-[85%] rounded-2xl rounded-tl-sm bg-white px-4 py-2.5 text-sm shadow-sm">
