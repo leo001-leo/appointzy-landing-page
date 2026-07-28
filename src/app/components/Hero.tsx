@@ -7,9 +7,14 @@ export function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
         {/* Copy + form */}
         <div>
-          <span className="mb-4 inline-block rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground">
-            30 дена бесплатно
-          </span>
+          <div className="mb-4 flex flex-wrap gap-2">
+            <span className="rounded-full bg-primary px-3 py-1 text-sm text-primary-foreground">
+              За ординации и физиотерапевти
+            </span>
+            <span className="rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground">
+              30 дена бесплатно
+            </span>
+          </div>
           <h1 className="text-[2rem] leading-[1.12] md:text-5xl">
             Празен стол значи изгубен час и изгубени пари.
           </h1>

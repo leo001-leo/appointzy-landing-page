@@ -109,9 +109,19 @@ export function LeadForm() {
         </p>
       )}
 
-      <p className="text-sm text-muted-foreground">
-        Без картичка. Без инсталација. Ние ве контактираме.
-      </p>
+      {/* TODO: replace the initials avatar with a real founder photo */}
+      <div className="flex items-center gap-3 pt-1">
+        <div
+          aria-hidden="true"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary font-[Manrope] font-extrabold text-primary-foreground"
+        >
+          Л
+        </div>
+        <p className="text-sm text-muted-foreground">
+          Ќе ви се јави Леонид, основачот, во рок од 24 часа.
+          <span className="block">Без картичка. Без инсталација.</span>
+        </p>
+      </div>
     </form>
   );
 }
