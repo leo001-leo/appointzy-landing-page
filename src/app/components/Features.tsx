@@ -1,5 +1,40 @@
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
 import calendarScreenshot from "../../assets/calendarScreenshot.png";
+
+// Counts up from 0 when scrolled into view; shows the final value
+// immediately when the user prefers reduced motion.
+function CountUp({ to, duration = 700 }: { to: number; duration?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setValue(to);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        const start = performance.now();
+        const tick = (now: number) => {
+          const p = Math.min((now - start) / duration, 1);
+          setValue(Math.round(to * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      },
+      { threshold: 0.5 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [to, duration]);
+
+  return <span ref={ref}>{value}</span>;
+}
 
 // Bento grid: every card shows a small piece of real-looking UI, not an icon.
 export function Features() {
@@ -21,10 +56,10 @@ export function Features() {
                 Пораката заминува сама, ден пред терминот. Пациентот не заборава, вие не ѕвоните.
               </p>
               <div className="mt-5 space-y-2.5 rounded-xl bg-muted p-4">
-                <div className="max-w-[85%] rounded-2xl rounded-tl-sm bg-white px-4 py-2.5 text-sm shadow-sm">
+                <div className="chat-bubble chat-bubble-1 max-w-[85%] rounded-2xl rounded-tl-sm bg-white px-4 py-2.5 text-sm shadow-sm">
                   Потсетуваме: утре во 10:00 имате термин кај д-р Стојановска.
                 </div>
-                <div className="ml-auto max-w-[60%] rounded-2xl rounded-tr-sm bg-secondary px-4 py-2.5 text-sm shadow-sm">
+                <div className="chat-bubble chat-bubble-2 ml-auto max-w-[60%] rounded-2xl rounded-tr-sm bg-secondary px-4 py-2.5 text-sm shadow-sm">
                   Ќе дојдам, благодарам!
                 </div>
               </div>
@@ -40,13 +75,17 @@ export function Features() {
               </p>
               <div className="mt-auto flex items-end justify-center gap-8 pt-6" aria-hidden="true">
                 <div className="text-center">
-                  <div className="mx-auto w-14 rounded-t-lg bg-muted-foreground/25" style={{ height: 108 }} />
-                  <div className="mt-2 font-[Manrope] text-2xl font-extrabold text-muted-foreground">9</div>
+                  <div className="chart-bar mx-auto w-14 rounded-t-lg bg-muted-foreground/25" style={{ height: 108 }} />
+                  <div className="mt-2 font-[Manrope] text-2xl font-extrabold text-muted-foreground">
+                    <CountUp to={9} />
+                  </div>
                   <div className="text-xs text-muted-foreground">без потсетник</div>
                 </div>
                 <div className="text-center">
-                  <div className="mx-auto w-14 rounded-t-lg bg-accent" style={{ height: 12 }} />
-                  <div className="mt-2 font-[Manrope] text-2xl font-extrabold text-primary">1</div>
+                  <div className="chart-bar mx-auto w-14 rounded-t-lg bg-accent" style={{ height: 12 }} />
+                  <div className="mt-2 font-[Manrope] text-2xl font-extrabold text-primary">
+                    <CountUp to={1} duration={1000} />
+                  </div>
                   <div className="text-xs text-muted-foreground">со Appointzy</div>
                 </div>
               </div>

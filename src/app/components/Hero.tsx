@@ -27,7 +27,7 @@ export function Hero() {
           {/* Soft glow behind the screenshot */}
           <div
             aria-hidden="true"
-            className="absolute -inset-6 rounded-[2rem] bg-accent/15 blur-3xl"
+            className="glow-drift absolute -inset-6 rounded-[2rem] bg-accent/15 blur-3xl"
           />
           <div className="relative overflow-hidden rounded-2xl border border-border bg-white shadow-2xl">
             <img
