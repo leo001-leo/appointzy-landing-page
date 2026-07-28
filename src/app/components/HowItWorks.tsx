@@ -1,63 +1,46 @@
-import { Check } from "lucide-react";
-import { motion } from "motion/react";
+import { Reveal } from "./Reveal";
+
+const steps = [
+  {
+    title: "Оставате е-маил",
+    text: "Ние ве контактираме и поставуваме сè за вашата пракса. Постоечките термини ги внесуваме заедно.",
+  },
+  {
+    title: "Внесувате термини",
+    text: "Нов термин се внесува за десетина секунди, од компјутер или од телефон.",
+  },
+  {
+    title: "Пациентите добиваат потсетник",
+    text: "СМС пораката заминува сама, ден пред терминот. Вие не правите ништо.",
+  },
+];
 
 export function HowItWorks() {
-  const steps = [
-    {
-      number: "1",
-      title: "Подесување на системот",
-      description: "Ние го подесуваме системот за вашиот бизнис"
-    },
-    {
-      number: "2",
-      title: "Внес на термин",
-      description: "Вашиот персонал лесно внесува и менаџира термини"
-    },
-    {
-      number: "3",
-      title: "Менаџирање на денови",
-      description: "Преглед и менаџирање на термините на едно место"
-    }
-  ];
-
   return (
-    <section className="w-full px-4 py-12 md:py-20">
-      <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center space-y-4 mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl">Како функционира</h2>
-          <p className="text-lg text-muted-foreground">
-            Започнете во само 3 чекори
-          </p>
-        </motion.div>
-        <div className="space-y-8">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex gap-6 items-start"
-            >
-              <div className="flex-shrink-0">
-                <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-accent-foreground">
-                  <Check className="w-6 h-6" />
+    <section className="w-full px-4 py-14 md:py-20">
+      <div className="mx-auto max-w-4xl">
+        <Reveal>
+          <h2 className="text-3xl md:text-4xl">Како до првиот термин</h2>
+          <p className="mt-3 text-lg text-muted-foreground">Три чекори, ништо повеќе.</p>
+        </Reveal>
+        <ol className="mt-10 space-y-8">
+          {steps.map((step, i) => (
+            <Reveal key={step.title} delay={i * 80}>
+              <li className="flex items-start gap-5">
+                <span
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary font-[Manrope] text-lg font-extrabold text-primary-foreground"
+                  aria-hidden="true"
+                >
+                  {i + 1}
+                </span>
+                <div className="pt-1">
+                  <h3 className="font-medium">{step.title}</h3>
+                  <p className="mt-1 text-muted-foreground">{step.text}</p>
                 </div>
-              </div>
-              <div className="flex-1 pt-1">
-                <div className="text-sm text-muted-foreground mb-1">Чекор {step.number}</div>
-                <h3 className="mb-2">{step.title}</h3>
-                <p className="text-muted-foreground">{step.description}</p>
-              </div>
-            </motion.div>
+              </li>
+            </Reveal>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );

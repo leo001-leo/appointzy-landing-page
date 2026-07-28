@@ -1,28 +1,18 @@
-import { Button } from "./ui/button";
 import logoImage from "../../assets/logo.png";
 
 export function Navigation() {
   return (
-    <nav className="w-full px-4 py-4 border-b border-border bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <a href="/">
-            <img src={logoImage} alt="Appointzy" className="h-[46px] md:h-[50px] w-auto" />
-          </a>
-        </div>
-        <div className="flex items-center gap-2 sm:gap-4">
-          <a href="#features" className="text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors">
-            Карактеристики
-          </a>
-          <a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors hidden sm:inline">
-            Пакети
-          </a>
-          <a href="#demo">
-            <Button size="sm">
-              Започни бесплатно
-            </Button>
-  	  </a>
-        </div>
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/85 px-4 py-3 backdrop-blur-sm">
+      <div className="mx-auto flex max-w-6xl items-center justify-between">
+        <a href="/" className="flex items-center">
+          <img src={logoImage} alt="Appointzy" width={420} height={241} className="h-[46px] w-auto md:h-[50px]" />
+        </a>
+        <a
+          href="#cta"
+          className="flex h-11 items-center rounded-xl bg-primary px-5 text-sm font-medium text-primary-foreground shadow-md transition-all hover:bg-accent hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 active:scale-[0.98]"
+        >
+          Ран пристап
+        </a>
       </div>
     </nav>
   );
