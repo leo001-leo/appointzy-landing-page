@@ -1,15 +1,13 @@
 import { Navigation } from "./components/Navigation";
 import { Hero } from "./components/Hero";
-import { Benefits } from "./components/Benefits";
+import { Problem } from "./components/Problem";
 import { HowItWorks } from "./components/HowItWorks";
-import { ProductPreview } from "./components/ProductPreview";
-import { InvoicesFeature } from "./components/InvoicesFeature";
-import { AIScanning } from "./components/AIScanning";
-import { MobileApp } from "./components/MobileApp";
-import { Pricing } from "./components/Pricing";
-import { Testimonial } from "./components/Testimonial";
+import { Features } from "./components/Features";
+import { Proof } from "./components/Proof";
+import { FAQ } from "./components/FAQ";
 import { FinalCTA } from "./components/FinalCTA";
 import { Footer } from "./components/Footer";
+import { StickyCTA } from "./components/StickyCTA";
 
 export default function App() {
   return (
@@ -17,17 +15,15 @@ export default function App() {
       <Navigation />
       <main className="flex-1">
         <Hero />
-        <Benefits />
+        <Problem />
         <HowItWorks />
-        <ProductPreview />
-        <InvoicesFeature />
-        <AIScanning />
-        <MobileApp />
-        <Pricing />
-        <Testimonial />
+        <Features />
+        <Proof />
+        <FAQ />
         <FinalCTA />
       </main>
       <Footer />
+      <StickyCTA />
     </div>
   );
 }
