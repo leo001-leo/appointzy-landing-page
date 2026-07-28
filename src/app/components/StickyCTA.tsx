@@ -41,7 +41,7 @@ export function StickyCTA() {
         tabIndex={show ? 0 : -1}
         className="flex h-12 w-full items-center justify-center rounded-xl bg-primary font-medium text-primary-foreground shadow-md transition-all hover:bg-accent active:scale-[0.98]"
       >
-        Пријави се за ран пристап
+        Пробајте го бесплатно
       </a>
     </div>
   );

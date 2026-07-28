@@ -8,7 +8,7 @@ export function Hero() {
         {/* Copy + form */}
         <div>
           <span className="mb-4 inline-block rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground">
-            Ран пристап
+            30 дена бесплатно
           </span>
           <h1 className="text-[2rem] leading-[1.12] md:text-5xl">
             Празен стол значи изгубен час и изгубени пари.

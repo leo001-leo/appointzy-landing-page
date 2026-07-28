@@ -100,7 +100,7 @@ export function LeadForm() {
         disabled={status === "loading"}
         className="h-12 w-full rounded-xl bg-primary font-medium text-primary-foreground shadow-md transition-all hover:bg-accent hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-70"
       >
-        {status === "loading" ? "Се испраќа..." : "Пријави се за ран пристап"}
+        {status === "loading" ? "Се испраќа..." : "Пробајте го бесплатно"}
       </button>
 
       {status === "error" && (

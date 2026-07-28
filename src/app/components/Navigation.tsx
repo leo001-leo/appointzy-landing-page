@@ -11,7 +11,7 @@ export function Navigation() {
           href="#cta"
           className="flex h-11 items-center rounded-xl bg-primary px-5 text-sm font-medium text-primary-foreground shadow-md transition-all hover:bg-accent hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 active:scale-[0.98]"
         >
-          Ран пристап
+          Започнете бесплатно
         </a>
       </div>
     </nav>
