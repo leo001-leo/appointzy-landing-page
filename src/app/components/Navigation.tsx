@@ -9,7 +9,7 @@ export function Navigation() {
         </a>
         <a
           href="#cta"
-          className="flex h-11 items-center rounded-xl bg-primary px-5 text-sm font-medium text-primary-foreground shadow-md transition-all hover:bg-accent hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 active:scale-[0.98]"
+          className="flex h-11 items-center rounded-xl bg-foreground px-5 text-sm font-medium text-background transition-all hover:bg-foreground/85 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/40 focus-visible:ring-offset-2 active:scale-[0.98]"
         >
           Започнете бесплатно
         </a>

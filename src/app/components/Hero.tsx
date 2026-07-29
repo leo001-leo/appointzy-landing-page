@@ -7,20 +7,20 @@ export function Hero() {
       <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2 lg:gap-14">
         {/* Copy + form */}
         <div>
-          <div className="mb-4 flex flex-wrap gap-2">
-            <span className="rounded-full bg-primary px-3 py-1 text-sm text-primary-foreground">
+          <div className="mb-5 flex flex-wrap gap-2">
+            <span className="rounded-full border border-border bg-white px-3 py-1 text-sm text-muted-foreground">
               За ординации и физиотерапевти
             </span>
-            <span className="rounded-full bg-secondary px-3 py-1 text-sm text-secondary-foreground">
+            <span className="rounded-full border border-border bg-white px-3 py-1 text-sm text-muted-foreground">
               30 дена бесплатно
             </span>
           </div>
-          <h1 className="text-[2rem] leading-[1.12] md:text-5xl">
-            Празен стол значи изгубен час и изгубени пари.
+          <h1 className="text-[2.4rem] leading-[1.05] tracking-[-0.03em] md:text-[3.5rem] lg:text-[4rem]">
+            Празен стол значи <span className="marker">изгубени пари</span>.
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
-            Appointzy автоматски им праќа СМС потсетник на пациентите. Кај нашите
-            корисници, пропуштените термини паднаа од 9 месечно на само 1.
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            Автоматски СМС потсетници за пациентите. Кај нашите корисници,
+            пропуштените термини паднаа од 9 на 1 месечно.
           </p>
           <div className="mt-6 max-w-md">
             <LeadForm />

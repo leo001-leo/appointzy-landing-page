@@ -43,7 +43,7 @@ export function Features() {
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <h2 className="max-w-2xl text-3xl md:text-4xl">
-            Сè што ѝ треба на една пракса. Ништо што не ѝ треба.
+            Сè што ѝ треба на една ординација
           </h2>
         </Reveal>
 
