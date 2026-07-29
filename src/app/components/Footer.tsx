@@ -1,4 +1,4 @@
-import logoImage from "../../assets/logo.png";
+import logoImage from "../../assets/logoTrimmed.png";
 
 const InstagramIcon = () => (
   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="w-full border-t border-border bg-white px-4 py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-4 text-center sm:flex-row sm:justify-between sm:text-left">
         <div className="flex flex-col items-center gap-2 sm:items-start">
-          <img src={logoImage} alt="Appointzy" width={420} height={241} className="h-8 w-auto" />
+          <img src={logoImage} alt="Appointzy" width={385} height={49} className="h-[22px] w-auto" />
           <p className="text-sm text-muted-foreground">Направено во Македонија.</p>
         </div>
         <div className="flex flex-col items-center gap-2 sm:items-end">
