@@ -5,7 +5,7 @@ export function Navigation() {
     <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/85 px-4 py-3 backdrop-blur-sm">
       <div className="mx-auto flex max-w-6xl items-center justify-between">
         <a href="/" className="flex items-center">
-          <img src={logoImage} alt="Appointzy" width={420} height={241} className="h-[46px] w-auto md:h-[50px]" />
+          <img src={logoImage} alt="Appointzy" width={420} height={241} className="h-[58px] w-auto md:h-[68px]" />
         </a>
         <a
           href="#cta"
