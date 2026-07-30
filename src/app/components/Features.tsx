@@ -137,27 +137,63 @@ export function Features() {
           </Reveal>
 
           {/* Recurring visits */}
-          <Reveal className="md:col-span-3">
-            <div className="rounded-2xl border border-border bg-background p-6">
-              <div className="md:flex md:items-center md:justify-between md:gap-10">
-                <div className="max-w-md">
-                  <h3 className="font-medium">Повторувачки посети</h3>
-                  <p className="mt-1 text-muted-foreground">
-                    Серија од десет физиотерапии? Ја внесувате еднаш, а системот ги закажува сите и потсетува за секоја одделно.
-                  </p>
+          <Reveal className="md:col-span-2">
+            <div className="flex h-full flex-col rounded-2xl border border-border bg-background p-6">
+              <h3 className="font-medium">Повторувачки посети</h3>
+              <p className="mt-1 text-muted-foreground">
+                Серија од десет физиотерапии? Ја внесувате еднаш, а системот ги закажува сите и потсетува за секоја одделно.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2" aria-hidden="true">
+                {["Пон 12.10", "Сре 14.10", "Пет 16.10", "Пон 19.10", "Сре 21.10"].map((d, i) => (
+                  <span
+                    key={d}
+                    className={`rounded-full px-3 py-1.5 text-sm ${
+                      i < 3 ? "bg-secondary text-secondary-foreground" : "border border-border bg-white text-muted-foreground"
+                    }`}
+                  >
+                    {i < 3 ? "✓ " : ""}
+                    {d}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Per-practice branding and settings */}
+          <Reveal delay={80}>
+            <div className="flex h-full flex-col rounded-2xl border border-border bg-background p-6">
+              <h3 className="font-medium">Со вашето лого и вашите бои</h3>
+              <p className="mt-1 text-muted-foreground">
+                Апликацијата изгледа како ваша. Работните часови, услугите и вработените се поставени како кај вас.
+              </p>
+              <div
+                className="mt-5 overflow-hidden rounded-xl border border-border bg-white shadow-sm"
+                aria-hidden="true"
+              >
+                <div className="flex items-center bg-primary px-3 py-2.5">
+                  <span className="rounded bg-white/95 px-2 py-1 text-[10px] font-semibold tracking-wide text-primary">
+                    ВАШЕ ЛОГО
+                  </span>
                 </div>
-                <div className="mt-5 flex flex-wrap gap-2 md:mt-0" aria-hidden="true">
-                  {["Пон 12.10", "Сре 14.10", "Пет 16.10", "Пон 19.10", "Сре 21.10"].map((d, i) => (
-                    <span
-                      key={d}
-                      className={`rounded-full px-3 py-1.5 text-sm ${
-                        i < 3 ? "bg-secondary text-secondary-foreground" : "border border-border bg-white text-muted-foreground"
-                      }`}
-                    >
-                      {i < 3 ? "✓ " : ""}
-                      {d}
-                    </span>
-                  ))}
+                <div className="space-y-2 p-3">
+                  <div className="h-2 w-2/3 rounded-full bg-muted" />
+                  <div className="h-2 w-1/2 rounded-full bg-muted" />
+                  <div className="flex items-center gap-2 pt-2">
+                    {[
+                      { c: "#c2410c", on: true },
+                      { c: "#0f766e", on: false },
+                      { c: "#1d4ed8", on: false },
+                      { c: "#7e22ce", on: false },
+                    ].map(({ c, on }) => (
+                      <span
+                        key={c}
+                        style={{ backgroundColor: c }}
+                        className={`h-5 w-5 rounded-full ${
+                          on ? "ring-2 ring-foreground/30 ring-offset-2" : ""
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
