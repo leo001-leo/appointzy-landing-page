@@ -205,8 +205,10 @@
   box-decoration-break: clone;
 }
 
-/* Scroll-reveal: JS adds .reveal-in when the element enters the viewport */
-.reveal {
+/* Scroll-reveal: JS adds .reveal-in when the element enters the viewport.
+   Scoped to .js (set by an inline script in index.html) so the prerendered
+   HTML stays visible when JavaScript never runs. */
+.js .reveal {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -252,7 +254,7 @@
 }
 
 /* The 9 -> 1 chart draws its bars when the parent .reveal-in fires */
-.chart-bar {
+.js .chart-bar {
   transform: scaleY(0.04);
   transform-origin: bottom;
   transition: transform 0.6s ease 0.15s;
@@ -263,7 +265,7 @@
 }
 
 /* SMS feature card: bubbles appear one after another, like a live chat */
-.chat-bubble {
+.js .chat-bubble {
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.35s ease, transform 0.35s ease;
@@ -282,7 +284,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  /* .js-scoped to outrank the hiding rules above */
+  .js .reveal,
+  .js .chart-bar,
+  .js .chat-bubble {
     opacity: 1;
     transform: none;
     transition: none;
@@ -290,11 +295,5 @@
   .sms-arrive,
   .glow-drift {
     animation: none;
-  }
-  .chart-bar,
-  .chat-bubble {
-    opacity: 1;
-    transform: none;
-    transition: none;
   }
 }
