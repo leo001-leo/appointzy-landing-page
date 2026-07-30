@@ -48,7 +48,7 @@ export function Proof() {
             од луѓе што знаат како работи една ординација.
           </p>
         </Reveal>
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
           {quotes.map((q, i) => (
             <Reveal key={`${q.name}-${q.role}`} delay={(i % 2) * 80}>
               <figure className="flex h-full flex-col rounded-2xl border border-border bg-white p-6">

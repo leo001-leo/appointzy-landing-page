@@ -22,7 +22,7 @@ export function Problem() {
         <Reveal>
           <h2 className="max-w-xl text-3xl md:text-4xl">Ви звучи познато?</h2>
         </Reveal>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
           {pains.map((pain, i) => (
             <Reveal key={pain.title} delay={i * 80}>
               <div className="h-full rounded-2xl border border-border bg-background p-6">
