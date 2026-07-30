@@ -50,7 +50,7 @@ export function Proof() {
         </Reveal>
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           {quotes.map((q, i) => (
-            <Reveal key={q.name} delay={(i % 2) * 80}>
+            <Reveal key={`${q.name}-${q.role}`} delay={(i % 2) * 80}>
               <figure className="flex h-full flex-col rounded-2xl border border-border bg-white p-6">
                 <blockquote className="leading-relaxed">„{q.text}"</blockquote>
                 <figcaption className="mt-4 pt-4 border-t border-border">
