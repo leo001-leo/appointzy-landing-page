@@ -4,22 +4,121 @@
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="theme-color" content="#fbfaf8" />
+      <!-- Scroll-reveal styles are scoped to .js so the prerendered HTML
+           stays visible if JavaScript is unavailable. -->
+      <script>
+        document.documentElement.classList.add("js");
+      </script>
+      <title>Appointzy · Помалку пропуштени термини во ординација</title>
       <meta
         name="description"
         content="Appointzy автоматски им праќа СМС потсетници на пациентите. Помалку пропуштени термини за стоматолошки ординации и физиотерапевти во Македонија."
       />
+      <link rel="canonical" href="https://info.appointzy.app/" />
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+
       <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Appointzy" />
+      <meta property="og:url" content="https://info.appointzy.app/" />
       <meta property="og:title" content="Appointzy · Помалку пропуштени термини" />
       <meta
         property="og:description"
         content="Автоматски СМС потсетници за пациентите. Од 9 пропуштени термини месечно, на само 1. Направено во Македонија."
       />
-      <meta property="og:image" content="/og.png" />
+      <meta property="og:image" content="https://info.appointzy.app/og.png" />
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+      <meta property="og:image:alt" content="Appointzy" />
       <meta property="og:locale" content="mk_MK" />
+
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Appointzy · Помалку пропуштени термини" />
+      <meta
+        name="twitter:description"
+        content="Автоматски СМС потсетници за пациентите. Од 9 пропуштени термини месечно, на само 1. Направено во Македонија."
+      />
+      <meta name="twitter:image" content="https://info.appointzy.app/og.png" />
+
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <link rel="icon" href="/favicon-64.png" type="image/png" />
       <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-      <title>Appointzy · Помалку пропуштени термини во ординација</title>
+
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "@id": "https://info.appointzy.app/#organization",
+              "name": "Appointzy",
+              "url": "https://info.appointzy.app/",
+              "logo": "https://info.appointzy.app/apple-touch-icon.png",
+              "areaServed": {
+                "@type": "Country",
+                "name": "Северна Македонија"
+              },
+              "sameAs": ["https://www.instagram.com/appointzy.app"]
+            },
+            {
+              "@type": "SoftwareApplication",
+              "@id": "https://info.appointzy.app/#software",
+              "name": "Appointzy",
+              "url": "https://info.appointzy.app/",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
+              "inLanguage": "mk",
+              "publisher": { "@id": "https://info.appointzy.app/#organization" },
+              "description": "Апликација за закажување термини со автоматски СМС потсетници за стоматолошки ординации, физиотерапевти и мали здравствени пракси во Македонија."
+            },
+            {
+              "@type": "FAQPage",
+              "@id": "https://info.appointzy.app/#faq",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "Дали е тешко за учење?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Не. Ако знаете да користите Viber, знаете да користите Appointzy. Внесувањето термин трае десетина секунди, а сè друго оди само."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Дали пациентите мора да инсталираат нешто?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Не. Пациентите добиваат обична СМС порака. Не им треба апликација, ниту интернет."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Што ќе се случи со термините од тетратката?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "При поставувањето заедно ги внесуваме постоечките термини. Од првиот ден работите со полн календар."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Работи ли на телефон?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Да. Appointzy се отвора во прелистувачот на кој било телефон, таблет или компјутер, без инсталација."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Кој ги праќа потсетниците?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Системот, автоматски, ден пред терминот. Вие само го внесувате терминот и ништо повеќе."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      </script>
     </head>
 
     <body>
