@@ -47,7 +47,7 @@ export function Features() {
           </h2>
         </Reveal>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">
           {/* SMS reminders — chat mockup */}
           <Reveal className="md:col-span-2">
             <div className="flex h-full flex-col rounded-2xl border border-border bg-background p-6">
@@ -136,25 +136,40 @@ export function Features() {
             </div>
           </Reveal>
 
-          {/* Recurring visits */}
+          {/* Patient records and images */}
           <Reveal className="md:col-span-2">
             <div className="flex h-full flex-col rounded-2xl border border-border bg-background p-6">
-              <h3 className="font-medium">Повторувачки посети</h3>
+              <h3 className="font-medium">Картон и снимки на пациентот</h3>
               <p className="mt-1 text-muted-foreground">
-                Серија од десет физиотерапии? Ја внесувате еднаш, а системот ги закажува сите и потсетува за секоја одделно.
+                Снимките и историјата на посети стојат кај пациентот, во системот. Не барате по фолдери, УСБ или стар компјутер.
               </p>
-              <div className="mt-5 flex flex-wrap gap-2" aria-hidden="true">
-                {["Пон 12.10", "Сре 14.10", "Пет 16.10", "Пон 19.10", "Сре 21.10"].map((d, i) => (
-                  <span
-                    key={d}
-                    className={`rounded-full px-3 py-1.5 text-sm ${
-                      i < 3 ? "bg-secondary text-secondary-foreground" : "border border-border bg-white text-muted-foreground"
-                    }`}
-                  >
-                    {i < 3 ? "✓ " : ""}
-                    {d}
+              <div className="mt-5 rounded-xl bg-muted p-4" aria-hidden="true">
+                <div className="mb-3 flex items-center gap-3">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-secondary text-xs font-semibold text-primary">
+                    МП
                   </span>
-                ))}
+                  <div className="min-w-0">
+                    <div className="text-sm font-medium">Марија Петровска</div>
+                    <div className="text-xs text-muted-foreground">Последна посета: 12.10</div>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  {["14.03", "12.10"].map((d) => (
+                    <div key={d} className="w-20 shrink-0">
+                      <div className="relative h-16 overflow-hidden rounded-lg bg-foreground/80">
+                        <div className="absolute inset-x-2 bottom-1 top-3 rounded-t-full bg-white/15" />
+                      </div>
+                      <div className="mt-1 text-[10px] text-muted-foreground">Снимка {d}</div>
+                    </div>
+                  ))}
+                  <div className="min-w-0 flex-1 space-y-1.5">
+                    {["Чистење забен камен", "Контрола", "Пломба"].map((v) => (
+                      <div key={v} className="truncate rounded-md bg-white px-2 py-1 text-[11px]">
+                        {v}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </Reveal>
@@ -194,6 +209,57 @@ export function Features() {
                       />
                     ))}
                   </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Recurring visits */}
+          <Reveal className="md:col-span-2">
+            <div className="flex h-full flex-col rounded-2xl border border-border bg-background p-6">
+              <h3 className="font-medium">Повторувачки посети</h3>
+              <p className="mt-1 text-muted-foreground">
+                Серија од десет физиотерапии? Ја внесувате еднаш, а системот ги закажува сите и потсетува за секоја одделно.
+              </p>
+              <div className="mt-5 flex flex-wrap gap-2" aria-hidden="true">
+                {["Пон 12.10", "Сре 14.10", "Пет 16.10", "Пон 19.10", "Сре 21.10"].map((d, i) => (
+                  <span
+                    key={d}
+                    className={`rounded-full px-3 py-1.5 text-sm ${
+                      i < 3 ? "bg-secondary text-secondary-foreground" : "border border-border bg-white text-muted-foreground"
+                    }`}
+                  >
+                    {i < 3 ? "✓ " : ""}
+                    {d}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          {/* Supplier invoices — deliberately the quietest card: the page is
+              about scheduling, this is a secondary capability. */}
+          <Reveal delay={80}>
+            <div className="flex h-full flex-col rounded-2xl border border-border bg-muted/40 p-6">
+              <h3 className="font-medium">Влезни фактури и ДДВ</h3>
+              <p className="mt-1 text-muted-foreground">
+                Фактурите од добавувачите ги внесувате со автоматска пресметка на ДДВ и вкупни износи. Сликајте ја фактурата со телефон и AI ги пополнува податоците.
+              </p>
+              <div
+                className="mt-5 rounded-xl border border-border bg-white p-3 text-sm"
+                aria-hidden="true"
+              >
+                <div className="flex justify-between text-muted-foreground">
+                  <span>Нето</span>
+                  <span>13.500</span>
+                </div>
+                <div className="flex justify-between text-muted-foreground">
+                  <span>ДДВ 18%</span>
+                  <span>2.430</span>
+                </div>
+                <div className="mt-1 flex justify-between border-t border-border pt-1">
+                  <span>Вкупно</span>
+                  <span>15.930 мкд.</span>
                 </div>
               </div>
             </div>
