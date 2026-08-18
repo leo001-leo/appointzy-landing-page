@@ -6,6 +6,13 @@ const InstagramIcon = () => (
   </svg>
 );
 
+const MailIcon = () => (
+  <svg viewBox="0 0 24 24" className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="m22 6-10 7L2 6" />
+  </svg>
+);
+
 export function Footer() {
   return (
     <footer className="w-full border-t border-border bg-white px-4 py-10">
@@ -15,6 +22,13 @@ export function Footer() {
           <p className="text-sm text-muted-foreground">Направено во Македонија.</p>
         </div>
         <div className="flex flex-col items-center gap-2 sm:items-end">
+          <a
+            href="mailto:info@appointzy.app"
+            className="inline-flex min-h-[44px] items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            <MailIcon />
+            info@appointzy.app
+          </a>
           <a
             href="https://www.instagram.com/appointzy.app?igsh=MTk0cXJncnB1eXRnYw=="
             target="_blank"
