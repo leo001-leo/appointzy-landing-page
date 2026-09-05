@@ -1,0 +1,23 @@
+{
+  // Committing this config stops `wrangler deploy` from running its
+  // interactive auto-config, which was injecting @cloudflare/vite-plugin and
+  // re-running `npm run build`. That second build rewrote the SSR bundle for
+  // the Workers runtime, so scripts/prerender.mjs could no longer import its
+  // `render` export and the deploy failed.
+  //
+  // This is a static-assets-only Worker: there is no `main`, dist/ is uploaded
+  // as-is, and the prerendered index.html from `npm run build` is what ships.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "appointzy-landing-page",
+  "compatibility_date": "2026-09-03",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    // "404-page" serves the nearest 404.html with a real 404 status.
+    // Do NOT use "single-page-application": that returns 200 + index.html for
+    // every unknown path, which is the soft-404 problem we fixed for SEO.
+    "not_found_handling": "404-page"
+  }
+}
