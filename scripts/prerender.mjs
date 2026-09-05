@@ -1,14 +1,42 @@
 // Bakes the rendered React output into dist/index.html so crawlers and social
 // scrapers receive real content instead of an empty root div.
 // Run after both the client build and the SSR build (see package.json).
-import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from "node:fs";
 import { join } from "node:path";
+import { pathToFileURL } from "node:url";
 
 const DIST = "dist";
+const SSR_DIR = ".ssr-build";
 const INDEX = join(DIST, "index.html");
 const ASSET_DIR = join(DIST, "assets");
 
-const { render } = await import("../.ssr-build/entry-server.js");
+// Vite emits the SSR entry as .ssr-build/entry-server.js normally, but when a
+// deploy tool injects extra plugins it can end up hashed under an assets/
+// subfolder instead. Find it wherever it landed rather than hardcoding a path.
+function findEntry(dir) {
+  if (!existsSync(dir)) return null;
+  for (const name of readdirSync(dir)) {
+    const full = join(dir, name);
+    if (statSync(full).isDirectory()) {
+      const hit = findEntry(full);
+      if (hit) return hit;
+    } else if (/^entry-server.*\.(js|mjs)$/.test(name)) {
+      return full;
+    }
+  }
+  return null;
+}
+
+const entryPath = findEntry(SSR_DIR);
+if (!entryPath) {
+  console.error(
+    `prerender: could not find an entry-server bundle under ${SSR_DIR}/. ` +
+      `Did the SSR build run?`
+  );
+  process.exit(1);
+}
+
+const { render } = await import(pathToFileURL(entryPath).href);
 let markup = render();
 
 // The SSR build hashes assets independently of the client build. Remap any
@@ -45,4 +73,6 @@ if (!html.includes(placeholder)) {
 }
 
 writeFileSync(INDEX, html.replace(placeholder, `<div id="root">${markup}</div>`));
-console.log(`prerender: injected ${markup.length} chars of HTML into ${INDEX}`);
+console.log(
+  `prerender: injected ${markup.length} chars of HTML into ${INDEX} (entry: ${entryPath})`
+);
