@@ -23,7 +23,8 @@ export function Footer() {
         <div className="flex flex-col items-center gap-3 sm:items-start">
           <img src={logoImage} alt="Appointzy" width={385} height={49} className="h-[22px] w-auto" />
           <p className="max-w-xs text-sm leading-relaxed text-ink-muted">
-            Закажување термини и СМС потсетници за ординации и физиотерапевти.
+            Софтвер за закажување термини и СМС потсетници за стоматолошки
+            ординации, физиотерапевтски и останати приватни ординации.
             Направено во Македонија.
           </p>
         </div>

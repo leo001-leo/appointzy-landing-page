@@ -49,8 +49,9 @@ export function Hero() {
               className="rise mt-5 max-w-md text-lg leading-relaxed text-ink-muted"
               style={{ "--d": "230ms" } as React.CSSProperties}
             >
-              Автоматски СМС потсетници за пациентите. Кај нашите корисници,
-              пропуштените термини паднаа од 9 на 1 месечно.
+              Appointzy е софтвер за закажување термини со автоматски СМС
+              потсетници. Кај нашите корисници, пропуштените термини паднаа од
+              9 на 1 месечно.
             </p>
 
             <div
@@ -109,7 +110,8 @@ export function Hero() {
         {/* Real practices already using it */}
         <div className="mt-20 md:mt-24">
           <p className="text-center text-sm text-white/40">
-            Веќе го користат ординации и физиотерапевти во Македонија
+            Веќе го користат стоматолошки ординации, физиотерапевтски и останати
+            приватни ординации во Македонија
           </p>
           <div className="marquee-mask mt-5 overflow-hidden">
             <div className="marquee-track flex gap-10">
