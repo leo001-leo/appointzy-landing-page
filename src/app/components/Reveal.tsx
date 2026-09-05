@@ -1,13 +1,30 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
-// Adds .reveal-in when the element scrolls into view; CSS handles the transition.
+type Variant = "up" | "scale" | "left" | "right";
+
+const variantClass: Record<Variant, string> = {
+  up: "",
+  scale: "reveal-scale",
+  left: "reveal-left",
+  right: "reveal-right",
+};
+
+/**
+ * Adds .reveal-in when the element scrolls into view; CSS does the rest.
+ * SSR-safe: the observer only runs in an effect, and the server and client
+ * both render the un-revealed state so hydration matches.
+ */
 export function Reveal({
   children,
   delay = 0,
+  variant = "up",
+  stagger = false,
   className = "",
 }: {
   children: ReactNode;
   delay?: number;
+  variant?: Variant;
+  stagger?: boolean;
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -23,17 +40,27 @@ export function Reveal({
           io.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
+  const style = delay ? ({ "--d": `${delay}ms` } as CSSProperties) : undefined;
+
   return (
     <div
       ref={ref}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-      className={`reveal ${shown ? "reveal-in" : ""} ${className}`}
+      style={style}
+      className={[
+        "reveal",
+        variantClass[variant],
+        stagger ? "stagger" : "",
+        shown ? "reveal-in" : "",
+        className,
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       {children}
     </div>
