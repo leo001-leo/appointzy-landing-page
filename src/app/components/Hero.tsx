@@ -27,7 +27,7 @@ export function Hero() {
           <div>
             <div className="rise mb-5 flex flex-wrap gap-2" style={{ "--d": "60ms" } as React.CSSProperties}>
               <span className="rounded-full border border-white/12 bg-white/[0.06] px-3 py-1 text-sm text-ink-muted backdrop-blur-sm">
-                За ординации и физиотерапевти
+                За приватни ординации и студија
               </span>
               <span className="rounded-full border border-flame/25 bg-flame/10 px-3 py-1 text-sm text-flame backdrop-blur-sm">
                 30 дена бесплатно
@@ -38,11 +38,11 @@ export function Hero() {
               className="rise text-[2.5rem] leading-[1.02] tracking-[-0.035em] md:text-6xl lg:text-[4.25rem]"
               style={{ "--d": "140ms" } as React.CSSProperties}
             >
-              Празен стол значи{" "}
+              {"Пропуштен термин, "}
               <span className="bg-gradient-to-r from-[#fdba74] via-[#fb923c] to-[#f97316] bg-clip-text text-transparent">
                 изгубени пари
               </span>
-              .
+              {"."}
             </h1>
 
             <p
