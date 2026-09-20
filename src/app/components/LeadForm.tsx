@@ -12,7 +12,7 @@ const inputClass =
  * Posts to Sheetmonkey; only a confirmed 2xx counts as success, and typed
  * values are never cleared on failure.
  */
-export function LeadForm() {
+export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
   const uid = useId();
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -133,6 +133,11 @@ export function LeadForm() {
         </span>
         <p className="text-sm leading-snug text-ink-muted">
           Ќе ве контактира нашиот тим во рок од 24 часа.
+          {showPrice && (
+            <span className="block">
+              30 дена бесплатно, потоа од 1.500 ден. месечно.
+            </span>
+          )}
           <span className="block text-white/40">Без картичка. Без инсталација.</span>
         </p>
       </div>

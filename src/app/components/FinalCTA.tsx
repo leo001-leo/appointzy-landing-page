@@ -31,9 +31,10 @@ export function FinalCTA() {
 
             <ul className="mt-8 space-y-3">
               {[
+                "30 дена бесплатно, потоа од 1.500 ден. месечно",
+                "СМС пораките се вклучени во цената",
                 "Постоечките термини ги внесуваме заедно",
                 "Поддршка на македонски",
-                "30 дена бесплатно",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-3 text-ink-muted">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-flame/15 text-flame">
@@ -49,7 +50,8 @@ export function FinalCTA() {
 
           <Reveal variant="right" delay={100}>
             <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-6 backdrop-blur-md md:p-8">
-              <LeadForm />
+              {/* Price is already in the checklist beside this form */}
+              <LeadForm showPrice={false} />
             </div>
           </Reveal>
         </div>
