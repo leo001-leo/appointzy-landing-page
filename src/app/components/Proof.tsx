@@ -15,6 +15,11 @@ const quotes = [
     role: "Бадент ординација",
   },
   {
+    text: "Нашите пациенти доаѓаат на серии од повеќе терапии. Серијата ја внесувам еднаш и за секоја терапија стигнува посебен потсетник. Порано секој термин го потврдував со повик.",
+    name: "Мите",
+    role: "Физиотерапевтска ординација Ivanum",
+  },
+  {
     text: "Appointzy ни даде професионален изглед пред клиентите. СМС потсетниците значително го намалија бројот на неодржани термини и заштедивме многу работно време.",
     name: "Иво",
     role: "Dental Prestige",
@@ -23,6 +28,11 @@ const quotes = [
     text: "Го препорачувам на секој кој работи со термини. За еден ден го имавме системот поставен и ставен во употреба. Едноставно и практично.",
     name: "Драган",
     role: "Весна Дент",
+  },
+  {
+    text: "Распоредот го гледам на телефон, каде и да сум. Потсетниците одат сами, па пациентите ретко забораваат термин, а јас не губам време на повици.",
+    name: "Бојан",
+    role: "Физиотерапевтска ординација Физио Динамик",
   },
   {
     text: "Конечно имаме преглед на целата недела без телефонски повици и тетратка. Пациентите доаѓаат навреме благодарение на потсетниците.",
@@ -64,10 +74,15 @@ export function Proof() {
           </p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {/* Phones: a swipeable row with the next card peeking in.
+            Tablet and up: a grid, two rows of four on wide screens. */}
+        <Reveal
+          stagger
+          className="-mx-4 mt-14 flex snap-x snap-mandatory scroll-pl-4 gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-4 [&::-webkit-scrollbar]:hidden"
+        >
           {quotes.map((q, i) => (
-            <Reveal key={`${q.name}-${q.role}`} delay={(i % 3) * 90} variant="scale">
-              <figure className="lift flex h-full flex-col rounded-2xl border border-border bg-white p-7">
+            <div key={`${q.name}-${q.role}`} className="w-[84%] shrink-0 snap-start md:w-auto">
+              <figure className="lift flex h-full flex-col rounded-2xl border border-border bg-white p-7 xl:p-6">
                 <div className="mb-4 flex gap-0.5 text-accent" aria-hidden="true">
                   {[...Array(5)].map((_, s) => (
                     <svg key={s} className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -93,9 +108,9 @@ export function Proof() {
                   </span>
                 </figcaption>
               </figure>
-            </Reveal>
+            </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );

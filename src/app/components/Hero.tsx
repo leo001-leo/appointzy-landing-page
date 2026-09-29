@@ -7,6 +7,8 @@ const clients = [
   "Весна Дент",
   "ПЗУ Д-р Стојанова",
   "Ortoalex",
+  "Ivanum",
+  "Физио Динамик",
 ];
 
 export function Hero() {
