@@ -412,6 +412,22 @@
   transition-delay: 0.8s;
 }
 
+/* Dental chart: the tooth panel eases in each time a tooth is picked */
+@keyframes tooth-panel {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.js .tooth-panel-in {
+  animation: tooth-panel 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* Must stay last in the file and match the specificity of every hiding rule
    above, otherwise reduced-motion users get permanently invisible content. */
 @media (prefers-reduced-motion: reduce) {
@@ -435,6 +451,7 @@
 
   .js .rise,
   .js .sms-arrive,
+  .js .tooth-panel-in,
   .aurora-a,
   .aurora-b,
   .float-y,

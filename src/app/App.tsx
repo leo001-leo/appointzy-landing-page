@@ -4,6 +4,7 @@ import { Migration } from "./components/Migration";
 import { Problem } from "./components/Problem";
 import { HowItWorks } from "./components/HowItWorks";
 import { Features } from "./components/Features";
+import { DentalChart } from "./components/DentalChart";
 import { Proof } from "./components/Proof";
 import { FAQ } from "./components/FAQ";
 import { FinalCTA } from "./components/FinalCTA";
@@ -20,6 +21,7 @@ export default function App() {
         <Problem />
         <HowItWorks />
         <Features />
+        <DentalChart />
         <Proof />
         <FAQ />
         <FinalCTA />

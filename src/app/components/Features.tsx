@@ -50,6 +50,16 @@ export function Features() {
           <h2 className="mt-4 max-w-2xl text-3xl leading-[1.08] tracking-[-0.025em] md:text-5xl">
             Сè што ѝ треба на една ординација
           </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            {"Ова го добива секоја ординација: стоматолошка, физиотерапевтска или друга. Стоматолозите добиваат и "}
+            <a
+              href="#dental-chart"
+              className="font-medium text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary"
+            >
+              забен картон
+            </a>
+            {"."}
+          </p>
         </Reveal>
 
         <div className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-3">
