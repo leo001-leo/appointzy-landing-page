@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import logoImage from "../../assets/logoTrimmed.png";
+import { LANGS, useLang, useT } from "../../i18n";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Navigation() {
+  const t = useT();
+  const lang = useLang();
   // Starts transparent over the dark hero, turns into a light bar on scroll.
   // Initial state matches on server and client so hydration is clean.
   const [scrolled, setScrolled] = useState(false);
@@ -22,7 +26,7 @@ export function Navigation() {
       }`}
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3">
-        <a href="/" className="flex items-center">
+        <a href={LANGS[lang].path} className="flex shrink-0 items-center">
           <img
             src={logoImage}
             alt="Appointzy"
@@ -31,16 +35,20 @@ export function Navigation() {
             className="h-[19px] w-auto transition-all duration-300 md:h-[26px]"
           />
         </a>
-        <a
-          href="#cta"
-          className={`flex h-9 shrink-0 items-center rounded-lg px-3.5 text-xs font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] ${
-            scrolled
-              ? "bg-foreground text-background hover:bg-foreground/85 focus-visible:ring-foreground/40"
-              : "border border-white/20 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 focus-visible:ring-white/40"
-          }`}
-        >
-          Започнете бесплатно
-        </a>
+        <div className="flex shrink-0 items-center gap-2">
+          <LanguageSwitcher overDark={!scrolled} />
+          <a
+            href="#cta"
+            className={`flex h-9 shrink-0 items-center rounded-lg px-3.5 text-xs font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] ${
+              scrolled
+                ? "bg-foreground text-background hover:bg-foreground/85 focus-visible:ring-foreground/40"
+                : "border border-white/20 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 focus-visible:ring-white/40"
+            }`}
+          >
+            <span className="sm:hidden">{t.nav.ctaShort}</span>
+            <span className="hidden sm:inline">{t.nav.cta}</span>
+          </a>
+        </div>
       </div>
     </nav>
   );

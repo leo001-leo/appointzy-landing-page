@@ -1,51 +1,9 @@
 import { Reveal } from "./Reveal";
+import { useT } from "../../i18n";
 
 // `photo` is intentionally left empty: real practice photos can be dropped in
 // later and the initials avatar is the fallback. We do not use stock or
 // AI-generated faces for real, named customers.
-const quotes = [
-  {
-    text: "Appointzy го трансформираше начинот на кој управуваме со нашиот бизнис. Резервирањето термини сега е лесно, а на нашите клиенти им се допаѓаат СМС потсетниците.",
-    name: "Срна",
-    role: "Сопственичка на приватна ординација",
-  },
-  {
-    text: "Со Appointzy немаме повеќе проблеми со двојни термини и пропуштени закажувања. Сè е јасно, прегледно и персоналот брзо го совлада системот.",
-    name: "Блаженка",
-    role: "Бадент ординација",
-  },
-  {
-    text: "Нашите пациенти доаѓаат на серии од повеќе терапии. Серијата ја внесувам еднаш и за секоја терапија стигнува посебен потсетник. Порано секој термин го потврдував со повик.",
-    name: "Мите",
-    role: "Физиотерапевтска ординација Ivanum",
-  },
-  {
-    text: "Appointzy ни даде професионален изглед пред клиентите. СМС потсетниците значително го намалија бројот на неодржани термини и заштедивме многу работно време.",
-    name: "Иво",
-    role: "Dental Prestige",
-  },
-  {
-    text: "Го препорачувам на секој кој работи со термини. За еден ден го имавме системот поставен и ставен во употреба. Едноставно и практично.",
-    name: "Драган",
-    role: "Весна Дент",
-  },
-  {
-    text: "Распоредот го гледам на телефон, каде и да сум. Потсетниците одат сами, па пациентите ретко забораваат термин, а јас не губам време на повици.",
-    name: "Бојан",
-    role: "Физиотерапевтска ординација Физио Динамик",
-  },
-  {
-    text: "Конечно имаме преглед на целата недела без телефонски повици и тетратка. Пациентите доаѓаат навреме благодарение на потсетниците.",
-    name: "Александра",
-    role: "ПЗУ Д-р Стојанова",
-  },
-  {
-    text: "Контролите што се повторуваат со месеци сега се закажуваат однапред, а потсетниците стигнуваат сами. Огромно олеснување за нас.",
-    name: "Александра",
-    role: "Ortoalex",
-  },
-];
-
 const avatarTints = [
   "from-primary to-accent",
   "from-accent to-[#f59e0b]",
@@ -56,21 +14,20 @@ const avatarTints = [
 ];
 
 export function Proof() {
+  const t = useT().proof;
+  const quotes = t.quotes;
   return (
     <section className="w-full bg-background px-4 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
-            Доверба
+            {t.eyebrow}
           </p>
           <h2 className="mt-4 max-w-2xl text-3xl leading-[1.08] tracking-[-0.025em] md:text-5xl">
-            Наш производ, создаден со нашите ординации
+            {t.title}
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Appointzy е развиен во Македонија, заедно со стоматолозите и
-            физиотерапевтите што го користат секој ден. Нивните предлози
-            стануваат дел од апликацијата, а поддршката ја добивате на македонски,
-            од луѓе што знаат како работи една ординација.
+            {t.intro}
           </p>
         </Reveal>
 
@@ -91,7 +48,9 @@ export function Proof() {
                   ))}
                 </div>
                 <blockquote className="flex-1 leading-relaxed text-foreground/90">
-                  „{q.text}"
+                  {t.quoteOpen}
+                  {q.text}
+                  {t.quoteClose}
                 </blockquote>
                 <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
                   <span

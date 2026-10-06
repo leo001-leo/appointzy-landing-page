@@ -1,17 +1,10 @@
 import { LeadForm } from "./LeadForm";
 import calendarScreenshot from "../../assets/calendarScreenshot.png";
-
-const clients = [
-  "Бадент",
-  "Dental Prestige",
-  "Весна Дент",
-  "ПЗУ Д-р Стојанова",
-  "Ortoalex",
-  "Ivanum",
-  "Физио Динамик",
-];
+import { useT } from "../../i18n";
 
 export function Hero() {
+  const t = useT().hero;
+  const clients = t.clients;
   return (
     <section id="hero" className="grain relative overflow-hidden bg-ink text-ink-fg">
       {/* Ambient light: two slow-drifting colour fields + a fine grid */}
@@ -29,10 +22,10 @@ export function Hero() {
           <div>
             <div className="rise mb-5 flex flex-wrap gap-2" style={{ "--d": "60ms" } as React.CSSProperties}>
               <span className="rounded-full border border-white/12 bg-white/[0.06] px-3 py-1 text-sm text-ink-muted backdrop-blur-sm">
-                За приватни ординации и студија
+                {t.badgeAudience}
               </span>
               <span className="rounded-full border border-flame/25 bg-flame/10 px-3 py-1 text-sm text-flame backdrop-blur-sm">
-                30 дена бесплатно
+                {t.badgeTrial}
               </span>
             </div>
 
@@ -40,20 +33,18 @@ export function Hero() {
               className="rise text-[2.5rem] leading-[1.02] tracking-[-0.035em] md:text-6xl lg:text-[4.25rem]"
               style={{ "--d": "140ms" } as React.CSSProperties}
             >
-              {"Пропуштен термин, "}
+              {t.titleBefore}
               <span className="bg-gradient-to-r from-[#fdba74] via-[#fb923c] to-[#f97316] bg-clip-text text-transparent">
-                изгубени пари
+                {t.titleHighlight}
               </span>
-              {"."}
+              {t.titleAfter}
             </h1>
 
             <p
               className="rise mt-5 max-w-md text-lg leading-relaxed text-ink-muted"
               style={{ "--d": "230ms" } as React.CSSProperties}
             >
-              Appointzy е софтвер за закажување термини со автоматски СМС
-              потсетници. Кај нашите корисници, пропуштените термини паднаа од
-              9 на 1 месечно.
+              {t.subtitle}
             </p>
 
             <div
@@ -77,7 +68,7 @@ export function Hero() {
               <div className="relative overflow-hidden rounded-2xl border border-white/12 bg-white shadow-[0_40px_100px_-30px_rgba(0,0,0,0.9)]">
                 <img
                   src={calendarScreenshot}
-                  alt="Неделен календар во Appointzy со закажани термини"
+                  alt={t.screenshotAlt}
                   width={1607}
                   height={797}
                   className="h-auto w-full"
@@ -95,9 +86,9 @@ export function Hero() {
                     </svg>
                   </span>
                   <div className="min-w-0">
-                    <div className="text-sm font-medium text-ink-fg">СМС до Марија П.</div>
+                    <div className="text-sm font-medium text-ink-fg">{t.smsTitle}</div>
                     <p className="mt-0.5 text-sm leading-snug text-ink-muted">
-                      Потсетуваме: утре во 10:00 имате термин. Ве очекуваме!
+                      {t.smsText}
                     </p>
                   </div>
                   <svg className="ml-auto h-4 w-4 shrink-0 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -112,8 +103,7 @@ export function Hero() {
         {/* Real practices already using it */}
         <div className="mt-20 md:mt-24">
           <p className="text-center text-sm text-white/40">
-            Веќе го користат стоматолошки ординации, физиотерапевтски и останати
-            приватни ординации во Македонија
+            {t.clientsLabel}
           </p>
           <div className="marquee-mask mt-5 overflow-hidden">
             <div className="marquee-track flex gap-10">

@@ -1,32 +1,20 @@
 import { Reveal } from "./Reveal";
-
-const steps = [
-  {
-    title: "Оставате е-маил",
-    text: "Ние ве контактираме и поставуваме сè за вашата пракса. Постоечките термини ги внесуваме заедно.",
-  },
-  {
-    title: "Внесувате термини",
-    text: "Нов термин се внесува за десетина секунди, од компјутер или од телефон.",
-  },
-  {
-    title: "Пациентите добиваат потсетник",
-    text: "СМС пораката се испраќа сама, ден пред терминот. Вие не правите ништо.",
-  },
-];
+import { useT } from "../../i18n";
 
 export function HowItWorks() {
+  const t = useT().how;
+  const steps = t.steps;
   return (
     <section className="w-full bg-background px-4 py-20 md:py-28">
       <div className="mx-auto max-w-5xl">
         <Reveal>
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
-            Како функционира
+            {t.eyebrow}
           </p>
           <h2 className="mt-4 max-w-2xl text-3xl leading-[1.08] tracking-[-0.025em] md:text-5xl">
-            Како до првиот термин
+            {t.title}
           </h2>
-          <p className="mt-5 text-lg text-muted-foreground">Три чекори, ништо повеќе.</p>
+          <p className="mt-5 text-lg text-muted-foreground">{t.subtitle}</p>
         </Reveal>
 
         <Reveal stagger className="relative mt-14 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6">

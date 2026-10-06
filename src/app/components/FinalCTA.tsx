@@ -1,7 +1,9 @@
 import { LeadForm } from "./LeadForm";
 import { Reveal } from "./Reveal";
+import { useT } from "../../i18n";
 
 export function FinalCTA() {
+  const t = useT().cta;
   return (
     <section
       id="cta"
@@ -16,26 +18,20 @@ export function FinalCTA() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <Reveal variant="left">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-flame">
-              Започнете
+              {t.eyebrow}
             </p>
             <h2 className="mt-4 text-3xl leading-[1.05] tracking-[-0.03em] md:text-5xl">
-              Започнете уште{" "}
+              {t.titleBefore}
               <span className="bg-gradient-to-r from-[#fdba74] to-[#f97316] bg-clip-text text-transparent">
-                оваа недела
+                {t.titleHighlight}
               </span>
             </h2>
             <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-muted">
-              Оставете е-маил и ние ве контактираме за сè да поставиме. Без обврски,
-              без картичка.
+              {t.text}
             </p>
 
             <ul className="mt-8 space-y-3">
-              {[
-                "30 дена бесплатно, потоа од 1.500 ден. месечно",
-                "СМС пораките се вклучени во цената",
-                "Постоечките термини ги внесуваме заедно",
-                "Поддршка на македонски",
-              ].map((item) => (
+              {t.checklist.map((item) => (
                 <li key={item} className="flex items-center gap-3 text-ink-muted">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-flame/15 text-flame">
                     <svg className="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

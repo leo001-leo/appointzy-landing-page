@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useT } from "../../i18n";
 
 // Mobile-only bottom bar: appears once the hero form scrolls out of view,
 // hides again while the closing CTA form is on screen.
 export function StickyCTA() {
+  const t = useT().sticky;
   const [heroGone, setHeroGone] = useState(false);
   const [ctaVisible, setCtaVisible] = useState(false);
 
@@ -41,7 +43,7 @@ export function StickyCTA() {
         tabIndex={show ? 0 : -1}
         className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#ea580c] to-[#f97316] font-semibold text-white shadow-[0_10px_30px_-10px_rgba(234,88,12,0.8)] transition-transform duration-200 active:scale-[0.98]"
       >
-        Пробајте го бесплатно
+        {t.cta}
         <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M5 12h14M13 6l6 6-6 6" />
         </svg>

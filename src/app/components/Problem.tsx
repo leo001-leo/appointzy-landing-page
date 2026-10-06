@@ -1,30 +1,18 @@
 import { Reveal } from "./Reveal";
-
-const pains = [
-  {
-    title: "Телефонот ѕвони среде интервенција",
-    text: "Со ракавици на рацете, нема кој да крене. Пациентот се јавува трипати, па се откажува.",
-  },
-  {
-    title: "Пациентот не дојде",
-    text: "Никој не го потсетил. Столот стои празен, а часот е изгубен.",
-  },
-  {
-    title: "Тетратката е полна прецртани имиња",
-    text: "Никој не знае кој термин важи, а кој е откажан уште минатата недела.",
-  },
-];
+import { useT } from "../../i18n";
 
 export function Problem() {
+  const t = useT().problem;
+  const pains = t.pains;
   return (
     <section className="w-full bg-white px-4 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
-            Секојдневие
+            {t.eyebrow}
           </p>
           <h2 className="mt-4 max-w-2xl text-3xl leading-[1.08] tracking-[-0.025em] md:text-5xl">
-            Ви звучи познато?
+            {t.title}
           </h2>
         </Reveal>
 

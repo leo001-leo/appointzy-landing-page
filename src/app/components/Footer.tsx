@@ -1,4 +1,6 @@
 import logoImage from "../../assets/logoTrimmed.png";
+import { useT } from "../../i18n";
+import { LanguageLinks } from "./LanguageSwitcher";
 
 const InstagramIcon = () => (
   <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -17,15 +19,14 @@ const linkClass =
   "inline-flex min-h-[44px] items-center gap-2.5 text-sm text-ink-muted transition-colors duration-200 hover:text-ink-fg";
 
 export function Footer() {
+  const t = useT().footer;
   return (
     <footer className="w-full border-t border-white/10 bg-ink px-4 py-12 text-ink-fg">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-8 text-center sm:flex-row sm:items-start sm:justify-between sm:text-left">
         <div className="flex flex-col items-center gap-3 sm:items-start">
           <img src={logoImage} alt="Appointzy" width={385} height={49} className="h-[22px] w-auto" />
           <p className="max-w-xs text-sm leading-relaxed text-ink-muted">
-            Софтвер за закажување термини и СМС потсетници за стоматолошки
-            ординации, физиотерапевтски и останати приватни ординации.
-            Направено во Македонија.
+            {t.about}
           </p>
         </div>
 
@@ -43,9 +44,8 @@ export function Footer() {
             <InstagramIcon />
             appointzy.app
           </a>
-          <p className="mt-3 text-sm text-white/35">
-            © 2026 Appointzy. Сите права задржани.
-          </p>
+          <LanguageLinks />
+          <p className="mt-3 text-sm text-white/35">{t.rights}</p>
         </div>
       </div>
     </footer>

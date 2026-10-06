@@ -430,6 +430,23 @@
   animation: tooth-panel 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Language menu drops in */
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.js .pop-in {
+  animation: pop-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: top right;
+}
+
 /* Must stay last in the file and match the specificity of every hiding rule
    above, otherwise reduced-motion users get permanently invisible content. */
 @media (prefers-reduced-motion: reduce) {
@@ -454,6 +471,7 @@
   .js .rise,
   .js .sms-arrive,
   .js .tooth-panel-in,
+  .js .pop-in,
   .aurora-a,
   .aurora-b,
   .float-y,

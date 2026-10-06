@@ -1,12 +1,14 @@
 import { useState, type ReactNode } from "react";
 import { Reveal } from "./Reveal";
+import { useT, type Dict } from "../../i18n";
+import type { DentalStatus } from "../../i18n/types";
 
 // Mirrors the dental chart in the Appointzy app: FDI numbering, the app's own
-// Macedonian labels and its colour language (red finding, dashed red planned,
-// blue done here, grey existing). The patient and her entries are illustrative.
+// labels and its colour language (red finding, dashed red planned, blue done
+// here, grey existing). The patient and her entries are illustrative; their
+// text lives in the dictionaries, the drawings here.
 
 type Paint = "finding" | "planned" | "done" | "existing";
-type Status = Paint | "resolved";
 type Surface = "M" | "O" | "D";
 
 const COLOUR: Record<Paint, string> = {
@@ -24,85 +26,26 @@ interface Drawing {
   missing?: boolean;
 }
 
-interface ToothRecord {
-  drawing: Drawing;
-  items: { name: string; status: Status; date: string }[];
-  note?: string;
-  history: { date: string; text: string; by: string }[];
-}
-
-const RECORDS: Record<number, ToothRecord> = {
-  16: {
-    drawing: { crown: "existing" },
-    items: [{ name: "Коронка", status: "existing", date: "02.09" }],
-    history: [{ date: "02.09", text: "Внесено: Коронка, постоечко", by: "д-р Трајковски" }],
-  },
-  11: {
-    drawing: { marks: [{ paint: "done", surfaces: ["M"] }] },
-    items: [{ name: "Пломба М", status: "done", date: "09.09" }],
-    history: [{ date: "09.09", text: "Завршено: Пломба М", by: "д-р Николовска" }],
-  },
+const DRAWINGS: Record<number, Drawing> = {
+  16: { crown: "existing" },
+  11: { marks: [{ paint: "done", surfaces: ["M"] }] },
   26: {
-    drawing: {
-      marks: [
-        { paint: "finding", surfaces: ["O"] },
-        { paint: "planned", surfaces: ["M", "O"] },
-      ],
-    },
-    items: [
-      { name: "Кариес", status: "finding", date: "23.09" },
-      { name: "Пломба МО", status: "planned", date: "23.09" },
-    ],
-    history: [
-      { date: "23.09", text: "Планирано: Пломба МО", by: "д-р Трајковски" },
-      { date: "23.09", text: "Внесено: Кариес", by: "д-р Трајковски" },
+    marks: [
+      { paint: "finding", surfaces: ["O"] },
+      { paint: "planned", surfaces: ["M", "O"] },
     ],
   },
-  36: {
-    drawing: { canal: "done", marks: [{ paint: "done", surfaces: ["O", "D"] }] },
-    items: [
-      { name: "Канал, 3 канали", status: "done", date: "14.09" },
-      { name: "Пломба ОД", status: "done", date: "21.09" },
-      { name: "Кариес", status: "resolved", date: "21.09" },
-    ],
-    note: "Осетлив на ладно по третманот. Контрола за шест месеци.",
-    history: [
-      { date: "21.09", text: "Завршено: Пломба ОД", by: "д-р Николовска" },
-      { date: "14.09", text: "Завршено: Канал", by: "д-р Николовска" },
-      { date: "02.09", text: "Внесено: Кариес", by: "д-р Трајковски" },
-    ],
-  },
-  46: {
-    drawing: { missing: true },
-    items: [{ name: "Недостасува", status: "existing", date: "02.09" }],
-    history: [{ date: "02.09", text: "Внесено: Недостасува", by: "д-р Трајковски" }],
-  },
-  47: {
-    drawing: { marks: [{ paint: "finding", surfaces: ["O"] }] },
-    items: [{ name: "Кариес", status: "finding", date: "23.09" }],
-    history: [{ date: "23.09", text: "Внесено: Кариес", by: "д-р Трајковски" }],
-  },
+  36: { canal: "done", marks: [{ paint: "done", surfaces: ["O", "D"] }] },
+  46: { missing: true },
+  47: { marks: [{ paint: "finding", surfaces: ["O"] }] },
 };
 
-const TYPE = [
-  "",
-  "Централен секутич",
-  "Латерален секутич",
-  "Канин",
-  "Прв премолар",
-  "Втор премолар",
-  "Прв молар",
-  "Втор молар",
-  "Трет молар",
-];
-const SIDE = ["", "горе десно", "горе лево", "долу лево", "долу десно"];
-
-const STATUS: Record<Status, { label: string; colour: string; dated: boolean }> = {
-  finding: { label: "Активно", colour: COLOUR.finding, dated: false },
-  planned: { label: "Планирано", colour: COLOUR.planned, dated: false },
-  done: { label: "Завршено", colour: COLOUR.done, dated: true },
-  existing: { label: "Постоечко", colour: COLOUR.existing, dated: false },
-  resolved: { label: "Решено", colour: "#78716c", dated: true },
+const STATUS_STYLE: Record<DentalStatus, { colour: string; dated: boolean }> = {
+  finding: { colour: COLOUR.finding, dated: false },
+  planned: { colour: COLOUR.planned, dated: false },
+  done: { colour: COLOUR.done, dated: true },
+  existing: { colour: COLOUR.existing, dated: false },
+  resolved: { colour: "#78716c", dated: true },
 };
 
 // Upper jaw left to right as the dentist sees it, then the lower jaw.
@@ -212,28 +155,29 @@ function ToothSvg({ n, drawing }: { n: number; drawing?: Drawing }) {
   );
 }
 
-function ToothPanel({ n }: { n: number }) {
-  const rec = RECORDS[n];
+function ToothPanel({ n, t }: { n: number; t: Dict["dental"] }) {
+  const rec = t.records[n];
   const q = Math.floor(n / 10);
   const d = n % 10;
 
   return (
     <div className="tooth-panel-in">
       <div className="flex items-baseline justify-between gap-3">
-        <h3 className="text-lg font-semibold tracking-tight">{`${n} · ${TYPE[d]}`}</h3>
-        <span className="shrink-0 text-sm text-muted-foreground">{SIDE[q]}</span>
+        <h3 className="text-lg font-semibold tracking-tight">{`${n} · ${t.types[d]}`}</h3>
+        <span className="shrink-0 text-sm text-muted-foreground">{t.sides[q]}</span>
       </div>
 
       {!rec ? (
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-          Нема записи. Во апликацијата тука внесувате наод, третман или белешка.
+          {t.empty}
         </p>
       ) : (
         <>
-          <PanelLabel>Ставки</PanelLabel>
+          <PanelLabel>{t.items}</PanelLabel>
           <ul className="space-y-2">
             {rec.items.map((item) => {
-              const s = STATUS[item.status];
+              const s = STATUS_STYLE[item.status];
+              const label = t.status[item.status];
               return (
                 <li key={item.name} className="flex items-center gap-2.5 text-sm">
                   <span
@@ -248,7 +192,7 @@ function ToothPanel({ n }: { n: number }) {
                     {item.name}
                   </span>
                   <span className="ml-auto shrink-0 text-xs font-medium" style={{ color: s.colour }}>
-                    {s.dated ? `${s.label} ${item.date}` : s.label}
+                    {s.dated ? `${label} ${item.date}` : label}
                   </span>
                 </li>
               );
@@ -257,12 +201,12 @@ function ToothPanel({ n }: { n: number }) {
 
           {rec.note && (
             <>
-              <PanelLabel>Белешки</PanelLabel>
+              <PanelLabel>{t.notes}</PanelLabel>
               <p className="rounded-lg bg-muted px-3 py-2.5 text-sm leading-relaxed">{rec.note}</p>
             </>
           )}
 
-          <PanelLabel>Историја на забот</PanelLabel>
+          <PanelLabel>{t.history}</PanelLabel>
           <ol className="relative space-y-3 border-l border-border pl-4">
             {rec.history.map((h) => (
               <li key={h.date + h.text} className="relative text-sm">
@@ -289,13 +233,13 @@ function PanelLabel({ children }: { children: ReactNode }) {
   );
 }
 
-const LEGEND: { label: string; swatch: ReactNode }[] = [
-  { label: "Наод", swatch: <span className="h-3 w-3 rounded-[3px] bg-[#d92d20]" /> },
-  { label: "Планирано", swatch: <span className="h-3 w-3 rounded-[3px] border-[1.5px] border-dashed border-[#d92d20]" /> },
-  { label: "Направено тука", swatch: <span className="h-3 w-3 rounded-[3px] bg-[#2a78d6]" /> },
-  { label: "Постоечко", swatch: <span className="h-3 w-3 rounded-[3px] bg-[#475467]" /> },
-  { label: "Недостасува", swatch: <span className="h-3 w-3 rounded-[3px] border border-[#98a1ae] opacity-40" /> },
-  { label: "Има белешка", swatch: <span className="mx-[3px] h-1.5 w-1.5 rounded-full bg-foreground" /> },
+const LEGEND: { key: keyof Dict["dental"]["legend"]; swatch: ReactNode }[] = [
+  { key: "finding", swatch: <span className="h-3 w-3 rounded-[3px] bg-[#d92d20]" /> },
+  { key: "planned", swatch: <span className="h-3 w-3 rounded-[3px] border-[1.5px] border-dashed border-[#d92d20]" /> },
+  { key: "done", swatch: <span className="h-3 w-3 rounded-[3px] bg-[#2a78d6]" /> },
+  { key: "existing", swatch: <span className="h-3 w-3 rounded-[3px] bg-[#475467]" /> },
+  { key: "missing", swatch: <span className="h-3 w-3 rounded-[3px] border border-[#98a1ae] opacity-40" /> },
+  { key: "note", swatch: <span className="mx-[3px] h-1.5 w-1.5 rounded-full bg-foreground" /> },
 ];
 
 const iconProps = {
@@ -309,58 +253,34 @@ const iconProps = {
   "aria-hidden": true,
 };
 
-const POINTS = [
-  {
-    title: "Наоди и третмани на забот",
-    text: "Кариес, пломба, канал, коронка, мост или имплант, означени на забот и на површината каде што се.",
-    icon: (
-      <svg {...iconProps}>
-        <path d="M7 3c-2 0-3.5 1.6-3.5 4 0 3 1.2 4.4 1.8 7.5.5 2.8 1 6.5 2.7 6.5 1.8 0 1.6-5 4-5s2.2 5 4 5c1.7 0 2.2-3.7 2.7-6.5.6-3.1 1.8-4.5 1.8-7.5 0-2.4-1.5-4-3.5-4-2 0-3 1-5 1S9 3 7 3Z" />
-      </svg>
-    ),
-  },
-  {
-    title: "Кој, што и кога",
-    text: "Секоја промена се запишува со датум и име. Може да видите и како изгледал картонот на кој било ден.",
-    icon: (
-      <svg {...iconProps}>
-        <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
-        <path d="M3 3v5h5M12 7v5l3 2" />
-      </svg>
-    ),
-  },
-  {
-    title: "План за третман во PDF",
-    text: "Планираните третмани со цени, во нумериран PDF за пациентот. Што прифатил, а што одбил, останува запишано.",
-    icon: (
-      <svg {...iconProps}>
-        <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" />
-        <path d="M14 3v5h5M9 13h6M9 17h4" />
-      </svg>
-    ),
-  },
-  {
-    title: "Цени од Стоматолошката комора",
-    text: "Стандардните услуги со минималните цени на Стоматолошката комора ги прилагодувате и ги додавате одеднаш.",
-    icon: (
-      <svg {...iconProps}>
-        <path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z" />
-        <circle cx="7.5" cy="7.5" r="1.5" />
-      </svg>
-    ),
-  },
+const POINT_ICONS = [
+  <svg {...iconProps}>
+    <path d="M7 3c-2 0-3.5 1.6-3.5 4 0 3 1.2 4.4 1.8 7.5.5 2.8 1 6.5 2.7 6.5 1.8 0 1.6-5 4-5s2.2 5 4 5c1.7 0 2.2-3.7 2.7-6.5.6-3.1 1.8-4.5 1.8-7.5 0-2.4-1.5-4-3.5-4-2 0-3 1-5 1S9 3 7 3Z" />
+  </svg>,
+  <svg {...iconProps}>
+    <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+    <path d="M3 3v5h5M12 7v5l3 2" />
+  </svg>,
+  <svg {...iconProps}>
+    <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" />
+    <path d="M14 3v5h5M9 13h6M9 17h4" />
+  </svg>,
+  <svg {...iconProps}>
+    <path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z" />
+    <circle cx="7.5" cy="7.5" r="1.5" />
+  </svg>,
 ];
 
-const summary = Object.values(RECORDS).flatMap((r) => r.items);
-const count = (s: Status) => summary.filter((i) => i.status === s).length;
-
 export function DentalChart() {
+  const t = useT().dental;
+  const all = Object.values(t.records).flatMap((r) => r.items);
+  const count = (s: DentalStatus) => all.filter((i) => i.status === s).length;
   const [selected, setSelected] = useState<number>(36);
   const [side, setSide] = useState<"right" | "left">("left");
 
   const tooth = (n: number, lower: boolean) => {
     const active = n === selected;
-    const rec = RECORDS[n];
+    const rec = t.records[n];
     const number = (
       <span
         className={`relative text-[10px] font-semibold tabular-nums md:text-[11px] ${
@@ -379,13 +299,13 @@ export function DentalChart() {
         type="button"
         onClick={() => setSelected(n)}
         aria-pressed={active}
-        aria-label={`Заб ${n}, ${TYPE[n % 10]}, ${SIDE[Math.floor(n / 10)]}${rec ? ", има записи" : ""}`}
+        aria-label={`${t.tooth} ${n}, ${t.types[n % 10]}, ${t.sides[Math.floor(n / 10)]}${rec ? `, ${t.hasRecords}` : ""}`}
         className={`flex min-w-0 cursor-pointer flex-col items-center gap-1 rounded-lg px-0.5 py-1.5 transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 ${
           active ? "bg-secondary ring-1 ring-primary/40" : "hover:bg-muted"
         }`}
       >
         {lower && number}
-        <ToothSvg n={n} drawing={rec?.drawing} />
+        <ToothSvg n={n} drawing={DRAWINGS[n]} />
         {!lower && number}
       </button>
     );
@@ -407,15 +327,14 @@ export function DentalChart() {
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
-            За стоматолошки ординации
+            {t.eyebrow}
           </p>
           <h2 className="mt-4 max-w-3xl text-3xl leading-[1.08] tracking-[-0.025em] md:text-5xl">
-            {"Забен картон со историја за "}
-            <span className="marker">секој заб</span>
+            {t.titleBefore}
+            <span className="marker">{t.titleHighlight}</span>
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Допрете заб и гледате сè: дијагноза, третмани, белешки и кој што направил и
-            кога. Без барање низ хартиени картони.
+            {t.subtitle}
           </p>
         </Reveal>
 
@@ -424,24 +343,24 @@ export function DentalChart() {
             {/* Patient bar */}
             <div className="flex flex-wrap items-center gap-x-4 gap-y-3 border-b border-border px-5 py-4 md:px-7">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-xs font-semibold text-white">
-                МП
+                {t.initials}
               </span>
               <div className="min-w-0">
-                <div className="font-medium">Марија Петровска</div>
-                <div className="text-xs text-muted-foreground">Забен картон · 34 год.</div>
+                <div className="font-medium">{t.patient}</div>
+                <div className="text-xs text-muted-foreground">{t.patientMeta}</div>
               </div>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-[#fef3f2] px-3 py-1 text-xs font-medium text-[#b42318]">
                 <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0ZM12 9v4M12 17h.01" />
                 </svg>
-                <span className="sr-only">Медицинско предупредување:</span>
-                Алергија на пеницилин
+                <span className="sr-only">{t.alertLabel}</span>
+                {t.alert}
               </span>
               <div className="ml-auto hidden gap-2 text-xs sm:flex">
                 {[
-                  { label: "Наоди", value: count("finding"), colour: COLOUR.finding },
-                  { label: "Планирани", value: count("planned"), colour: COLOUR.planned },
-                  { label: "Завршени", value: count("done"), colour: COLOUR.done },
+                  { label: t.summary.findings, value: count("finding"), colour: COLOUR.finding },
+                  { label: t.summary.planned, value: count("planned"), colour: COLOUR.planned },
+                  { label: t.summary.done, value: count("done"), colour: COLOUR.done },
                 ].map((s) => (
                   <span key={s.label} className="rounded-full border border-border px-3 py-1 text-muted-foreground">
                     {s.label} <span className="font-semibold" style={{ color: s.colour }}>{s.value}</span>
@@ -457,7 +376,7 @@ export function DentalChart() {
                   <svg className="h-4 w-4 shrink-0 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M9 11V5a1.5 1.5 0 0 1 3 0v5M12 10V8.5a1.5 1.5 0 0 1 3 0V11M15 10.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7l-2.2-3.5a1.5 1.5 0 0 1 2.5-1.6L9 15" />
                   </svg>
-                  Допрете заб за да ја видите неговата историја.
+                  {t.hint}
                 </p>
 
                 <div className="mb-4 grid grid-cols-2 gap-1 rounded-xl bg-muted p-1 md:hidden">
@@ -474,7 +393,7 @@ export function DentalChart() {
                         side === s ? "bg-white text-foreground shadow-sm" : "text-muted-foreground"
                       }`}
                     >
-                      {s === "right" ? "Десна страна" : "Лева страна"}
+                      {s === "right" ? t.sideRight : t.sideLeft}
                     </button>
                   ))}
                 </div>
@@ -485,11 +404,11 @@ export function DentalChart() {
                   {half(Q2, Q3, side === "left")}
                 </div>
 
-                <ul className="flex flex-wrap pt-6 gap-x-4 gap-y-2 text-xs text-muted-foreground" aria-label="Легенда">
+                <ul className="flex flex-wrap pt-6 gap-x-4 gap-y-2 text-xs text-muted-foreground" aria-label={t.legendLabel}>
                   {LEGEND.map((item) => (
-                    <li key={item.label} className="flex items-center gap-1.5">
+                    <li key={item.key} className="flex items-center gap-1.5">
                       {item.swatch}
-                      {item.label}
+                      {t.legend[item.key]}
                     </li>
                   ))}
                 </ul>
@@ -501,17 +420,17 @@ export function DentalChart() {
                 aria-live="polite"
               >
                 {/* Keyed so each tooth replays the entrance */}
-                <ToothPanel key={selected} n={selected} />
+                <ToothPanel key={selected} n={selected} t={t} />
               </div>
             </div>
           </div>
         </Reveal>
 
         <Reveal stagger className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {POINTS.map((p) => (
+          {t.points.map((p, i) => (
             <div key={p.title} className="flex gap-4 rounded-2xl border border-border bg-white/70 p-5 sm:block sm:p-6">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary text-primary">
-                {p.icon}
+                {POINT_ICONS[i]}
               </span>
               <div className="min-w-0">
                 <h3 className="font-medium sm:mt-4">{p.title}</h3>

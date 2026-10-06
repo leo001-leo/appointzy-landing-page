@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
 import calendarScreenshot from "../../assets/calendarScreenshot.png";
+import { useT } from "../../i18n";
 
 // Counts up when scrolled into view; jumps straight to the value when the
 // visitor prefers reduced motion.
@@ -40,25 +41,26 @@ const cardBase =
   "lift flex h-full flex-col rounded-2xl border border-border bg-background p-7";
 
 export function Features() {
+  const t = useT().features;
   return (
     <section id="features" className="w-full bg-white px-4 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
-            Можности
+            {t.eyebrow}
           </p>
           <h2 className="mt-4 max-w-2xl text-3xl leading-[1.08] tracking-[-0.025em] md:text-5xl">
-            Сè што ѝ треба на една ординација
+            {t.title}
           </h2>
           <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            {"Ова го добива секоја ординација: стоматолошка, физиотерапевтска или друга. Стоматолозите добиваат и "}
+            {t.introBefore}
             <a
               href="#dental-chart"
               className="font-medium text-primary underline decoration-primary/30 underline-offset-4 transition-colors hover:decoration-primary"
             >
-              забен картон
+              {t.introLink}
             </a>
-            {"."}
+            {t.introAfter}
           </p>
         </Reveal>
 
@@ -66,16 +68,16 @@ export function Features() {
           {/* SMS reminders */}
           <Reveal className="md:col-span-2">
             <div className={cardBase}>
-              <h3 className="text-lg font-medium">Автоматски СМС потсетници</h3>
+              <h3 className="text-lg font-medium">{t.sms.title}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">
-                Пораката се испраќа сама, ден пред терминот. Пациентот не заборава, вие не ѕвоните.
+                {t.sms.text}
               </p>
               <div className="mt-6 space-y-2.5 rounded-xl bg-muted p-4">
                 <div className="chat-bubble chat-bubble-1 max-w-[85%] rounded-2xl rounded-tl-sm bg-white px-4 py-2.5 text-sm shadow-sm">
-                  Потсетуваме: утре во 10:00 имате термин кај д-р Стојановска.
+                  {t.sms.reminder}
                 </div>
                 <div className="chat-bubble chat-bubble-2 ml-auto max-w-[62%] rounded-2xl rounded-tr-sm bg-secondary px-4 py-2.5 text-sm text-secondary-foreground shadow-sm">
-                  Ќе дојдам, благодарам!
+                  {t.sms.reply}
                 </div>
               </div>
             </div>
@@ -84,9 +86,9 @@ export function Features() {
           {/* 9 -> 1 */}
           <Reveal delay={80}>
             <div className={cardBase}>
-              <h3 className="text-lg font-medium">Помалку празни столови</h3>
+              <h3 className="text-lg font-medium">{t.stat.title}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">
-                Од 9 пропуштени термини месечно, на само 1.
+                {t.stat.text}
               </p>
               <div className="mt-auto flex items-end justify-center gap-8 pt-8" aria-hidden="true">
                 <div className="text-center">
@@ -94,14 +96,14 @@ export function Features() {
                   <div className="mt-3 font-[Manrope] text-3xl font-extrabold text-muted-foreground">
                     <CountUp to={9} />
                   </div>
-                  <div className="text-xs text-muted-foreground">без потсетник</div>
+                  <div className="text-xs text-muted-foreground">{t.stat.without}</div>
                 </div>
                 <div className="text-center">
                   <div className="chart-bar mx-auto w-14 rounded-t-xl bg-gradient-to-t from-primary to-accent" style={{ height: 14 }} />
                   <div className="mt-3 font-[Manrope] text-3xl font-extrabold text-primary">
                     <CountUp to={1} duration={1200} />
                   </div>
-                  <div className="text-xs text-muted-foreground">со Appointzy</div>
+                  <div className="text-xs text-muted-foreground">{t.stat.with}</div>
                 </div>
               </div>
             </div>
@@ -110,25 +112,27 @@ export function Features() {
           {/* SMS templates */}
           <Reveal className="md:col-span-2">
             <div className={cardBase}>
-              <h3 className="text-lg font-medium">СМС шаблони што ги пишувате вие</h3>
+              <h3 className="text-lg font-medium">{t.templates.title}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">
-                Пораката ја составувате со свои зборови и додавате {"{име}"}, {"{датум}"} и {"{време}"}. Ја поставувате еднаш, системот ја праќа на секој пациент.
+                {t.templates.text}
               </p>
               <div className="mt-6 space-y-3" aria-hidden="true">
                 <div className="rounded-xl border border-border bg-white p-4">
                   <div className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">
-                    Вашиот шаблон
+                    {t.templates.yourTemplate}
                   </div>
-                  {/* Punctuation must hug the chips: a newline between an
-                      element and following text renders as a space in JSX. */}
+                  {/* Text and chips render back to back, so punctuation
+                      hugs the chips with no stray spaces. */}
                   <p className="text-sm leading-relaxed">
-                    {"Почитувана "}
-                    <span className="rounded bg-secondary px-1.5 py-0.5 font-medium text-primary">{"{име}"}</span>
-                    {", ве потсетуваме за вашиот термин на "}
-                    <span className="rounded bg-secondary px-1.5 py-0.5 font-medium text-primary">{"{датум}"}</span>
-                    {" во "}
-                    <span className="rounded bg-secondary px-1.5 py-0.5 font-medium text-primary">{"{време}"}</span>
-                    {"."}
+                    {t.templates.template.map((part, i) =>
+                      "variable" in part ? (
+                        <span key={i} className="rounded bg-secondary px-1.5 py-0.5 font-medium text-primary">
+                          {part.variable}
+                        </span>
+                      ) : (
+                        <span key={i}>{part.text}</span>
+                      )
+                    )}
                     <span className="caret ml-0.5 inline-block h-4 w-px translate-y-0.5 bg-primary" />
                   </p>
                 </div>
@@ -139,10 +143,10 @@ export function Features() {
                 </div>
                 <div className="rounded-xl bg-muted p-4">
                   <div className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">
-                    Што добива пациентот
+                    {t.templates.patientGets}
                   </div>
                   <p className="text-sm leading-relaxed">
-                    Почитувана Марија, ве потсетуваме за вашиот термин на 12.10 во 10:00.
+                    {t.templates.result}
                   </p>
                 </div>
               </div>
@@ -152,22 +156,23 @@ export function Features() {
           {/* Works on phone */}
           <Reveal delay={80}>
             <div className={cardBase}>
-              <h3 className="text-lg font-medium">Работи на телефон</h3>
+              <h3 className="text-lg font-medium">{t.phone.title}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">
-                Се отвора во прелистувачот. Без инсталација, од каде било.
+                {t.phone.text}
               </p>
               <div className="mx-auto mt-6 w-36 rounded-[1.6rem] border-4 border-foreground/12 bg-white p-2.5 shadow-lg" aria-hidden="true">
                 <div className="mx-auto mb-2.5 h-1 w-10 rounded-full bg-muted-foreground/25" />
                 <div className="space-y-1.5">
-                  <div className="rounded-md bg-secondary px-2 py-1.5 text-[10px] leading-tight text-secondary-foreground">
-                    09:00 · Марија П.
-                  </div>
-                  <div className="rounded-md bg-muted px-2 py-1.5 text-[10px] leading-tight">
-                    10:30 · Стефан Н.
-                  </div>
-                  <div className="rounded-md bg-muted px-2 py-1.5 text-[10px] leading-tight">
-                    12:00 · Елена Ј.
-                  </div>
+                  {t.phone.rows.map((row, i) => (
+                    <div
+                      key={row}
+                      className={`rounded-md px-2 py-1.5 text-[10px] leading-tight ${
+                        i === 0 ? "bg-secondary text-secondary-foreground" : "bg-muted"
+                      }`}
+                    >
+                      {row}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -176,14 +181,14 @@ export function Features() {
           {/* Calendar */}
           <Reveal className="md:col-span-2">
             <div className={cardBase}>
-              <h3 className="text-lg font-medium">Јасен ден и јасна недела</h3>
+              <h3 className="text-lg font-medium">{t.calendar.title}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">
-                Целата недела на еден поглед, по вработен. Без прецртување, без гужва во тетратка.
+                {t.calendar.text}
               </p>
               <div className="mt-6 overflow-hidden rounded-xl border border-border shadow-sm">
                 <img
                   src={calendarScreenshot}
-                  alt="Неделен приказ на календарот во Appointzy"
+                  alt={t.calendar.alt}
                   width={1607}
                   height={797}
                   loading="lazy"
@@ -196,12 +201,12 @@ export function Features() {
           {/* Recurring visits */}
           <Reveal delay={80}>
             <div className={cardBase}>
-              <h3 className="text-lg font-medium">Повторувачки посети</h3>
+              <h3 className="text-lg font-medium">{t.recurring.title}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">
-                Серија од десет физиотерапии? Ја внесувате еднаш, а системот ги закажува сите и потсетува за секоја одделно.
+                {t.recurring.text}
               </p>
               <div className="mt-6 flex flex-wrap gap-2" aria-hidden="true">
-                {["Пон 12.10", "Сре 14.10", "Пет 16.10", "Пон 19.10", "Сре 21.10"].map((d, i) => (
+                {t.recurring.dates.map((d, i) => (
                   <span
                     key={d}
                     className={`rounded-full px-3 py-1.5 text-sm ${
@@ -221,31 +226,31 @@ export function Features() {
           {/* Patient records */}
           <Reveal className="md:col-span-2">
             <div className={cardBase}>
-              <h3 className="text-lg font-medium">Картон и снимки на пациентот</h3>
+              <h3 className="text-lg font-medium">{t.records.title}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">
-                Снимките и историјата на посети стојат кај пациентот, во системот. Не барате по фолдери, УСБ или стар компјутер.
+                {t.records.text}
               </p>
               <div className="mt-6 rounded-xl bg-muted p-4" aria-hidden="true">
                 <div className="mb-4 flex items-center gap-3">
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-accent text-xs font-semibold text-white">
-                    МП
+                    {t.records.initials}
                   </span>
                   <div className="min-w-0">
-                    <div className="text-sm font-medium">Марија Петровска</div>
-                    <div className="text-xs text-muted-foreground">Последна посета: 12.10</div>
+                    <div className="text-sm font-medium">{t.records.patient}</div>
+                    <div className="text-xs text-muted-foreground">{t.records.lastVisit}</div>
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  {["14.03", "12.10"].map((d) => (
-                    <div key={d} className="w-20 shrink-0">
+                  {t.records.images.map((label) => (
+                    <div key={label} className="w-20 shrink-0">
                       <div className="relative h-16 overflow-hidden rounded-lg bg-foreground/80">
                         <div className="absolute inset-x-2 bottom-1 top-3 rounded-t-full bg-white/15" />
                       </div>
-                      <div className="mt-1 text-[10px] text-muted-foreground">Снимка {d}</div>
+                      <div className="mt-1 text-[10px] text-muted-foreground">{label}</div>
                     </div>
                   ))}
                   <div className="min-w-0 flex-1 space-y-1.5">
-                    {["Чистење забен камен", "Контрола", "Пломба"].map((v) => (
+                    {t.records.visits.map((v) => (
                       <div key={v} className="truncate rounded-md bg-white px-2 py-1 text-[11px]">
                         {v}
                       </div>
@@ -259,9 +264,9 @@ export function Features() {
           {/* Branding */}
           <Reveal delay={80}>
             <div className={cardBase}>
-              <h3 className="text-lg font-medium">Со вашето лого и вашите бои</h3>
+              <h3 className="text-lg font-medium">{t.branding.title}</h3>
               <p className="mt-2 leading-relaxed text-muted-foreground">
-                Апликацијата изгледа како ваша. Работните часови, услугите и вработените се поставени како кај вас.
+                {t.branding.text}
               </p>
               <div
                 className="mt-6 overflow-hidden rounded-xl border border-border bg-white shadow-sm"
@@ -269,7 +274,7 @@ export function Features() {
               >
                 <div className="flex items-center bg-gradient-to-r from-primary to-accent px-3 py-2.5">
                   <span className="rounded bg-white/95 px-2 py-1 text-[10px] font-semibold tracking-wide text-primary">
-                    ВАШЕ ЛОГО
+                    {t.branding.logo}
                   </span>
                 </div>
                 <div className="space-y-2 p-3">
@@ -301,9 +306,9 @@ export function Features() {
           <Reveal className="md:col-span-3">
             <div className="rounded-2xl border border-border bg-muted/40 p-6 md:flex md:items-center md:justify-between md:gap-8">
               <div className="md:max-w-xl">
-                <h3 className="text-base font-medium">Влезни фактури и ДДВ</h3>
+                <h3 className="text-base font-medium">{t.invoices.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                  Фактурите од добавувачите ги внесувате со автоматска пресметка на ДДВ и вкупни износи. Сликајте ја фактурата со телефон и AI ги пополнува податоците.
+                  {t.invoices.text}
                 </p>
               </div>
               <div
@@ -311,16 +316,16 @@ export function Features() {
                 aria-hidden="true"
               >
                 <div className="flex justify-between text-muted-foreground">
-                  <span>Нето</span>
-                  <span>13.500</span>
+                  <span>{t.invoices.net}</span>
+                  <span>{t.invoices.amounts[0]}</span>
                 </div>
                 <div className="flex justify-between text-muted-foreground">
-                  <span>ДДВ 18%</span>
-                  <span>2.430</span>
+                  <span>{t.invoices.vat}</span>
+                  <span>{t.invoices.amounts[1]}</span>
                 </div>
                 <div className="mt-1 flex justify-between border-t border-border pt-1 font-medium">
-                  <span>Вкупно</span>
-                  <span>15.930</span>
+                  <span>{t.invoices.total}</span>
+                  <span>{t.invoices.amounts[2]}</span>
                 </div>
               </div>
             </div>

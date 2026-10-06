@@ -1,30 +1,32 @@
 import { Reveal } from "./Reveal";
+import { useT } from "../../i18n";
 
-const entries = [
-  { time: "09:00", name: "Марија", cancelled: true },
-  { time: "10:30", name: "Стефан", cancelled: false },
-  { time: "11:00", name: "Елена", cancelled: true },
-  { time: "12:00", name: "Дарко", cancelled: false },
+const slots = [
+  { time: "09:00", cancelled: true },
+  { time: "10:30", cancelled: false },
+  { time: "11:00", cancelled: true },
+  { time: "12:00", cancelled: false },
 ];
 
 // Sits directly under the hero: removes the biggest reason not to switch.
 export function Migration() {
+  const t = useT().migration;
+  const entries = slots.map((slot, i) => ({ ...slot, name: t.names[i] }));
   return (
     <section className="w-full bg-background px-4 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal variant="left">
             <p className="text-sm font-medium uppercase tracking-[0.18em] text-primary">
-              Почеток
+              {t.eyebrow}
             </p>
             <h2 className="mt-4 text-3xl leading-[1.08] tracking-[-0.025em] md:text-5xl">
-              Не почнувате
+              {t.titleLine1}
               <br />
-              од нула
+              {t.titleLine2}
             </h2>
             <p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground">
-              Заедно ги внесуваме постоечките термини пред да почнете. Од првиот
-              ден календарот е полн, исто како тетратката, само без прецртување.
+              {t.text}
             </p>
           </Reveal>
 
@@ -32,7 +34,7 @@ export function Migration() {
             <div className="relative grid grid-cols-2 gap-4" aria-hidden="true">
               <div className="rounded-2xl border border-border bg-white p-5">
                 <div className="mb-4 text-xs uppercase tracking-wider text-muted-foreground">
-                  Тетратка
+                  {t.notebook}
                 </div>
                 <div className="space-y-2.5">
                   {entries.map(({ time, name, cancelled }) => (

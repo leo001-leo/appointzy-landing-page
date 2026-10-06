@@ -1,4 +1,5 @@
 import { useId, useState } from "react";
+import { useT } from "../../i18n";
 
 const ENDPOINT = "https://api.sheetmonkey.io/form/eGhahDSCJG5fH7oEaBxnS1";
 
@@ -13,6 +14,7 @@ const inputClass =
  * values are never cleared on failure.
  */
 export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
+  const t = useT().form;
   const uid = useId();
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -23,7 +25,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
     e.preventDefault();
     const trimmed = email.trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-      setEmailError("Внесете валиден е-маил, на пр. ime@gmail.com");
+      setEmailError(t.emailError);
       return;
     }
     setEmailError("");
@@ -51,9 +53,11 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
             <path d="M20 6 9 17l-5-5" />
           </svg>
         </div>
-        <p className="text-lg font-medium text-ink-fg">Ви благодариме!</p>
+        <p className="text-lg font-medium text-ink-fg">{t.successTitle}</p>
         <p className="mt-1.5 text-sm text-ink-muted">
-          Ќе ве контактираме наскоро на {email.trim()}.
+          {t.successBefore}
+          {email.trim()}
+          {t.successAfter}
         </p>
       </div>
     );
@@ -63,7 +67,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
     <form onSubmit={handleSubmit} noValidate className="space-y-3.5">
       <div>
         <label htmlFor={`${uid}-email`} className="mb-1.5 block text-sm text-ink-muted">
-          Е-маил
+          {t.emailLabel}
         </label>
         <input
           id={`${uid}-email`}
@@ -73,7 +77,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
           autoComplete="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="ime@gmail.com"
+          placeholder={t.emailPlaceholder}
           aria-invalid={emailError ? true : undefined}
           aria-describedby={emailError ? `${uid}-email-error` : undefined}
           className={inputClass}
@@ -87,7 +91,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
 
       <div>
         <label htmlFor={`${uid}-phone`} className="mb-1.5 block text-sm text-ink-muted">
-          Телефон <span className="text-white/35">(незадолжително)</span>
+          {t.phoneLabel} <span className="text-white/35">{t.phoneOptional}</span>
         </label>
         <input
           id={`${uid}-phone`}
@@ -96,7 +100,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
           autoComplete="tel"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
-          placeholder="доколку сакате да ве контактираме"
+          placeholder={t.phonePlaceholder}
           className={inputClass}
         />
       </div>
@@ -107,7 +111,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
         className="group relative h-13 w-full cursor-pointer overflow-hidden rounded-xl bg-gradient-to-r from-[#ea580c] to-[#f97316] text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(234,88,12,0.8)] transition-all duration-200 hover:shadow-[0_16px_40px_-10px_rgba(234,88,12,0.95)] focus:outline-none focus-visible:ring-4 focus-visible:ring-flame/30 active:scale-[0.985] disabled:cursor-default disabled:opacity-70"
       >
         <span className="relative z-10 inline-flex items-center justify-center gap-2">
-          {status === "loading" ? "Се испраќа..." : "Пробајте го бесплатно"}
+          {status === "loading" ? t.sending : t.submit}
           {status !== "loading" && (
             <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M5 12h14M13 6l6 6-6 6" />
@@ -118,7 +122,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
 
       {status === "error" && (
         <p role="alert" className="text-sm text-red-400">
-          Нешто тргна наопаку и пријавата не е зачувана. Обидете се повторно.
+          {t.error}
         </p>
       )}
 
@@ -132,13 +136,9 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
           </svg>
         </span>
         <p className="text-sm leading-snug text-ink-muted">
-          Ќе ве контактира нашиот тим во рок од 24 часа.
-          {showPrice && (
-            <span className="block">
-              30 дена бесплатно, потоа од 1.500 ден. месечно.
-            </span>
-          )}
-          <span className="block text-white/40">Без картичка. Без инсталација.</span>
+          {t.contact}
+          {showPrice && <span className="block">{t.price}</span>}
+          <span className="block text-white/40">{t.noCard}</span>
         </p>
       </div>
     </form>
