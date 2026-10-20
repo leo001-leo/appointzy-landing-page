@@ -1,10 +1,14 @@
 import { useId, useRef, useState, type ChangeEvent, type ReactNode } from "react";
-import { LANGS, useLang, useT, type Lang } from "../../i18n";
+import { dictionaries, LANGS, useLang, useT, type Lang } from "../../i18n";
 
-// The Appointzy API saves the request for the admin area (Барања) and
-// forwards a copy to the Sheetmonkey sheet itself; this page never calls
-// Sheetmonkey. Public endpoint: CORS allows this site, POST, no credentials.
+// Every request goes to two places. The Appointzy API saves it for the admin
+// area (Барања); public endpoint, CORS allows this site, POST, no credentials.
 const ENDPOINT = "https://api.appointzy.app/api/public/access-requests";
+// The page also posts the row to Leo's Sheetmonkey sheet: after the API has
+// saved it, and on its own when the API cannot be reached, so a lead is never
+// lost. Note: the API's AccessRequestForwarder posts to this same form too
+// while its SheetmonkeyUrl setting is set.
+const SHEETMONKEY = "https://api.sheetmonkey.io/form/eGhahDSCJG5fH7oEaBxnS1";
 
 const OTHER = 99;
 const MAX_TEXT = 100;
@@ -31,6 +35,27 @@ type Field =
 type Values = Record<Field, string>;
 type Status = "idle" | "loading" | "success";
 
+/**
+ * The sheet row, in the same columns and format as the API's
+ * AccessRequestForwarder, so rows from either side read the same.
+ */
+function sheetRow(v: Values, lang: Lang) {
+  const type = Number(v.practiceType);
+  const label = dictionaries.mk.form.practiceTypes.find((p) => p.value === type)?.label ?? "";
+  return {
+    date: new Date().toISOString().slice(0, 16).replace("T", " ") + " UTC",
+    practice: v.practiceName,
+    type: type === OTHER ? `${label}: ${v.practiceTypeOther}` : label,
+    city: v.city,
+    country: v.country,
+    contact: v.contactName,
+    email: v.email,
+    phone: v.phone,
+    language: LANGS[lang].htmlLang,
+    source: "Landing",
+  };
+}
+
 // crypto.randomUUID needs a 2022+ browser; older ones get the same v4 shape.
 function newUid(): string {
   if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
@@ -51,9 +76,10 @@ const selectClass = `${fieldBase} cursor-pointer appearance-none pr-10 [color-sc
 const optionClass = "bg-ink-soft text-ink-fg";
 
 /**
- * "Започни бесплатно": the single conversion action on the page. Only a 2xx
- * counts as success, typed values are never cleared on failure, and one uid
- * per form means a retry can never create a second request.
+ * "Започни бесплатно": the single conversion action on the page. Success
+ * means the API saved it, or, when the API cannot be reached, the sheet did.
+ * Typed values are never cleared on failure; one uid per form and a sent flag
+ * for the sheet mean a retry never makes a second request or a second row.
  */
 export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
   const t = useT().form;
@@ -62,6 +88,8 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
   const formRef = useRef<HTMLFormElement>(null);
   // Made on the first send and reused by every retry of this form.
   const requestUid = useRef<string | null>(null);
+  // Set once the sheet has the row, so a retry never adds it twice.
+  const sheetSent = useRef(false);
 
   const [values, setValues] = useState<Values>({
     practiceName: "",
@@ -101,6 +129,25 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
     }
   }
 
+  // Best effort. Never for a filled honeypot: the API quietly drops bots,
+  // and so does the sheet. No keepalive: some browsers refuse it on a
+  // cross-origin JSON post, and the page stays open after sending anyway.
+  async function sendToSheet(v: Values): Promise<boolean> {
+    if (v.website) return false;
+    if (sheetSent.current) return true;
+    try {
+      const res = await fetch(SHEETMONKEY, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(sheetRow(v, lang)),
+      });
+      if (res.ok) sheetSent.current = true;
+      return res.ok;
+    } catch {
+      return false;
+    }
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (status === "loading") return;
@@ -118,8 +165,9 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
     setStatus("loading");
     requestUid.current ??= newUid();
 
+    let res: Response;
     try {
-      const res = await fetch(ENDPOINT, {
+      res = await fetch(ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "omit",
@@ -138,33 +186,47 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
           website: v.website,
         }),
       });
-
-      if (res.ok) {
+    } catch {
+      // The API cannot be reached: the sheet alone still keeps the lead.
+      if (await sendToSheet(v)) {
         setStatus("success");
         return;
       }
-
-      setStatus("idle");
-      if (res.status === 429) {
-        show({ message: t.errors.tooMany });
-        return;
-      }
-      if (res.status === 400) {
-        const body = (await res.json().catch(() => null)) as { message?: string } | null;
-        if (body?.message === "EMAIL_NOT_VALID") {
-          show({ message: t.errors.email, field: "email" });
-          return;
-        }
-        if (body?.message === "ACCESS_REQUEST_INVALID") {
-          show({ message: t.errors.required });
-          return;
-        }
-      }
-      show({ message: t.errors.failed });
-    } catch {
       setStatus("idle");
       show({ message: t.errors.failed });
+      return;
     }
+
+    if (res.ok) {
+      void sendToSheet(v);
+      setStatus("success");
+      return;
+    }
+
+    // Rejected requests never reach the sheet.
+    if (res.status === 429) {
+      setStatus("idle");
+      show({ message: t.errors.tooMany });
+      return;
+    }
+    if (res.status === 400) {
+      const body = (await res.json().catch(() => null)) as { message?: string } | null;
+      setStatus("idle");
+      show(
+        body?.message === "EMAIL_NOT_VALID"
+          ? { message: t.errors.email, field: "email" }
+          : { message: body?.message === "ACCESS_REQUEST_INVALID" ? t.errors.required : t.errors.failed }
+      );
+      return;
+    }
+
+    // Any other answer (a server error): fall back to the sheet as well.
+    if (await sendToSheet(v)) {
+      setStatus("success");
+      return;
+    }
+    setStatus("idle");
+    show({ message: t.errors.failed });
   }
 
   if (status === "success") {
