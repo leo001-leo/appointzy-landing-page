@@ -36,8 +36,9 @@ export const me: Dict = {
     screenshotAlt: "Sedmični kalendar u Appointzy-ju sa zakazanim terminima",
     smsTitle: "SMS za Mariju P.",
     smsText: "Podsjećamo: sjutra u 10:00 imate termin. Očekujemo vas!",
-    clientsLabel:
-      "Već ga koriste stomatološke, fizioterapeutske i druge privatne ordinacije u Sjevernoj Makedoniji",
+    clientsBefore: "Već ga koristi ",
+    clientsCount: "30+ ordinacija",
+    clientsAfter: ": stomatoloških, fizioterapeutskih i drugih.",
     clients: [
       "Badent",
       "Dental Prestige",
@@ -46,6 +47,9 @@ export const me: Dict = {
       "Ortoalex",
       "Ivanum",
       "Fizio Dinamik",
+      "Artiski",
+      "Terzievski",
+      "Naturalija",
     ],
   },
 
@@ -304,6 +308,8 @@ export const me: Dict = {
     title: "Proizvod iz regiona, nastao zajedno sa ordinacijama",
     intro:
       "Appointzy je razvijen u Sjevernoj Makedoniji, zajedno sa stomatolozima i fizioterapeutima koji ga koriste svaki dan. Njihovi prijedlozi postaju dio aplikacije, a podršku pruža tim koji zna kako radi jedna ordinacija.",
+    statCount: "30+",
+    statLabel: "ordinacija ga već koristi",
     quoteOpen: "„",
     quoteClose: "“",
     quotes: [
@@ -346,6 +352,21 @@ export const me: Dict = {
         text: "Kontrole koje se ponavljaju mjesecima sada se zakazuju unaprijed, a podsjetnici stižu sami. Ogromno olakšanje za nas.",
         name: "Aleksandra",
         role: "Ortoalex",
+      },
+      {
+        text: "Prelazak je bio lakši nego što smo očekivali. Postojeće termine smo unijeli zajedno i već prvog dana radili u novom kalendaru.",
+        name: "Artiski",
+        role: "Stomatološka ordinacija",
+      },
+      {
+        text: "Otkako pacijenti dobijaju SMS podsjetnik, prazni termini su rijetkost. Više ne gubimo vrijeme na pozive i potvrđivanje.",
+        name: "Terzievski",
+        role: "Stomatološka ordinacija",
+      },
+      {
+        text: "Poruke smo napisali svojim riječima, pa pacijenti dobijaju podsjetnik koji zvuči kao da je od nas.",
+        name: "Naturalija",
+        role: "Stomatološka ordinacija",
       },
     ],
   },

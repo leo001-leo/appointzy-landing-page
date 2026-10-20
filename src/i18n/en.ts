@@ -36,8 +36,9 @@ export const en: Dict = {
     screenshotAlt: "Weekly calendar in Appointzy with booked appointments",
     smsTitle: "SMS to Marija P.",
     smsText: "Reminder: you have an appointment tomorrow at 10:00. See you then!",
-    clientsLabel:
-      "Already used by dental, physiotherapy and other private practices in North Macedonia",
+    clientsBefore: "Already used by ",
+    clientsCount: "30+ practices",
+    clientsAfter: ": dental, physiotherapy and more.",
     clients: [
       "Badent",
       "Dental Prestige",
@@ -46,6 +47,9 @@ export const en: Dict = {
       "Ortoalex",
       "Ivanum",
       "Fizio Dinamik",
+      "Artiski",
+      "Terzievski",
+      "Naturalija",
     ],
   },
 
@@ -304,6 +308,8 @@ export const en: Dict = {
     title: "A local product, built with local practices",
     intro:
       "Appointzy is developed in North Macedonia, together with the dentists and physiotherapists who use it every day. Their suggestions become part of the app, and support comes from a local team who know how a practice runs.",
+    statCount: "30+",
+    statLabel: "practices already use it",
     quoteOpen: "“",
     quoteClose: "”",
     quotes: [
@@ -346,6 +352,21 @@ export const en: Dict = {
         text: "Check-ups that repeat for months are now booked in advance, and the reminders arrive on their own. A huge relief for us.",
         name: "Aleksandra",
         role: "Ortoalex",
+      },
+      {
+        text: "Switching was easier than we expected. We entered our existing appointments together and were working in the new calendar from the very first day.",
+        name: "Artiski",
+        role: "Dental practice",
+      },
+      {
+        text: "Since our patients started getting SMS reminders, empty slots are rare. We no longer waste time calling to confirm.",
+        name: "Terzievski",
+        role: "Dental practice",
+      },
+      {
+        text: "We wrote the messages in our own words, so patients get a reminder that sounds like it comes from us.",
+        name: "Naturalija",
+        role: "Dental practice",
       },
     ],
   },

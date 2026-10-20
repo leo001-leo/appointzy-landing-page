@@ -103,7 +103,9 @@ export function Hero() {
         {/* Real practices already using it */}
         <div className="mt-20 md:mt-24">
           <p className="text-center text-sm text-white/40">
-            {t.clientsLabel}
+            {t.clientsBefore}
+            <span className="font-semibold text-white/85">{t.clientsCount}</span>
+            {t.clientsAfter}
           </p>
           <div className="marquee-mask mt-5 overflow-hidden">
             <div className="marquee-track flex gap-10">

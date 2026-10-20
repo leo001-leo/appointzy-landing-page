@@ -14,8 +14,10 @@ const avatarTints = [
 ];
 
 export function Proof() {
-  const t = useT().proof;
+  const dict = useT();
+  const t = dict.proof;
   const quotes = t.quotes;
+  const cta = dict.form.submit;
   return (
     <section className="w-full bg-background px-4 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
@@ -32,14 +34,15 @@ export function Proof() {
         </Reveal>
 
         {/* Phones: a swipeable row with the next card peeking in.
-            Tablet and up: a grid, two rows of four on wide screens. */}
+            Tablet and up: a grid. The closing "30+" tile makes twelve, which
+            fills two or three columns with no empty slot. */}
         <Reveal
           stagger
-          className="-mx-4 mt-14 flex snap-x snap-mandatory scroll-pl-4 gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-4 [&::-webkit-scrollbar]:hidden"
+          className="-mx-4 mt-14 flex snap-x snap-mandatory scroll-pl-4 gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3 [&::-webkit-scrollbar]:hidden"
         >
           {quotes.map((q, i) => (
             <div key={`${q.name}-${q.role}`} className="w-[84%] shrink-0 snap-start md:w-auto">
-              <figure className="lift flex h-full flex-col rounded-2xl border border-border bg-white p-7 xl:p-6">
+              <figure className="lift flex h-full flex-col rounded-2xl border border-border bg-white p-7">
                 <div className="mb-4 flex gap-0.5 text-accent" aria-hidden="true">
                   {[...Array(5)].map((_, s) => (
                     <svg key={s} className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -69,6 +72,30 @@ export function Proof() {
               </figure>
             </div>
           ))}
+
+          <div className="w-[84%] shrink-0 snap-start md:w-auto">
+            <div className="grain relative flex h-full flex-col justify-between overflow-hidden rounded-2xl bg-ink p-7 text-ink-fg">
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(234,88,12,0.45),transparent_65%)] blur-2xl"
+              />
+              <p className="relative">
+                <span className="block bg-gradient-to-r from-[#fdba74] to-[#f97316] bg-clip-text font-[Manrope] text-7xl font-extrabold tracking-[-0.04em] text-transparent">
+                  {t.statCount}
+                </span>
+                <span className="mt-2 block text-lg text-ink-muted">{t.statLabel}</span>
+              </p>
+              <a
+                href="#cta"
+                className="group relative mt-10 inline-flex items-center gap-2 font-semibold text-flame transition-colors duration-200 hover:text-[#fdba74] focus:outline-none focus-visible:underline"
+              >
+                {cta}
+                <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>

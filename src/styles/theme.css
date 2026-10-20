@@ -276,6 +276,7 @@
 .js .reveal-in.stagger > *:nth-child(6) { transition-delay: 460ms; }
 .js .reveal-in.stagger > *:nth-child(7) { transition-delay: 540ms; }
 .js .reveal-in.stagger > *:nth-child(8) { transition-delay: 620ms; }
+.js .reveal-in.stagger > *:nth-child(n + 9) { transition-delay: 700ms; }
 
 /* Hero entrance: plays on load, no observer needed */
 @keyframes rise-in {
