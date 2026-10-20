@@ -1,8 +1,7 @@
 import type { Dict } from "./mk";
 
 // Montenegrin (Latin script, ijekavian), served at "/me/". Same claims as
-// the Macedonian page. The price is the real MKD price with a euro
-// conversion, not a separate euro price.
+// the Macedonian page, except the price: Montenegro is billed in euros.
 export const me: Dict = {
   meta: {
     title: "Softver za zakazivanje termina za ordinacije | Appointzy",
@@ -64,7 +63,7 @@ export const me: Dict = {
     successBefore: "Javićemo vam se uskoro na ",
     successAfter: ".",
     contact: "Naš tim će vas kontaktirati u roku od 24 sata.",
-    price: "30 dana besplatno, zatim od 1.500 denara (oko 24 €) mjesečno.",
+    price: "30 dana besplatno, zatim od 40 € mjesečno.",
     noCard: "Bez kartice. Bez instalacije.",
   },
 
@@ -357,7 +356,7 @@ export const me: Dict = {
     items: [
       {
         q: "Koliko košta?",
-        a: "Prvih 30 dana je besplatno. Nakon toga, od 1.500 denara (oko 24 €) mjesečno, sa uključenim SMS porukama, pa nema posebnog računa za svaku poslatu poruku. Tačnu cijenu za vašu ordinaciju kažemo vam kada vas kontaktiramo, bez obaveze.",
+        a: "Prvih 30 dana je besplatno. Nakon toga, od 40 € mjesečno, sa uključenim SMS porukama, pa nema posebnog računa za svaku poslatu poruku. Tačnu cijenu za vašu ordinaciju kažemo vam kada vas kontaktiramo, bez obaveze.",
       },
       {
         q: "Da li je Appointzy softver za stomatološku ordinaciju?",
@@ -396,7 +395,7 @@ export const me: Dict = {
     titleHighlight: "ove sedmice",
     text: "Ostavite e-mail i javićemo vam se da sve podesimo. Bez obaveza, bez kartice.",
     checklist: [
-      "30 dana besplatno, zatim od 1.500 denara (oko 24 €) mjesečno",
+      "30 dana besplatno, zatim od 40 € mjesečno",
       "SMS poruke su uključene u cijenu",
       "Postojeće termine unosimo zajedno",
       "Podrška tima iz regiona",
