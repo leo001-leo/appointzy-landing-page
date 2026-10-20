@@ -34,7 +34,30 @@ function FlagGB({ className }: { className?: string }) {
   );
 }
 
+// Drawn at the badge's own proportions rather than the real 1:2, so the
+// gold border survives on all four sides. The coat of arms is simplified to
+// what reads at 20px: crown, double-headed eagle and the blue shield.
+function FlagME({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 140 100" preserveAspectRatio="xMidYMid slice" className={className} aria-hidden="true">
+      <rect width="140" height="100" fill="#d3ae3b" />
+      <rect x="6" y="6" width="128" height="88" fill="#c40308" />
+      <g fill="#d3ae3b">
+        <path d="M61 29 63 20l4 4 3-6 3 6 4-4 2 9Z" />
+        <circle cx="60" cy="34" r="4.5" />
+        <circle cx="80" cy="34" r="4.5" />
+        <path d="M66 40 40 30l4 14-4 6 8 4-2 6 20-2Z" />
+        <path d="M74 40 100 30l-4 14 4 6-8 4 2 6-20-2Z" />
+        <path d="M59 37h22v29l-11 11-11-11Z" />
+      </g>
+      <path d="M63 44h14v19l-7 7-7-7Z" fill="#1d5e91" />
+    </svg>
+  );
+}
+
 export function Flag({ lang, className = "" }: { lang: Lang; className?: string }) {
   const cls = `block h-3.5 w-5 shrink-0 overflow-hidden rounded-[3px] ring-1 ring-black/10 ${className}`;
-  return lang === "mk" ? <FlagMK className={cls} /> : <FlagGB className={cls} />;
+  if (lang === "mk") return <FlagMK className={cls} />;
+  if (lang === "me") return <FlagME className={cls} />;
+  return <FlagGB className={cls} />;
 }

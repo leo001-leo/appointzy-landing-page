@@ -1,6 +1,6 @@
-export type Lang = "mk" | "en";
+export type Lang = "mk" | "en" | "me";
 
-// Dental chart entry states, shared by both languages.
+// Dental chart entry states, shared by every language.
 export type DentalStatus = "finding" | "planned" | "done" | "existing" | "resolved";
 
 export interface DentalRecordText {

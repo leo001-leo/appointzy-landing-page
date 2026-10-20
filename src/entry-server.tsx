@@ -7,6 +7,7 @@ export { head } from "./i18n/head";
 // page into HTML, so crawlers get real content instead of an empty <div>.
 export const langs = Object.keys(LANGS) as Lang[];
 export const paths = Object.fromEntries(langs.map((l) => [l, LANGS[l].path]));
+export const htmlLangs = Object.fromEntries(langs.map((l) => [l, LANGS[l].htmlLang]));
 
 export function render(lang: Lang) {
   return renderToString(

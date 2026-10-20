@@ -5,8 +5,9 @@
     <loc>https://info.appointzy.app/</loc>
     <xhtml:link rel="alternate" hreflang="mk" href="https://info.appointzy.app/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://info.appointzy.app/en/" />
+    <xhtml:link rel="alternate" hreflang="sr-ME" href="https://info.appointzy.app/me/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://info.appointzy.app/" />
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -14,8 +15,19 @@
     <loc>https://info.appointzy.app/en/</loc>
     <xhtml:link rel="alternate" hreflang="mk" href="https://info.appointzy.app/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://info.appointzy.app/en/" />
+    <xhtml:link rel="alternate" hreflang="sr-ME" href="https://info.appointzy.app/me/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://info.appointzy.app/" />
     <lastmod>2026-10-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://info.appointzy.app/me/</loc>
+    <xhtml:link rel="alternate" hreflang="mk" href="https://info.appointzy.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://info.appointzy.app/en/" />
+    <xhtml:link rel="alternate" hreflang="sr-ME" href="https://info.appointzy.app/me/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://info.appointzy.app/" />
+    <lastmod>2026-10-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

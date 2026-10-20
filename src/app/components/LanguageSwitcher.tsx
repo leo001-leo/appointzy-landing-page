@@ -67,8 +67,8 @@ export function LanguageSwitcher({ overDark }: { overDark: boolean }) {
             <li key={l}>
               <a
                 href={LANGS[l].path}
-                hrefLang={l}
-                lang={l}
+                hrefLang={LANGS[l].htmlLang}
+                lang={LANGS[l].htmlLang}
                 aria-current={l === lang ? "true" : undefined}
                 className={`flex min-h-11 items-center gap-3 rounded-lg px-3 text-sm transition-colors duration-150 hover:bg-muted focus:outline-none focus-visible:bg-muted ${
                   l === lang ? "bg-secondary/60" : ""
@@ -95,13 +95,13 @@ export function LanguageSwitcher({ overDark }: { overDark: boolean }) {
 export function LanguageLinks() {
   const lang = useLang();
   return (
-    <div className="flex items-center gap-5">
+    <div className="flex flex-wrap items-center justify-center gap-x-5 sm:justify-end">
       {ORDER.map((l) => (
         <a
           key={l}
           href={LANGS[l].path}
-          hrefLang={l}
-          lang={l}
+          hrefLang={LANGS[l].htmlLang}
+          lang={LANGS[l].htmlLang}
           aria-current={l === lang ? "true" : undefined}
           className={`inline-flex min-h-[44px] items-center gap-2 text-sm transition-colors duration-200 ${
             l === lang ? "font-medium text-ink-fg" : "text-ink-muted hover:text-ink-fg"

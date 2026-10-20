@@ -36,9 +36,9 @@ function fail(message) {
 const entryPath = findEntry(SSR_DIR);
 if (!entryPath) fail(`could not find an entry-server bundle under ${SSR_DIR}/. Did the SSR build run?`);
 
-const { render, head, langs, paths } = await import(pathToFileURL(entryPath).href);
-if (typeof render !== "function" || typeof head !== "function" || !Array.isArray(langs)) {
-  fail(`${entryPath} does not export render, head and langs`);
+const { render, head, langs, paths, htmlLangs } = await import(pathToFileURL(entryPath).href);
+if (typeof render !== "function" || typeof head !== "function" || !Array.isArray(langs) || !htmlLangs) {
+  fail(`${entryPath} does not export render, head, langs and htmlLangs`);
 }
 
 // The SSR build hashes assets independently of the client build. Remap any
@@ -75,7 +75,7 @@ for (const lang of langs) {
   const markup = remapAssets(render(lang));
   // Replacer functions, so a "$" in the content is never read as a pattern.
   const html = template
-    .replace(LANG_ATTR, () => `<html lang="${lang}">`)
+    .replace(LANG_ATTR, () => `<html lang="${htmlLangs[lang]}">`)
     .replace(HEAD, () => head(lang))
     .replace(ROOT, () => `<div id="root">${markup}</div>`);
 

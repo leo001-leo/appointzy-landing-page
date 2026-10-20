@@ -32,14 +32,14 @@ export function head(lang: Lang): string {
         url,
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
-        inLanguage: lang,
+        inLanguage: LANGS[lang].htmlLang,
         publisher: { "@id": `${SITE}/#organization` },
         description: t.softwareDescription,
       },
       {
         "@type": "FAQPage",
         "@id": `${url}#faq`,
-        inLanguage: lang,
+        inLanguage: LANGS[lang].htmlLang,
         mainEntity: dictionaries[lang].faq.items.map((item) => ({
           "@type": "Question",
           name: item.q,
@@ -54,7 +54,7 @@ export function head(lang: Lang): string {
     `<meta name="description" content="${escape(t.description)}" />`,
     `<link rel="canonical" href="${url}" />`,
     ...(Object.keys(LANGS) as Lang[]).map(
-      (l) => `<link rel="alternate" hreflang="${l}" href="${SITE}${LANGS[l].path}" />`
+      (l) => `<link rel="alternate" hreflang="${LANGS[l].hreflang}" href="${SITE}${LANGS[l].path}" />`
     ),
     `<link rel="alternate" hreflang="x-default" href="${SITE}${LANGS.mk.path}" />`,
     `<meta property="og:type" content="website" />`,
