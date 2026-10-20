@@ -48,7 +48,7 @@ export function Hero() {
             </p>
 
             <div
-              className="rise mt-8 max-w-md"
+              className="rise mt-8 max-w-xl"
               style={{ "--d": "320ms" } as React.CSSProperties}
             >
               <LeadForm />

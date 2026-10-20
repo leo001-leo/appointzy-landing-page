@@ -17,7 +17,7 @@ export function Proof() {
   const dict = useT();
   const t = dict.proof;
   const quotes = t.quotes;
-  const cta = dict.form.submit;
+  const cta = dict.form.title;
   return (
     <section className="w-full bg-background px-4 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">

@@ -1,44 +1,169 @@
-import { useId, useState } from "react";
-import { useT } from "../../i18n";
+import { useId, useRef, useState, type ChangeEvent, type ReactNode } from "react";
+import { LANGS, useLang, useT, type Lang } from "../../i18n";
 
-const ENDPOINT = "https://api.sheetmonkey.io/form/eGhahDSCJG5fH7oEaBxnS1";
+// The Appointzy API saves the request for the admin area (Барања) and
+// forwards a copy to the Sheetmonkey sheet itself; this page never calls
+// Sheetmonkey. Public endpoint: CORS allows this site, POST, no credentials.
+const ENDPOINT = "https://api.appointzy.app/api/public/access-requests";
 
-type Status = "idle" | "loading" | "success" | "error";
+const OTHER = 99;
+const MAX_TEXT = 100;
+const MAX_EMAIL = 200;
+const MAX_PHONE = 50;
+// The same checks as the API (AccessRequestRules) and the app's own form.
+const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE = /^[0-9+()./\s-]+$/;
 
-const inputClass =
-  "h-13 w-full rounded-xl border border-white/12 bg-white/[0.06] px-4 text-ink-fg placeholder:text-white/35 transition-all duration-200 focus:border-flame/60 focus:bg-white/[0.09] focus:outline-none focus:ring-4 focus:ring-flame/15";
+// The Montenegrin page preselects Montenegro; Macedonian and English, Macedonia.
+const DEFAULT_COUNTRY: Record<Lang, string> = { mk: "MK", me: "ME", en: "MK" };
+
+type Field =
+  | "practiceName"
+  | "practiceType"
+  | "practiceTypeOther"
+  | "city"
+  | "country"
+  | "contactName"
+  | "email"
+  | "phone"
+  | "website";
+
+type Values = Record<Field, string>;
+type Status = "idle" | "loading" | "success";
+
+// crypto.randomUUID needs a 2022+ browser; older ones get the same v4 shape.
+function newUid(): string {
+  if (typeof crypto.randomUUID === "function") return crypto.randomUUID();
+  const b = crypto.getRandomValues(new Uint8Array(16));
+  b[6] = (b[6] & 0x0f) | 0x40;
+  b[8] = (b[8] & 0x3f) | 0x80;
+  const h = Array.from(b, (x) => x.toString(16).padStart(2, "0")).join("");
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-${h.slice(12, 16)}-${h.slice(16, 20)}-${h.slice(20)}`;
+}
+
+const fieldBase =
+  "h-12 w-full rounded-xl border border-white/12 bg-white/[0.06] px-4 transition-all duration-200 focus:border-flame/60 focus:bg-white/[0.09] focus:outline-none focus:ring-4 focus:ring-flame/15 aria-[invalid=true]:border-red-400/70";
+const inputClass = `${fieldBase} text-ink-fg`;
+
+// Native dropdowns follow the page's colour scheme, so dark keeps the open
+// list readable; options are styled too for browsers that ignore it.
+const selectClass = `${fieldBase} cursor-pointer appearance-none pr-10 [color-scheme:dark]`;
+const optionClass = "bg-ink-soft text-ink-fg";
 
 /**
- * The single conversion action on the page: email (required) + phone (optional).
- * Posts to Sheetmonkey; only a confirmed 2xx counts as success, and typed
- * values are never cleared on failure.
+ * "Започни бесплатно": the single conversion action on the page. Only a 2xx
+ * counts as success, typed values are never cleared on failure, and one uid
+ * per form means a retry can never create a second request.
  */
 export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
   const t = useT().form;
-  const uid = useId();
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
+  const lang = useLang();
+  const id = useId();
+  const formRef = useRef<HTMLFormElement>(null);
+  // Made on the first send and reused by every retry of this form.
+  const requestUid = useRef<string | null>(null);
+
+  const [values, setValues] = useState<Values>({
+    practiceName: "",
+    practiceType: "",
+    practiceTypeOther: "",
+    city: "",
+    country: DEFAULT_COUNTRY[lang],
+    contactName: "",
+    email: "",
+    phone: "",
+    website: "",
+  });
   const [status, setStatus] = useState<Status>("idle");
-  const [emailError, setEmailError] = useState("");
+  const [error, setError] = useState<{ message: string; field?: Field } | null>(null);
+
+  const set = (field: Field) => (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+    setValues((v) => ({ ...v, [field]: e.target.value }));
+
+  const isOther = Number(values.practiceType) === OTHER;
+
+  function check(v: Values): { message: string; field?: Field } | null {
+    // In on-screen order, so the focus lands on the first empty field.
+    const required: Field[] = ["practiceName", "practiceType", ...(isOther ? (["practiceTypeOther"] as const) : []), "city", "contactName"];
+    const empty = required.find((f) => !v[f]);
+    if (empty) return { message: t.errors.required, field: empty };
+    if (!EMAIL.test(v.email)) return { message: t.errors.email, field: "email" };
+    if (v.phone && (!PHONE.test(v.phone) || v.phone.replace(/\D/g, "").length < 6)) {
+      return { message: t.errors.phone, field: "phone" };
+    }
+    return null;
+  }
+
+  function show(problem: { message: string; field?: Field }) {
+    setError(problem);
+    if (problem.field) {
+      (formRef.current?.elements.namedItem(problem.field) as HTMLElement | null)?.focus();
+    }
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const trimmed = email.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-      setEmailError(t.emailError);
+    if (status === "loading") return;
+
+    const v = Object.fromEntries(
+      Object.entries(values).map(([k, val]) => [k, k === "website" ? val : val.trim()])
+    ) as Values;
+    const problem = check(v);
+    if (problem) {
+      show(problem);
       return;
     }
-    setEmailError("");
+
+    setError(null);
     setStatus("loading");
+    requestUid.current ??= newUid();
+
     try {
       const res = await fetch(ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ email: trimmed, phone: phone.trim() }),
+        headers: { "Content-Type": "application/json" },
+        credentials: "omit",
+        body: JSON.stringify({
+          uid: requestUid.current,
+          practiceName: v.practiceName,
+          practiceType: Number(v.practiceType),
+          practiceTypeOther: isOther ? v.practiceTypeOther : null,
+          city: v.city,
+          country: v.country,
+          contactName: v.contactName,
+          email: v.email,
+          phone: v.phone || null,
+          language: LANGS[lang].htmlLang,
+          source: "landing",
+          website: v.website,
+        }),
       });
-      setStatus(res.ok ? "success" : "error");
+
+      if (res.ok) {
+        setStatus("success");
+        return;
+      }
+
+      setStatus("idle");
+      if (res.status === 429) {
+        show({ message: t.errors.tooMany });
+        return;
+      }
+      if (res.status === 400) {
+        const body = (await res.json().catch(() => null)) as { message?: string } | null;
+        if (body?.message === "EMAIL_NOT_VALID") {
+          show({ message: t.errors.email, field: "email" });
+          return;
+        }
+        if (body?.message === "ACCESS_REQUEST_INVALID") {
+          show({ message: t.errors.required });
+          return;
+        }
+      }
+      show({ message: t.errors.failed });
     } catch {
-      setStatus("error");
+      setStatus("idle");
+      show({ message: t.errors.failed });
     }
   }
 
@@ -56,59 +181,163 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
         <p className="text-lg font-medium text-ink-fg">{t.successTitle}</p>
         <p className="mt-1.5 text-sm text-ink-muted">
           {t.successBefore}
-          {email.trim()}
+          {values.email.trim()}
           {t.successAfter}
         </p>
       </div>
     );
   }
 
+  const fid = (field: Field) => `${id}-${field}`;
+  const invalid = (field: Field) => (error?.field === field ? true : undefined);
+
+  const field = (name: Field, label: ReactNode, control: ReactNode, wide = false) => (
+    <div className={wide ? "@md:col-span-2" : undefined}>
+      <label htmlFor={fid(name)} className="mb-1.5 block text-sm text-ink-muted">
+        {label}
+      </label>
+      {control}
+    </div>
+  );
+
+  const text = (name: Field, max: number, extra: React.InputHTMLAttributes<HTMLInputElement> = {}) => (
+    <input
+      id={fid(name)}
+      name={name}
+      type="text"
+      maxLength={max}
+      value={values[name]}
+      onChange={set(name)}
+      aria-invalid={invalid(name)}
+      aria-describedby={invalid(name) ? `${id}-error` : undefined}
+      className={inputClass}
+      {...extra}
+    />
+  );
+
+  const chevron = (
+    <svg className="pointer-events-none absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-white/45" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  );
+
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-3.5">
-      <div>
-        <label htmlFor={`${uid}-email`} className="mb-1.5 block text-sm text-ink-muted">
-          {t.emailLabel}
-        </label>
-        <input
-          id={`${uid}-email`}
-          type="email"
-          name="email"
-          required
-          autoComplete="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={t.emailPlaceholder}
-          aria-invalid={emailError ? true : undefined}
-          aria-describedby={emailError ? `${uid}-email-error` : undefined}
-          className={inputClass}
-        />
-        {emailError && (
-          <p id={`${uid}-email-error`} className="mt-1.5 text-sm text-red-400">
-            {emailError}
-          </p>
+    // A container, so the fields pair up by the form's own width: two per
+    // row in the wide hero column, one per row on phones and in the CTA card.
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      noValidate
+      aria-labelledby={`${id}-title`}
+      className="@container relative"
+    >
+      <p id={`${id}-title`} className="mb-4 text-lg font-semibold text-ink-fg">
+        {t.title}
+      </p>
+
+      <div className="grid grid-cols-1 items-end gap-x-3 gap-y-3.5 @md:grid-cols-2">
+        {field("practiceName", t.practiceName, text("practiceName", MAX_TEXT, { autoComplete: "organization" }))}
+
+        {field(
+          "practiceType",
+          t.practiceType,
+          <div className="relative">
+            <select
+              id={fid("practiceType")}
+              name="practiceType"
+              value={values.practiceType}
+              onChange={set("practiceType")}
+              aria-invalid={invalid("practiceType")}
+              aria-describedby={invalid("practiceType") ? `${id}-error` : undefined}
+              className={`${selectClass} ${values.practiceType ? "text-ink-fg" : "text-white/40"}`}
+            >
+              <option value="" disabled className={optionClass}>
+                {t.choose}
+              </option>
+              {t.practiceTypes.map((type) => (
+                <option key={type.value} value={type.value} className={optionClass}>
+                  {type.label}
+                </option>
+              ))}
+            </select>
+            {chevron}
+          </div>
+        )}
+
+        {isOther && field("practiceTypeOther", t.practiceTypeOther, text("practiceTypeOther", MAX_TEXT), true)}
+
+        {field("city", t.city, text("city", MAX_TEXT, { autoComplete: "address-level2" }))}
+
+        {field(
+          "country",
+          t.country,
+          <div className="relative">
+            <select
+              id={fid("country")}
+              name="country"
+              value={values.country}
+              onChange={set("country")}
+              autoComplete="country"
+              className={`${selectClass} text-ink-fg`}
+            >
+              {t.countries.map((c) => (
+                <option key={c.code} value={c.code} className={optionClass}>
+                  {c.label}
+                </option>
+              ))}
+            </select>
+            {chevron}
+          </div>
+        )}
+
+        {field("contactName", t.contactName, text("contactName", MAX_TEXT, { autoComplete: "name" }))}
+
+        {field(
+          "email",
+          t.email,
+          text("email", MAX_EMAIL, {
+            type: "email",
+            inputMode: "email",
+            autoComplete: "email",
+            autoCapitalize: "none",
+            spellCheck: false,
+          })
+        )}
+
+        {field(
+          "phone",
+          <>
+            {t.phone} <span className="text-white/35">{t.optional}</span>
+          </>,
+          text("phone", MAX_PHONE, { type: "tel", inputMode: "tel", autoComplete: "tel" })
         )}
       </div>
 
-      <div>
-        <label htmlFor={`${uid}-phone`} className="mb-1.5 block text-sm text-ink-muted">
-          {t.phoneLabel} <span className="text-white/35">{t.phoneOptional}</span>
-        </label>
+      {/* Not for people: off screen, hidden from screen readers and the tab
+          order. A bot that fills it gets a success and nothing is saved. */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", top: "auto", width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor={fid("website")}>Website</label>
         <input
-          id={`${uid}-phone`}
-          type="tel"
-          name="phone"
-          autoComplete="tel"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          placeholder={t.phonePlaceholder}
-          className={inputClass}
+          id={fid("website")}
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={values.website}
+          onChange={set("website")}
         />
       </div>
+
+      {error && (
+        <p id={`${id}-error`} role="alert" className="mt-4 text-sm text-red-400">
+          {error.message}
+        </p>
+      )}
 
       <button
         type="submit"
         disabled={status === "loading"}
-        className="group relative h-13 w-full cursor-pointer overflow-hidden rounded-xl bg-gradient-to-r from-[#ea580c] to-[#f97316] text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(234,88,12,0.8)] transition-all duration-200 hover:shadow-[0_16px_40px_-10px_rgba(234,88,12,0.95)] focus:outline-none focus-visible:ring-4 focus-visible:ring-flame/30 active:scale-[0.985] disabled:cursor-default disabled:opacity-70"
+        className="group relative mt-4 h-13 w-full cursor-pointer overflow-hidden rounded-xl bg-gradient-to-r from-[#ea580c] to-[#f97316] text-base font-semibold text-white shadow-[0_10px_30px_-10px_rgba(234,88,12,0.8)] transition-all duration-200 hover:shadow-[0_16px_40px_-10px_rgba(234,88,12,0.95)] focus:outline-none focus-visible:ring-4 focus-visible:ring-flame/30 active:scale-[0.985] disabled:cursor-default disabled:opacity-70"
       >
         <span className="relative z-10 inline-flex items-center justify-center gap-2">
           {status === "loading" ? t.sending : t.submit}
@@ -120,13 +349,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
         </span>
       </button>
 
-      {status === "error" && (
-        <p role="alert" className="text-sm text-red-400">
-          {t.error}
-        </p>
-      )}
-
-      <div className="flex items-center gap-3 pt-0.5">
+      <div className="mt-3.5 flex items-center gap-3">
         <span
           aria-hidden="true"
           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/[0.07] text-flame"
