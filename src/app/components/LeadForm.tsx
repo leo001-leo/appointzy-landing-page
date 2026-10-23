@@ -35,6 +35,13 @@ type Field =
 type Values = Record<Field, string>;
 type Status = "idle" | "loading" | "success";
 
+declare global {
+  interface Window {
+    // Meta Pixel; index.html defines it on the live site only.
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
 /**
  * The sheet row, in the same columns and format as the API's
  * AccessRequestForwarder, so rows from either side read the same.
@@ -148,6 +155,14 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
     }
   }
 
+  // The request is in: thank the visitor and count one Lead for the Meta
+  // Pixel, with the request uid as event id. Never for a filled honeypot,
+  // which the API answers with a quiet 200 as well.
+  function succeed(v: Values) {
+    setStatus("success");
+    if (!v.website) window.fbq?.("track", "Lead", {}, { eventID: requestUid.current });
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (status === "loading") return;
@@ -189,7 +204,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
     } catch {
       // The API cannot be reached: the sheet alone still keeps the lead.
       if (await sendToSheet(v)) {
-        setStatus("success");
+        succeed(v);
         return;
       }
       setStatus("idle");
@@ -199,7 +214,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
 
     if (res.ok) {
       void sendToSheet(v);
-      setStatus("success");
+      succeed(v);
       return;
     }
 
@@ -222,7 +237,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
 
     // Any other answer (a server error): fall back to the sheet as well.
     if (await sendToSheet(v)) {
-      setStatus("success");
+      succeed(v);
       return;
     }
     setStatus("idle");
