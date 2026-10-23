@@ -1,5 +1,6 @@
 import { useId, useRef, useState, type ChangeEvent, type ReactNode } from "react";
 import { dictionaries, LANGS, useLang, useT, type Lang } from "../../i18n";
+import { leadOrigin } from "../attribution";
 
 // Every request goes to two places. The Appointzy API saves it for the admin
 // area (Барања); public endpoint, CORS allows this site, POST, no credentials.
@@ -44,11 +45,13 @@ declare global {
 
 /**
  * The sheet row, in the same columns and format as the API's
- * AccessRequestForwarder, so rows from either side read the same.
+ * AccessRequestForwarder, so rows from either side read the same. Only the
+ * source says more: "Landing (Facebook ad: <campaign>)" for a lead from the ad.
  */
 function sheetRow(v: Values, lang: Lang) {
   const type = Number(v.practiceType);
   const label = dictionaries.mk.form.practiceTypes.find((p) => p.value === type)?.label ?? "";
+  const origin = leadOrigin();
   return {
     date: new Date().toISOString().slice(0, 16).replace("T", " ") + " UTC",
     practice: v.practiceName,
@@ -59,7 +62,7 @@ function sheetRow(v: Values, lang: Lang) {
     email: v.email,
     phone: v.phone,
     language: LANGS[lang].htmlLang,
-    source: "Landing",
+    source: origin ? `Landing (${origin})` : "Landing",
   };
 }
 

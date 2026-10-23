@@ -1,7 +1,10 @@
 import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./app/App.tsx";
+import { rememberAttribution } from "./app/attribution";
 import { LangProvider, langFromPath } from "./i18n";
 import "./styles/index.css";
+
+rememberAttribution();
 
 const container = document.getElementById("root")!;
 
