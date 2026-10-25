@@ -47,7 +47,6 @@ export const mk = {
       "Ortoalex",
       "Ivanum",
       "Физио Динамик",
-      "Artiski",
       "Terzievski",
       "Naturalija",
       "Vrshkovski",
@@ -79,7 +78,7 @@ export const mk = {
     email: "Е пошта",
     phone: "Телефон",
     optional: "(не мора)",
-    submit: "Испрати",
+    submit: "Започни бесплатно",
     sending: "Се испраќа...",
     errors: {
       required: "Пополнете ги сите полиња. Само телефонот не е задолжителен.",

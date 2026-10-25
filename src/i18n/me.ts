@@ -47,7 +47,6 @@ export const me: Dict = {
       "Ortoalex",
       "Ivanum",
       "Fizio Dinamik",
-      "Artiski",
       "Terzievski",
       "Naturalija",
       "Vrshkovski",
@@ -79,7 +78,7 @@ export const me: Dict = {
     email: "Email",
     phone: "Telefon",
     optional: "(nije obavezno)",
-    submit: "Pošalji",
+    submit: "Započni besplatno",
     sending: "Šalje se...",
     errors: {
       required: "Popunite sva polja. Samo telefon nije obavezan.",

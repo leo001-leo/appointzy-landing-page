@@ -47,7 +47,6 @@ export const en: Dict = {
       "Ortoalex",
       "Ivanum",
       "Fizio Dinamik",
-      "Artiski",
       "Terzievski",
       "Naturalija",
       "Vrshkovski",
@@ -79,7 +78,7 @@ export const en: Dict = {
     email: "Email",
     phone: "Phone",
     optional: "(optional)",
-    submit: "Send",
+    submit: "Start for free",
     sending: "Sending...",
     errors: {
       required: "Fill in every field. Only the phone is optional.",
