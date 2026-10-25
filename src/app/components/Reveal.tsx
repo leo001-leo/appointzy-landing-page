@@ -1,4 +1,12 @@
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type HTMLAttributes,
+  type MutableRefObject,
+  type ReactNode,
+} from "react";
 
 type Variant = "up" | "scale" | "left" | "right";
 
@@ -12,7 +20,8 @@ const variantClass: Record<Variant, string> = {
 /**
  * Adds .reveal-in when the element scrolls into view; CSS does the rest.
  * SSR-safe: the observer only runs in an effect, and the server and client
- * both render the un-revealed state so hydration matches.
+ * both render the un-revealed state so hydration matches. Other div props
+ * (handlers, aria) pass through; rootRef exposes the element itself.
  */
 export function Reveal({
   children,
@@ -20,14 +29,17 @@ export function Reveal({
   variant = "up",
   stagger = false,
   className = "",
+  rootRef,
+  ...rest
 }: {
   children: ReactNode;
   delay?: number;
   variant?: Variant;
   stagger?: boolean;
   className?: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
+  rootRef?: MutableRefObject<HTMLDivElement | null>;
+} & Omit<HTMLAttributes<HTMLDivElement>, "children" | "className" | "style">) {
+  const ref = useRef<HTMLDivElement | null>(null);
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
@@ -50,7 +62,11 @@ export function Reveal({
 
   return (
     <div
-      ref={ref}
+      {...rest}
+      ref={(node) => {
+        ref.current = node;
+        if (rootRef) rootRef.current = node;
+      }}
       style={style}
       className={[
         "reveal",

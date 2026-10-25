@@ -50,6 +50,7 @@ export const en: Dict = {
       "Artiski",
       "Terzievski",
       "Naturalija",
+      "Vrshkovski",
     ],
   },
 
@@ -336,12 +337,9 @@ export const en: Dict = {
     statLabel: "practices already use it",
     quoteOpen: "“",
     quoteClose: "”",
+    prev: "Previous testimonials",
+    next: "Next testimonials",
     quotes: [
-      {
-        text: "Appointzy transformed the way we run our business. Booking appointments is easy now, and our clients love the SMS reminders.",
-        name: "Srna",
-        role: "Owner of a private practice",
-      },
       {
         text: "With Appointzy we no longer have double bookings or missed appointments. Everything is clear and easy to follow, and our staff picked up the system quickly.",
         name: "Blazhenka",
@@ -353,14 +351,9 @@ export const en: Dict = {
         role: "Ivanum physiotherapy practice",
       },
       {
-        text: "Appointzy gave us a professional image with our clients. The SMS reminders cut the number of missed appointments significantly, and we have saved a lot of working time.",
-        name: "Ivo",
-        role: "Dental Prestige",
-      },
-      {
         text: "I recommend it to anyone who works with appointments. We had the system set up and running within a day. Simple and practical.",
         name: "Dragan",
-        role: "Vesna Dent",
+        role: "Vesna Dent dental practice",
       },
       {
         text: "I check my schedule on my phone, wherever I am. The reminders go out on their own, so patients rarely forget an appointment and I don't waste time on calls.",
@@ -378,19 +371,19 @@ export const en: Dict = {
         role: "Ortoalex",
       },
       {
-        text: "Switching was easier than we expected. We entered our existing appointments together and were working in the new calendar from the very first day.",
-        name: "Artiski",
-        role: "Dental practice",
-      },
-      {
         text: "Since our patients started getting SMS reminders, empty slots are rare. We no longer waste time calling to confirm.",
-        name: "Terzievski",
-        role: "Dental practice",
+        name: "Boban",
+        role: "Terzievski dental practice",
       },
       {
         text: "We wrote the messages in our own words, so patients get a reminder that sounds like it comes from us.",
-        name: "Naturalija",
-        role: "Dental practice",
+        name: "Viktor",
+        role: "Naturalija dental practice",
+      },
+      {
+        text: "We see the whole week at a glance, for each staff member separately. I find a free slot in seconds, while the patient is still on the phone.",
+        name: "Petar",
+        role: "Vrshkovski dental practice",
       },
     ],
   },

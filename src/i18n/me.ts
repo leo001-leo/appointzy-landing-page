@@ -50,6 +50,7 @@ export const me: Dict = {
       "Artiski",
       "Terzievski",
       "Naturalija",
+      "Vrshkovski",
     ],
   },
 
@@ -336,12 +337,9 @@ export const me: Dict = {
     statLabel: "ordinacija ga već koristi",
     quoteOpen: "„",
     quoteClose: "“",
+    prev: "Prethodna mišljenja",
+    next: "Sljedeća mišljenja",
     quotes: [
-      {
-        text: "Appointzy je promijenio način na koji vodimo naš posao. Zakazivanje termina je sada lako, a našim klijentima se dopadaju SMS podsjetnici.",
-        name: "Srna",
-        role: "Vlasnica privatne ordinacije",
-      },
       {
         text: "Sa Appointzy-jem više nemamo problema sa duplim terminima i propuštenim zakazivanjima. Sve je jasno i pregledno, a osoblje je brzo savladalo sistem.",
         name: "Blaženka",
@@ -353,14 +351,9 @@ export const me: Dict = {
         role: "Fizioterapeutska ordinacija Ivanum",
       },
       {
-        text: "Appointzy nam je dao profesionalan izgled pred klijentima. SMS podsjetnici su značajno smanjili broj neodržanih termina i uštedjeli smo mnogo radnog vremena.",
-        name: "Ivo",
-        role: "Dental Prestige",
-      },
-      {
         text: "Preporučujem ga svakome ko radi sa terminima. Za jedan dan smo imali sistem podešen i u upotrebi. Jednostavno i praktično.",
         name: "Dragan",
-        role: "Vesna Dent",
+        role: "Stomatološka ordinacija Vesna Dent",
       },
       {
         text: "Raspored gledam na telefonu, gdje god da sam. Podsjetnici idu sami, pa pacijenti rijetko zaborave termin, a ja ne gubim vrijeme na pozive.",
@@ -378,19 +371,19 @@ export const me: Dict = {
         role: "Ortoalex",
       },
       {
-        text: "Prelazak je bio lakši nego što smo očekivali. Postojeće termine smo unijeli zajedno i već prvog dana radili u novom kalendaru.",
-        name: "Artiski",
-        role: "Stomatološka ordinacija",
-      },
-      {
         text: "Otkako pacijenti dobijaju SMS podsjetnik, prazni termini su rijetkost. Više ne gubimo vrijeme na pozive i potvrđivanje.",
-        name: "Terzievski",
-        role: "Stomatološka ordinacija",
+        name: "Boban",
+        role: "Stomatološka ordinacija Terzievski",
       },
       {
         text: "Poruke smo napisali svojim riječima, pa pacijenti dobijaju podsjetnik koji zvuči kao da je od nas.",
-        name: "Naturalija",
-        role: "Stomatološka ordinacija",
+        name: "Viktor",
+        role: "Stomatološka ordinacija Naturalija",
+      },
+      {
+        text: "Cijelu sedmicu vidimo na jedan pogled, za svakog zaposlenog posebno. Slobodan termin nađem za nekoliko sekundi, dok je pacijent još na telefonu.",
+        name: "Petar",
+        role: "Stomatološka ordinacija Vrshkovski",
       },
     ],
   },

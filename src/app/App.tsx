@@ -17,12 +17,12 @@ export default function App() {
       <Navigation />
       <main className="flex-1">
         <Hero />
+        <Proof />
         <Migration />
         <Problem />
         <HowItWorks />
         <Features />
         <DentalChart />
-        <Proof />
         <FAQ />
         <FinalCTA />
       </main>

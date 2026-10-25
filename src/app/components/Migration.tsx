@@ -8,12 +8,14 @@ const slots = [
   { time: "12:00", cancelled: false },
 ];
 
-// Sits directly under the hero: removes the biggest reason not to switch.
+// Sits right under the testimonials: removes the biggest reason not to switch.
+// The warm tint keeps it apart from the testimonials, which share the page
+// background, and fades into the white section below.
 export function Migration() {
   const t = useT().migration;
   const entries = slots.map((slot, i) => ({ ...slot, name: t.names[i] }));
   return (
-    <section className="w-full bg-background px-4 py-20 md:py-28">
+    <section className="w-full bg-gradient-to-b from-secondary/70 to-white px-4 py-20 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <Reveal variant="left">
