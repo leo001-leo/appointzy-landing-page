@@ -49,7 +49,7 @@ export const en: Dict = {
       "Fizio Dinamik",
       "Terzievski",
       "Naturalija",
-      "Vrshkovski",
+      "Maksident Vrshkovski",
     ],
   },
 
@@ -382,7 +382,7 @@ export const en: Dict = {
       {
         text: "We see the whole week at a glance, for each staff member separately. I find a free slot in seconds, while the patient is still on the phone.",
         name: "Petar",
-        role: "Vrshkovski dental practice",
+        role: "Maksident Vrshkovski dental practice",
       },
     ],
   },

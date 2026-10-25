@@ -49,7 +49,7 @@ export const mk = {
       "Физио Динамик",
       "Terzievski",
       "Naturalija",
-      "Vrshkovski",
+      "Maksident Vrshkovski",
     ],
   },
 
@@ -382,7 +382,7 @@ export const mk = {
       {
         text: "Целата недела ја гледаме на еден поглед, за секој вработен посебно. Слободен термин наоѓам за неколку секунди, додека пациентот е уште на телефон.",
         name: "Петар",
-        role: "Стоматолошка ординација Vrshkovski",
+        role: "Стоматолошка ординација Maksident Vrshkovski",
       },
     ],
   },

@@ -49,7 +49,7 @@ export const me: Dict = {
       "Fizio Dinamik",
       "Terzievski",
       "Naturalija",
-      "Vrshkovski",
+      "Maksident Vrshkovski",
     ],
   },
 
@@ -382,7 +382,7 @@ export const me: Dict = {
       {
         text: "Cijelu sedmicu vidimo na jedan pogled, za svakog zaposlenog posebno. Slobodan termin nađem za nekoliko sekundi, dok je pacijent još na telefonu.",
         name: "Petar",
-        role: "Stomatološka ordinacija Vrshkovski",
+        role: "Stomatološka ordinacija Maksident Vrshkovski",
       },
     ],
   },
