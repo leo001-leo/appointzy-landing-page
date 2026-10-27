@@ -1,4 +1,5 @@
 import type { Dict } from "./mk";
+import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
 
 // Montenegrin (Latin script, ijekavian), served at "/me/". Same claims as
 // the Macedonian page, except the price: Montenegro is billed in euros.
@@ -345,14 +346,15 @@ export const me: Dict = {
         role: "Ordinacija Badent",
       },
       {
-        text: "Naši pacijenti dolaze na serije od više terapija. Seriju unesem jednom i za svaku terapiju stiže poseban podsjetnik. Ranije sam svaki termin potvrđivao pozivom.",
-        name: "Mite",
-        role: "Fizioterapeutska ordinacija Ivanum",
-      },
-      {
         text: "Preporučujem ga svakome ko radi sa terminima. Za jedan dan smo imali sistem podešen i u upotrebi. Jednostavno i praktično.",
         name: "Dragan",
         role: "Stomatološka ordinacija Vesna Dent",
+        photo: draganPhoto,
+      },
+      {
+        text: "Naši pacijenti dolaze na serije od više terapija. Seriju unesem jednom i za svaku terapiju stiže poseban podsjetnik. Ranije sam svaki termin potvrđivao pozivom.",
+        name: "Mite",
+        role: "Fizioterapeutska ordinacija Ivanum",
       },
       {
         text: "Raspored gledam na telefonu, gdje god da sam. Podsjetnici idu sami, pa pacijenti rijetko zaborave termin, a ja ne gubim vrijeme na pozive.",

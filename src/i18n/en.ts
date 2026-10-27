@@ -1,4 +1,5 @@
 import type { Dict } from "./mk";
+import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
 
 // English, served at "/en/". Same claims as the Macedonian page, nothing
 // added. Names of people and practices are transliterated.
@@ -345,14 +346,15 @@ export const en: Dict = {
         role: "Badent practice",
       },
       {
-        text: "Our patients come for a series of sessions. I enter the series once and a separate reminder goes out for each session. I used to confirm every appointment with a phone call.",
-        name: "Mite",
-        role: "Ivanum physiotherapy practice",
-      },
-      {
         text: "I recommend it to anyone who works with appointments. We had the system set up and running within a day. Simple and practical.",
         name: "Dragan",
         role: "Vesna Dent dental practice",
+        photo: draganPhoto,
+      },
+      {
+        text: "Our patients come for a series of sessions. I enter the series once and a separate reminder goes out for each session. I used to confirm every appointment with a phone call.",
+        name: "Mite",
+        role: "Ivanum physiotherapy practice",
       },
       {
         text: "I check my schedule on my phone, wherever I am. The reminders go out on their own, so patients rarely forget an appointment and I don't waste time on calls.",

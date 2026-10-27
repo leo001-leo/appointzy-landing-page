@@ -2,9 +2,9 @@ import { useEffect, useRef, useState, type MouseEvent, type PointerEvent } from 
 import { Reveal } from "./Reveal";
 import { useT } from "../../i18n";
 
-// `photo` is intentionally left empty: real practice photos can be dropped in
-// later and the initials avatar is the fallback. We do not use stock or
-// AI-generated faces for real, named customers.
+// Every quote keeps its initials avatar. A quote with a `photo` (a real one,
+// sent by the practice) also shows it large above the quote. We do not use
+// stock or AI-generated faces for real, named customers.
 const avatarTints = [
   "from-primary to-accent",
   "from-accent to-[#f59e0b]",
@@ -17,13 +17,20 @@ const avatarTints = [
 // Every slide has the same width, so the next card peeks in at the edge.
 const slide = "w-[84%] shrink-0 snap-start sm:w-[60%] md:w-[45%] lg:w-[30%]";
 
+// The row drifts on its own at this speed (CSS px per second). It waits
+// IDLE ms after the visitor touches it and HOLD ms at either end.
+const DRIFT = 45;
+const IDLE = 5000;
+const HOLD = 2500;
+
 const behavior = (): ScrollBehavior =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 
-/** One card plus the gap after it. */
-function slideStep(row: HTMLDivElement) {
-  const first = row.firstElementChild as HTMLElement | null;
-  return (first?.getBoundingClientRect().width ?? row.clientWidth) + parseFloat(getComputedStyle(row).columnGap || "0");
+/** Where each card starts as a scroll position, and its width. */
+function cardStops(row: HTMLDivElement) {
+  const cards = Array.from(row.children) as HTMLElement[];
+  const origin = cards[0]?.offsetLeft ?? 0;
+  return cards.map((c) => ({ left: c.offsetLeft - origin, width: c.offsetWidth }));
 }
 
 function Arrow({ dir, label, disabled, onClick }: { dir: -1 | 1; label: string; disabled: boolean; onClick: () => void }) {
@@ -46,7 +53,8 @@ function Arrow({ dir, label, disabled, onClick }: { dir: -1 | 1; label: string; 
  * Testimonials in one sliding row that ends with a "30+" card, plus the same
  * count as a strip under it so it is seen without sliding. Phones and tablets swipe the row natively;
  * with a mouse it can be dragged, and from tablet width up the arrows on its
- * sides move one screen of cards at a time.
+ * sides move one screen of cards at a time. While nobody touches it, the row
+ * drifts slowly to the end and then goes back to the start.
  */
 export function Proof() {
   const dict = useT();
@@ -54,6 +62,7 @@ export function Proof() {
   const quotes = t.quotes;
   const cta = dict.form.title;
 
+  const areaRef = useRef<HTMLDivElement | null>(null);
   const rowRef = useRef<HTMLDivElement | null>(null);
   const drag = useRef<{ x: number; left: number; moved: boolean } | null>(null);
   // Set when a drag ends, so the click that follows it is not a link click.
@@ -70,7 +79,10 @@ export function Proof() {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
         const max = row.scrollWidth - row.clientWidth;
-        setEdges({ start: row.scrollLeft <= 2, end: row.scrollLeft >= max - 2 });
+        const start = row.scrollLeft <= 2;
+        const end = row.scrollLeft >= max - 2;
+        // The drift scrolls every frame; only re-render when an edge changes.
+        setEdges((e) => (e.start === start && e.end === end ? e : { start, end }));
       });
     };
     update();
@@ -83,14 +95,118 @@ export function Proof() {
     };
   }, []);
 
+  // The slow drift. It runs only while the row is on screen, and stops while
+  // the mouse is over it, while it has keyboard focus, and for IDLE ms after
+  // any touch, click, wheel or key. Reduced motion turns it off.
+  useEffect(() => {
+    const row = rowRef.current;
+    const area = areaRef.current;
+    if (!row || !area) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let frame = 0;
+    let last = 0;
+    let pos = row.scrollLeft;
+    let visible = false;
+    let hovered = false;
+    let focused = false;
+    let waitUntil = 0;
+    let rewind = false;
+
+    const tick = (now: number) => {
+      frame = requestAnimationFrame(tick);
+      const dt = Math.min(now - last, 100);
+      last = now;
+      if (!visible || hovered || focused || reduce.matches || drag.current || now < waitUntil) return;
+      if (rewind) {
+        rewind = false;
+        row.scrollTo({ left: 0, behavior: "smooth" });
+        waitUntil = now + HOLD;
+        return;
+      }
+      // Picks up where the visitor, the arrows or the rewind left the row.
+      if (Math.abs(row.scrollLeft - pos) > 2) pos = row.scrollLeft;
+      const max = row.scrollWidth - row.clientWidth;
+      if (pos >= max - 1) {
+        rewind = true;
+        waitUntil = now + HOLD;
+        return;
+      }
+      // Snapping would pull every small step back to the card.
+      if (row.style.scrollSnapType !== "none") row.style.scrollSnapType = "none";
+      pos = Math.min(pos + (DRIFT * dt) / 1000, max);
+      row.scrollLeft = pos;
+    };
+
+    const wait = () => {
+      waitUntil = performance.now() + IDLE;
+    };
+    const enter = (e: globalThis.PointerEvent) => {
+      if (e.pointerType === "mouse") hovered = true;
+    };
+    const leave = (e: globalThis.PointerEvent) => {
+      if (e.pointerType === "mouse") hovered = false;
+    };
+    // Only keyboard focus: a clicked arrow keeps focus after the mouse leaves.
+    const focusIn = (e: FocusEvent) => {
+      if ((e.target as Element).matches(":focus-visible")) focused = true;
+    };
+    const focusOut = (e: FocusEvent) => {
+      if (!area.contains(e.relatedTarget as Node | null)) {
+        focused = false;
+        wait();
+      }
+    };
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        const inView = entry.intersectionRatio >= 0.5;
+        // Give the visitor a moment with the first cards before moving.
+        if (inView && !visible) waitUntil = Math.max(waitUntil, performance.now() + HOLD);
+        visible = inView;
+      },
+      { threshold: [0, 0.5] }
+    );
+
+    io.observe(row);
+    area.addEventListener("pointerenter", enter);
+    area.addEventListener("pointerleave", leave);
+    area.addEventListener("pointerdown", wait);
+    area.addEventListener("wheel", wait, { passive: true });
+    area.addEventListener("touchstart", wait, { passive: true });
+    area.addEventListener("keydown", wait);
+    area.addEventListener("focusin", focusIn);
+    area.addEventListener("focusout", focusOut);
+    frame = requestAnimationFrame(tick);
+    return () => {
+      cancelAnimationFrame(frame);
+      io.disconnect();
+      area.removeEventListener("pointerenter", enter);
+      area.removeEventListener("pointerleave", leave);
+      area.removeEventListener("pointerdown", wait);
+      area.removeEventListener("wheel", wait);
+      area.removeEventListener("touchstart", wait);
+      area.removeEventListener("keydown", wait);
+      area.removeEventListener("focusin", focusIn);
+      area.removeEventListener("focusout", focusOut);
+    };
+  }, []);
+
   function page(dir: -1 | 1) {
     const row = rowRef.current;
     if (!row) return;
-    const step = slideStep(row);
     const style = getComputedStyle(row);
-    const inner = row.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-    const visible = Math.max(1, Math.floor((inner + parseFloat(style.columnGap || "0")) / step));
-    row.scrollBy({ left: dir * visible * step, behavior: behavior() });
+    const view = row.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+    const gap = parseFloat(style.columnGap || "0");
+    const at = row.scrollLeft;
+    const cards = cardStops(row);
+    // Forward: start at the first card that is not fully in view. Back: go
+    // as far as keeps the card that was first in view just past the edge.
+    let i =
+      dir === 1
+        ? cards.findIndex((c) => c.left + c.width > at + view + 1)
+        : cards.findIndex((c) => c.left >= at - view - gap - 1);
+    if (i < 0) i = cards.length - 1;
+    if (Math.abs(cards[i].left - at) < 2) i = Math.min(Math.max(i + dir, 0), cards.length - 1);
+    row.scrollTo({ left: cards[i].left, behavior: behavior() });
   }
 
   // Mouse only: touch and pen keep the browser's own swipe.
@@ -126,8 +242,11 @@ export function Proof() {
     dragged.current = true;
     setDragging(false);
     // Settle on the nearest card, then hand back to snapping.
-    const step = slideStep(row);
-    row.scrollTo({ left: Math.round(row.scrollLeft / step) * step, behavior: behavior() });
+    const nearest = cardStops(row).reduce(
+      (best, c) => (Math.abs(c.left - row.scrollLeft) < Math.abs(best - row.scrollLeft) ? c.left : best),
+      0
+    );
+    row.scrollTo({ left: nearest, behavior: behavior() });
     window.setTimeout(() => {
       if (!drag.current?.moved) row.style.scrollSnapType = "";
     }, 450);
@@ -181,7 +300,7 @@ export function Proof() {
           </p>
         </Reveal>
 
-        <div className="relative mt-12">
+        <div ref={areaRef} className="relative mt-12">
           {/* Arrows on either side of the row, from tablet width up; on
               wide screens they sit half outside the cards. Phones swipe. */}
           <div className="absolute left-1 top-[calc(50%-0.75rem)] z-10 hidden -translate-y-1/2 md:block lg:-left-6">
@@ -208,9 +327,9 @@ export function Proof() {
               dragging ? "cursor-grabbing select-none" : "md:cursor-grab"
             }`}
           >
-            {quotes.map((q, i) => (
-              <div key={`${q.name}-${q.role}`} className={slide}>
-                <figure className="lift flex h-full flex-col rounded-2xl border border-border bg-white p-7">
+            {quotes.map((q, i) => {
+              const quote = (
+                <>
                   <div className="mb-4 flex gap-0.5 text-accent" aria-hidden="true">
                     {[...Array(5)].map((_, s) => (
                       <svg key={s} className="h-4 w-4 fill-current" viewBox="0 0 24 24">
@@ -237,9 +356,36 @@ export function Proof() {
                       <span className="block text-sm text-muted-foreground">{q.role}</span>
                     </span>
                   </figcaption>
-                </figure>
-              </div>
-            ))}
+                </>
+              );
+              return q.photo ? (
+                <div key={`${q.name}-${q.role}`} className={slide}>
+                  <figure className="lift flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white">
+                    {/* At least 13rem tall, and it takes any height the row
+                        has to spare; the name is in the caption, so no alt. */}
+                    <div className="relative min-h-52 flex-1 bg-secondary">
+                      <img
+                        src={q.photo}
+                        alt=""
+                        width={1000}
+                        height={1066}
+                        loading="lazy"
+                        decoding="async"
+                        draggable={false}
+                        className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
+                      />
+                    </div>
+                    <div className="flex flex-col p-7">{quote}</div>
+                  </figure>
+                </div>
+              ) : (
+                <div key={`${q.name}-${q.role}`} className={slide}>
+                  <figure className="lift flex h-full flex-col rounded-2xl border border-border bg-white p-7">
+                    {quote}
+                  </figure>
+                </div>
+              );
+            })}
 
             {/* The last card closes the row with the count and the form link */}
             <div className={slide}>
