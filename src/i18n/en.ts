@@ -2,6 +2,8 @@ import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
+import naturalijaLogo from "../assets/testimonials/naturalija-logo.jpg";
+import terzievskiLogo from "../assets/testimonials/terzievski-logo.png";
 
 // English, served at "/en/". Same claims as the Macedonian page, nothing
 // added. Names of people and practices are transliterated.
@@ -46,7 +48,7 @@ export const en: Dict = {
       "Badent",
       "Dental Prestige",
       "Vesna Dent",
-      "PZU Dr. Stojanova",
+      "Dr. Stojanova",
       "Ortoalex",
       "IVΛNUM",
       "Fizio Dinamik",
@@ -334,7 +336,7 @@ export const en: Dict = {
     eyebrow: "Trust",
     title: "A local product, built with local practices",
     intro:
-      "Appointzy is developed in North Macedonia, together with the dentists and physiotherapists who use it every day. Their suggestions become part of the app, and support comes from a local team who know how a practice runs.",
+      "Appointzy is developed in North Macedonia, together with the dentists, physiotherapists and beauty studios who use it every day. Their suggestions become part of the app, and support comes from a local team who know how a practice runs.",
     statCount: "30+",
     statLabel: "practices already use it",
     quoteOpen: "“",
@@ -351,7 +353,7 @@ export const en: Dict = {
       {
         text: "Check-ups that repeat for months are now booked in advance, and the reminders arrive on their own. A huge relief for us.",
         name: "Aleksandra",
-        role: "Ortoalex",
+        role: "Ortoalex dental practice",
         photo: aleksandraPhoto,
       },
       {
@@ -363,7 +365,7 @@ export const en: Dict = {
       {
         text: "With Appointzy we no longer have double bookings or missed appointments. Everything is clear and easy to follow, and our staff picked up the system quickly.",
         name: "Blazhenka",
-        role: "Badent practice",
+        role: "Badent dental practice",
       },
       {
         text: "I check my schedule on my phone, wherever I am. The reminders go out on their own, so patients rarely forget an appointment and I don't waste time on calls.",
@@ -373,22 +375,29 @@ export const en: Dict = {
       {
         text: "Finally we can see the whole week without phone calls or a notebook. Patients arrive on time thanks to the reminders.",
         name: "Aleksandra",
-        role: "PZU Dr. Stojanova",
+        role: "Dr. Stojanova physiotherapy practice",
       },
       {
         text: "Since our patients started getting SMS reminders, empty slots are rare. We no longer waste time calling to confirm.",
         name: "Boban",
         role: "Terzievski dental practice",
+        logo: terzievskiLogo,
       },
       {
         text: "We wrote the messages in our own words, so patients get a reminder that sounds like it comes from us.",
         name: "Viktor",
         role: "Naturalija dental practice",
+        photo: naturalijaLogo,
       },
       {
         text: "We see the whole week at a glance, for each staff member separately. I find a free slot in seconds, while the patient is still on the phone.",
         name: "Petar",
         role: "Maksident Vrshkovski dental practice",
+      },
+      {
+        text: "Clients get an SMS reminder before every treatment, so hardly anyone forgets their appointment. I see the whole day at a glance and book in seconds.",
+        name: "Danche",
+        role: "VelvetTouch beauty studio",
       },
     ],
   },

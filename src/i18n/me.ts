@@ -2,6 +2,8 @@ import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
+import naturalijaLogo from "../assets/testimonials/naturalija-logo.jpg";
+import terzievskiLogo from "../assets/testimonials/terzievski-logo.png";
 
 // Montenegrin (Latin script, ijekavian), served at "/me/". Same claims as
 // the Macedonian page, except the price: Montenegro is billed in euros.
@@ -46,7 +48,7 @@ export const me: Dict = {
       "Badent",
       "Dental Prestige",
       "Vesna Dent",
-      "PZU Dr Stojanova",
+      "Dr Stojanova",
       "Ortoalex",
       "IVΛNUM",
       "Fizio Dinamik",
@@ -334,7 +336,7 @@ export const me: Dict = {
     eyebrow: "Povjerenje",
     title: "Proizvod iz regiona, nastao zajedno sa ordinacijama",
     intro:
-      "Appointzy je razvijen u Sjevernoj Makedoniji, zajedno sa stomatolozima i fizioterapeutima koji ga koriste svaki dan. Njihovi prijedlozi postaju dio aplikacije, a podršku pruža tim koji zna kako radi jedna ordinacija.",
+      "Appointzy je razvijen u Sjevernoj Makedoniji, zajedno sa stomatolozima, fizioterapeutima i studijima ljepote koji ga koriste svaki dan. Njihovi prijedlozi postaju dio aplikacije, a podršku pruža tim koji zna kako radi jedna ordinacija.",
     statCount: "30+",
     statLabel: "ordinacija ga već koristi",
     quoteOpen: "„",
@@ -351,7 +353,7 @@ export const me: Dict = {
       {
         text: "Kontrole koje se ponavljaju mjesecima sada se zakazuju unaprijed, a podsjetnici stižu sami. Ogromno olakšanje za nas.",
         name: "Aleksandra",
-        role: "Ortoalex",
+        role: "Stomatološka ordinacija Ortoalex",
         photo: aleksandraPhoto,
       },
       {
@@ -363,7 +365,7 @@ export const me: Dict = {
       {
         text: "Sa Appointzy-jem više nemamo problema sa duplim terminima i propuštenim zakazivanjima. Sve je jasno i pregledno, a osoblje je brzo savladalo sistem.",
         name: "Blaženka",
-        role: "Ordinacija Badent",
+        role: "Stomatološka ordinacija Badent",
       },
       {
         text: "Raspored gledam na telefonu, gdje god da sam. Podsjetnici idu sami, pa pacijenti rijetko zaborave termin, a ja ne gubim vrijeme na pozive.",
@@ -373,22 +375,29 @@ export const me: Dict = {
       {
         text: "Konačno imamo pregled cijele sedmice bez telefonskih poziva i sveske. Pacijenti dolaze na vrijeme zahvaljujući podsjetnicima.",
         name: "Aleksandra",
-        role: "PZU Dr Stojanova",
+        role: "Fizioterapeutska ordinacija Dr Stojanova",
       },
       {
         text: "Otkako pacijenti dobijaju SMS podsjetnik, prazni termini su rijetkost. Više ne gubimo vrijeme na pozive i potvrđivanje.",
         name: "Boban",
         role: "Stomatološka ordinacija Terzievski",
+        logo: terzievskiLogo,
       },
       {
         text: "Poruke smo napisali svojim riječima, pa pacijenti dobijaju podsjetnik koji zvuči kao da je od nas.",
         name: "Viktor",
         role: "Stomatološka ordinacija Naturalija",
+        photo: naturalijaLogo,
       },
       {
         text: "Cijelu sedmicu vidimo na jedan pogled, za svakog zaposlenog posebno. Slobodan termin nađem za nekoliko sekundi, dok je pacijent još na telefonu.",
         name: "Petar",
         role: "Stomatološka ordinacija Maksident Vrshkovski",
+      },
+      {
+        text: "Klijenti dobijaju SMS podsjetnik prije svakog tretmana, pa rijetko ko zaboravi termin. Cijeli dan vidim na jedan pogled i zakazujem za nekoliko sekundi.",
+        name: "Danče",
+        role: "Studio ljepote VelvetTouch",
       },
     ],
   },

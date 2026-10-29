@@ -4,7 +4,9 @@ import { useT } from "../../i18n";
 
 // Every quote keeps its initials avatar. A quote with a `photo` (a real one,
 // sent by the practice) or the practice's `logo` also shows it large above
-// the quote. We do not use stock or AI-generated faces for real, named
+// the quote. A `photo` fills its space, so a logo that comes on its own
+// background (Naturalija) is given as a photo; a `logo` is shown whole on
+// white. We do not use stock or AI-generated faces for real, named
 // customers.
 const avatarTints = [
   "from-primary to-accent",
@@ -52,7 +54,7 @@ function Arrow({ dir, label, disabled, onClick }: { dir: -1 | 1; label: string; 
 
 /**
  * Testimonials in one sliding row that ends with a "30+" card, plus the same
- * count as a strip under it so it is seen without sliding. Phones and tablets swipe the row natively;
+ * count as a strip above it so it is seen first. Phones and tablets swipe the row natively;
  * with a mouse it can be dragged, and from tablet width up the arrows on its
  * sides move one screen of cards at a time. While nobody touches it, the row
  * drifts slowly to the end and then goes back to the start.
@@ -301,7 +303,19 @@ export function Proof() {
           </p>
         </Reveal>
 
-        <div ref={areaRef} className="relative mt-12">
+        {/* The same count as a strip, the first thing seen before the cards */}
+        <Reveal className="mt-10">
+          <div className="grain relative flex flex-col gap-6 overflow-hidden rounded-2xl bg-ink p-7 text-ink-fg md:flex-row md:items-center md:justify-between md:px-10">
+            {glow}
+            <p className="relative flex flex-wrap items-center gap-x-6 gap-y-1">
+              {statCount}
+              <span className="block text-lg text-ink-muted md:text-xl">{t.statLabel}</span>
+            </p>
+            {ctaLink}
+          </div>
+        </Reveal>
+
+        <div ref={areaRef} className="relative mt-10">
           {/* Arrows on either side of the row, from tablet width up; on
               wide screens they sit half outside the cards. Phones swipe. */}
           <div className="absolute left-1 top-[calc(50%-0.75rem)] z-10 hidden -translate-y-1/2 md:block lg:-left-6">
@@ -420,18 +434,6 @@ export function Proof() {
             </div>
           </Reveal>
         </div>
-
-        {/* The same count as a strip, seen without sliding */}
-        <Reveal className="mt-10">
-          <div className="grain relative flex flex-col gap-6 overflow-hidden rounded-2xl bg-ink p-7 text-ink-fg md:flex-row md:items-center md:justify-between md:px-10">
-            {glow}
-            <p className="relative flex flex-wrap items-center gap-x-6 gap-y-1">
-              {statCount}
-              <span className="block text-lg text-ink-muted md:text-xl">{t.statLabel}</span>
-            </p>
-            {ctaLink}
-          </div>
-        </Reveal>
       </div>
     </section>
   );
