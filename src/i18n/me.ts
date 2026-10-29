@@ -338,7 +338,7 @@ export const me: Dict = {
     intro:
       "Appointzy je razvijen u Sjevernoj Makedoniji, zajedno sa stomatolozima, fizioterapeutima i studijima ljepote koji ga koriste svaki dan. Njihovi prijedlozi postaju dio aplikacije, a podršku pruža tim koji zna kako radi jedna ordinacija.",
     statCount: "30+",
-    statLabel: "ordinacija ga već koristi",
+    statLabel: "ordinacija i studija ga već koristi",
     quoteOpen: "„",
     quoteClose: "“",
     prev: "Prethodna mišljenja",

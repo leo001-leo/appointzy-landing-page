@@ -338,7 +338,7 @@ export const en: Dict = {
     intro:
       "Appointzy is developed in North Macedonia, together with the dentists, physiotherapists and beauty studios who use it every day. Their suggestions become part of the app, and support comes from a local team who know how a practice runs.",
     statCount: "30+",
-    statLabel: "practices already use it",
+    statLabel: "practices and studios already use it",
     quoteOpen: "“",
     quoteClose: "”",
     prev: "Previous testimonials",
