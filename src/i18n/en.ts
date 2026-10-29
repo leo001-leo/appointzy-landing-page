@@ -48,7 +48,7 @@ export const en: Dict = {
       "Vesna Dent",
       "PZU Dr. Stojanova",
       "Ortoalex",
-      "Ivanum",
+      "IVΛNUM",
       "Fizio Dinamik",
       "Terzievski",
       "Naturalija",
@@ -343,21 +343,27 @@ export const en: Dict = {
     next: "Next testimonials",
     quotes: [
       {
-        text: "With Appointzy we no longer have double bookings or missed appointments. Everything is clear and easy to follow, and our staff picked up the system quickly.",
-        name: "Blazhenka",
-        role: "Badent practice",
-      },
-      {
         text: "I recommend it to anyone who works with appointments. We had the system set up and running within a day. Simple and practical.",
         name: "Dragan",
         role: "Vesna Dent dental practice",
         photo: draganPhoto,
       },
       {
+        text: "Check-ups that repeat for months are now booked in advance, and the reminders arrive on their own. A huge relief for us.",
+        name: "Aleksandra",
+        role: "Ortoalex",
+        photo: aleksandraPhoto,
+      },
+      {
         text: "Our patients come for a series of sessions. I enter the series once and a separate reminder goes out for each session. I used to confirm every appointment with a phone call.",
         name: "Mite",
-        role: "Ivanum physiotherapy practice",
+        role: "IVΛNUM physiotherapy practice",
         logo: ivanumLogo,
+      },
+      {
+        text: "With Appointzy we no longer have double bookings or missed appointments. Everything is clear and easy to follow, and our staff picked up the system quickly.",
+        name: "Blazhenka",
+        role: "Badent practice",
       },
       {
         text: "I check my schedule on my phone, wherever I am. The reminders go out on their own, so patients rarely forget an appointment and I don't waste time on calls.",
@@ -368,12 +374,6 @@ export const en: Dict = {
         text: "Finally we can see the whole week without phone calls or a notebook. Patients arrive on time thanks to the reminders.",
         name: "Aleksandra",
         role: "PZU Dr. Stojanova",
-      },
-      {
-        text: "Check-ups that repeat for months are now booked in advance, and the reminders arrive on their own. A huge relief for us.",
-        name: "Aleksandra",
-        role: "Ortoalex",
-        photo: aleksandraPhoto,
       },
       {
         text: "Since our patients started getting SMS reminders, empty slots are rare. We no longer waste time calling to confirm.",

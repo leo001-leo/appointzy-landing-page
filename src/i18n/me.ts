@@ -48,7 +48,7 @@ export const me: Dict = {
       "Vesna Dent",
       "PZU Dr Stojanova",
       "Ortoalex",
-      "Ivanum",
+      "IVΛNUM",
       "Fizio Dinamik",
       "Terzievski",
       "Naturalija",
@@ -343,21 +343,27 @@ export const me: Dict = {
     next: "Sljedeća mišljenja",
     quotes: [
       {
-        text: "Sa Appointzy-jem više nemamo problema sa duplim terminima i propuštenim zakazivanjima. Sve je jasno i pregledno, a osoblje je brzo savladalo sistem.",
-        name: "Blaženka",
-        role: "Ordinacija Badent",
-      },
-      {
         text: "Preporučujem ga svakome ko radi sa terminima. Za jedan dan smo imali sistem podešen i u upotrebi. Jednostavno i praktično.",
         name: "Dragan",
         role: "Stomatološka ordinacija Vesna Dent",
         photo: draganPhoto,
       },
       {
+        text: "Kontrole koje se ponavljaju mjesecima sada se zakazuju unaprijed, a podsjetnici stižu sami. Ogromno olakšanje za nas.",
+        name: "Aleksandra",
+        role: "Ortoalex",
+        photo: aleksandraPhoto,
+      },
+      {
         text: "Naši pacijenti dolaze na serije od više terapija. Seriju unesem jednom i za svaku terapiju stiže poseban podsjetnik. Ranije sam svaki termin potvrđivao pozivom.",
         name: "Mite",
-        role: "Fizioterapeutska ordinacija Ivanum",
+        role: "Fizioterapeutska ordinacija IVΛNUM",
         logo: ivanumLogo,
+      },
+      {
+        text: "Sa Appointzy-jem više nemamo problema sa duplim terminima i propuštenim zakazivanjima. Sve je jasno i pregledno, a osoblje je brzo savladalo sistem.",
+        name: "Blaženka",
+        role: "Ordinacija Badent",
       },
       {
         text: "Raspored gledam na telefonu, gdje god da sam. Podsjetnici idu sami, pa pacijenti rijetko zaborave termin, a ja ne gubim vrijeme na pozive.",
@@ -368,12 +374,6 @@ export const me: Dict = {
         text: "Konačno imamo pregled cijele sedmice bez telefonskih poziva i sveske. Pacijenti dolaze na vrijeme zahvaljujući podsjetnicima.",
         name: "Aleksandra",
         role: "PZU Dr Stojanova",
-      },
-      {
-        text: "Kontrole koje se ponavljaju mjesecima sada se zakazuju unaprijed, a podsjetnici stižu sami. Ogromno olakšanje za nas.",
-        name: "Aleksandra",
-        role: "Ortoalex",
-        photo: aleksandraPhoto,
       },
       {
         text: "Otkako pacijenti dobijaju SMS podsjetnik, prazni termini su rijetkost. Više ne gubimo vrijeme na pozive i potvrđivanje.",
