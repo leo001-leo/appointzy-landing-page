@@ -334,9 +334,9 @@ export const en: Dict = {
 
   proof: {
     eyebrow: "Trust",
-    title: "A local product, built with local practices",
+    title: "A local product, built with local practices and studios",
     intro:
-      "Appointzy is developed in North Macedonia, together with the dentists, physiotherapists and beauty studios who use it every day. Their suggestions become part of the app, and support comes from a local team who know how a practice runs.",
+      "Appointzy is developed in North Macedonia, with input from the practices and studios that use it every day.",
     statCount: "30+",
     statLabel: "practices and studios already use it",
     quoteOpen: "“",

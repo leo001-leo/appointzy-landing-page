@@ -334,9 +334,9 @@ export const me: Dict = {
 
   proof: {
     eyebrow: "Povjerenje",
-    title: "Proizvod iz regiona, nastao zajedno sa ordinacijama",
+    title: "Proizvod iz regiona, nastao zajedno sa ordinacijama i studijima",
     intro:
-      "Appointzy je razvijen u Sjevernoj Makedoniji, zajedno sa stomatolozima, fizioterapeutima i studijima ljepote koji ga koriste svaki dan. Njihovi prijedlozi postaju dio aplikacije, a podršku pruža tim koji zna kako radi jedna ordinacija.",
+      "Appointzy je razvijen u Sjevernoj Makedoniji, uz prijedloge ordinacija i studija koji ga koriste svaki dan.",
     statCount: "30+",
     statLabel: "ordinacija i studija ga već koristi",
     quoteOpen: "„",
