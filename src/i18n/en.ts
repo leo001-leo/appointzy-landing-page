@@ -1,6 +1,7 @@
 import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
+import fizioDinamikLogo from "../assets/testimonials/fizio-dinamik-logo.png";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
 import maksidentLogo from "../assets/testimonials/maksident-logo.jpg";
 import naturalijaLogo from "../assets/testimonials/naturalija-logo.jpg";
@@ -373,6 +374,7 @@ export const en: Dict = {
         text: "I check my schedule on my phone, wherever I am. The reminders go out on their own, so patients rarely forget an appointment and I don't waste time on calls.",
         name: "Bojan",
         role: "Fizio Dinamik physiotherapy practice",
+        logo: fizioDinamikLogo,
       },
       {
         text: "Finally we can see the whole week without phone calls or a notebook. Patients arrive on time thanks to the reminders.",

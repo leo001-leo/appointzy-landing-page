@@ -1,6 +1,7 @@
 import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
+import fizioDinamikLogo from "../assets/testimonials/fizio-dinamik-logo.png";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
 import maksidentLogo from "../assets/testimonials/maksident-logo.jpg";
 import naturalijaLogo from "../assets/testimonials/naturalija-logo.jpg";
@@ -373,6 +374,7 @@ export const me: Dict = {
         text: "Raspored gledam na telefonu, gdje god da sam. Podsjetnici idu sami, pa pacijenti rijetko zaborave termin, a ja ne gubim vrijeme na pozive.",
         name: "Bojan",
         role: "Fizioterapeutska ordinacija Fizio Dinamik",
+        logo: fizioDinamikLogo,
       },
       {
         text: "Konačno imamo pregled cijele sedmice bez telefonskih poziva i sveske. Pacijenti dolaze na vrijeme zahvaljujući podsjetnicima.",

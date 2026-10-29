@@ -1,6 +1,7 @@
 import type { DentalRecordText, TemplatePart } from "./types";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
+import fizioDinamikLogo from "../assets/testimonials/fizio-dinamik-logo.png";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
 import maksidentLogo from "../assets/testimonials/maksident-logo.jpg";
 import naturalijaLogo from "../assets/testimonials/naturalija-logo.jpg";
@@ -373,6 +374,7 @@ export const mk = {
         text: "Распоредот го гледам на телефон, каде и да сум. Потсетниците одат сами, па пациентите ретко забораваат термин, а јас не губам време на повици.",
         name: "Бојан",
         role: "Физиотерапевтска ординација Физио Динамик",
+        logo: fizioDinamikLogo,
       },
       {
         text: "Конечно имаме преглед на целата недела без телефонски повици и тетратка. Пациентите доаѓаат навреме благодарение на потсетниците.",
