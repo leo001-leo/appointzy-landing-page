@@ -311,6 +311,22 @@ export function Proof() {
             <Arrow dir={1} label={t.next} disabled={edges.end} onClick={() => page(1)} />
           </div>
 
+          {/* A soft shadow on each edge of the row while more cards are
+              hidden that way. It spans the cards' height and fades out
+              towards their top and bottom. */}
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute -left-4 bottom-8 top-2 z-[5] w-12 bg-[radial-gradient(ellipse_at_left,rgba(28,25,23,0.16),transparent_70%)] transition-opacity duration-300 md:w-16 ${
+              edges.start ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <div
+            aria-hidden="true"
+            className={`pointer-events-none absolute -right-4 bottom-8 top-2 z-[5] w-12 bg-[radial-gradient(ellipse_at_right,rgba(28,25,23,0.16),transparent_70%)] transition-opacity duration-300 md:w-16 ${
+              edges.end ? "opacity-0" : "opacity-100"
+            }`}
+          />
+
           {/* Bleeds 1rem past the container so card shadows and the hover
               lift are not clipped by the scrolling box. */}
           <Reveal
