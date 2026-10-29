@@ -55,6 +55,7 @@ export const mk = {
       "Terzievski",
       "Naturalija",
       "Maksident Vrshkovski",
+      "VelvetTouch",
     ],
   },
 

@@ -55,6 +55,7 @@ export const me: Dict = {
       "Terzievski",
       "Naturalija",
       "Maksident Vrshkovski",
+      "VelvetTouch",
     ],
   },
 
