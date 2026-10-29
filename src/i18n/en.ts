@@ -1,5 +1,7 @@
 import type { Dict } from "./mk";
+import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
+import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
 
 // English, served at "/en/". Same claims as the Macedonian page, nothing
 // added. Names of people and practices are transliterated.
@@ -355,6 +357,7 @@ export const en: Dict = {
         text: "Our patients come for a series of sessions. I enter the series once and a separate reminder goes out for each session. I used to confirm every appointment with a phone call.",
         name: "Mite",
         role: "Ivanum physiotherapy practice",
+        logo: ivanumLogo,
       },
       {
         text: "I check my schedule on my phone, wherever I am. The reminders go out on their own, so patients rarely forget an appointment and I don't waste time on calls.",
@@ -370,6 +373,7 @@ export const en: Dict = {
         text: "Check-ups that repeat for months are now booked in advance, and the reminders arrive on their own. A huge relief for us.",
         name: "Aleksandra",
         role: "Ortoalex",
+        photo: aleksandraPhoto,
       },
       {
         text: "Since our patients started getting SMS reminders, empty slots are rare. We no longer waste time calling to confirm.",

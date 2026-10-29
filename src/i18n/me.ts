@@ -1,5 +1,7 @@
 import type { Dict } from "./mk";
+import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
+import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
 
 // Montenegrin (Latin script, ijekavian), served at "/me/". Same claims as
 // the Macedonian page, except the price: Montenegro is billed in euros.
@@ -355,6 +357,7 @@ export const me: Dict = {
         text: "Naši pacijenti dolaze na serije od više terapija. Seriju unesem jednom i za svaku terapiju stiže poseban podsjetnik. Ranije sam svaki termin potvrđivao pozivom.",
         name: "Mite",
         role: "Fizioterapeutska ordinacija Ivanum",
+        logo: ivanumLogo,
       },
       {
         text: "Raspored gledam na telefonu, gdje god da sam. Podsjetnici idu sami, pa pacijenti rijetko zaborave termin, a ja ne gubim vrijeme na pozive.",
@@ -370,6 +373,7 @@ export const me: Dict = {
         text: "Kontrole koje se ponavljaju mjesecima sada se zakazuju unaprijed, a podsjetnici stižu sami. Ogromno olakšanje za nas.",
         name: "Aleksandra",
         role: "Ortoalex",
+        photo: aleksandraPhoto,
       },
       {
         text: "Otkako pacijenti dobijaju SMS podsjetnik, prazni termini su rijetkost. Više ne gubimo vrijeme na pozive i potvrđivanje.",

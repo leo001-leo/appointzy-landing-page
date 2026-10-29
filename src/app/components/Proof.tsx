@@ -3,8 +3,9 @@ import { Reveal } from "./Reveal";
 import { useT } from "../../i18n";
 
 // Every quote keeps its initials avatar. A quote with a `photo` (a real one,
-// sent by the practice) also shows it large above the quote. We do not use
-// stock or AI-generated faces for real, named customers.
+// sent by the practice) or the practice's `logo` also shows it large above
+// the quote. We do not use stock or AI-generated faces for real, named
+// customers.
 const avatarTints = [
   "from-primary to-accent",
   "from-accent to-[#f59e0b]",
@@ -358,21 +359,24 @@ export function Proof() {
                   </figcaption>
                 </>
               );
-              return q.photo ? (
+              const image = q.photo ?? q.logo;
+              return image ? (
                 <div key={`${q.name}-${q.role}`} className={slide}>
                   <figure className="lift flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-white">
                     {/* At least 13rem tall, and it takes any height the row
-                        has to spare; the name is in the caption, so no alt. */}
-                    <div className="relative min-h-52 flex-1 bg-secondary">
+                        has to spare. A photo fills it; a logo sits inside it
+                        with room on every side. The name is in the caption,
+                        so no alt. */}
+                    <div className={`relative min-h-52 flex-1 ${q.photo ? "bg-secondary" : "border-b border-border"}`}>
                       <img
-                        src={q.photo}
+                        src={image}
                         alt=""
-                        width={1000}
-                        height={1066}
                         loading="lazy"
                         decoding="async"
                         draggable={false}
-                        className="absolute inset-0 h-full w-full object-cover object-[50%_30%]"
+                        className={`absolute inset-0 h-full w-full ${
+                          q.photo ? "object-cover object-[50%_30%]" : "object-contain p-10"
+                        }`}
                       />
                     </div>
                     <div className="flex flex-col p-7">{quote}</div>

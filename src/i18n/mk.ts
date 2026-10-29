@@ -1,5 +1,7 @@
 import type { DentalRecordText, TemplatePart } from "./types";
+import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
+import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
 
 // Macedonian is the default language and is served at "/".
 export const mk = {
@@ -355,6 +357,7 @@ export const mk = {
         text: "Нашите пациенти доаѓаат на серии од повеќе терапии. Серијата ја внесувам еднаш и за секоја терапија стигнува посебен потсетник. Порано секој термин го потврдував со повик.",
         name: "Мите",
         role: "Физиотерапевтска ординација Ivanum",
+        logo: ivanumLogo,
       },
       {
         text: "Распоредот го гледам на телефон, каде и да сум. Потсетниците одат сами, па пациентите ретко забораваат термин, а јас не губам време на повици.",
@@ -370,6 +373,7 @@ export const mk = {
         text: "Контролите што се повторуваат со месеци сега се закажуваат однапред, а потсетниците стигнуваат сами. Огромно олеснување за нас.",
         name: "Александра",
         role: "Ortoalex",
+        photo: aleksandraPhoto,
       },
       {
         text: "Откако пациентите добиваат СМС потсетник, празните термини се реткост. Повеќе не губиме време да ѕвониме и да потврдуваме.",
