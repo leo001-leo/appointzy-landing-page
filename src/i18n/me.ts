@@ -413,7 +413,7 @@ export const me: Dict = {
       },
       {
         q: "Da li je Appointzy softver za stomatološku ordinaciju?",
-        a: "Da. Appointzy je softver za zakazivanje termina za stomatološke, fizioterapeutske i druge privatne ordinacije. Stomatološke ordinacije dobijaju i stomatološki karton: nalaze, tretmane, bilješke i istoriju za svaki zub.",
+        a: "Da, ali ne samo za njih. Appointzy je softver za zakazivanje termina za stomatološke i fizioterapeutske ordinacije, studije ljepote i druge privatne prakse. Stomatološke ordinacije dobijaju i stomatološki karton: nalaze, tretmane, bilješke i istoriju za svaki zub.",
       },
       {
         q: "Šta ako već koristimo drugi program?",

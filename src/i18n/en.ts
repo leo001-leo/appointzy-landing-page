@@ -413,7 +413,7 @@ export const en: Dict = {
       },
       {
         q: "Is Appointzy software for dental practices?",
-        a: "Yes. Appointzy is appointment scheduling software for dental, physiotherapy and other private practices. Dental practices also get a dental chart: findings, treatments, notes and history for every tooth.",
+        a: "Yes, but not only for them. Appointzy is appointment scheduling software for dental and physiotherapy practices, beauty studios and other private practices. Dental practices also get a dental chart: findings, treatments, notes and history for every tooth.",
       },
       {
         q: "What if we already use another program?",
