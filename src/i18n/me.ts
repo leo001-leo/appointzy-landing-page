@@ -2,6 +2,7 @@ import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
+import maksidentLogo from "../assets/testimonials/maksident-logo.jpg";
 import naturalijaLogo from "../assets/testimonials/naturalija-logo.jpg";
 import terzievskiLogo from "../assets/testimonials/terzievski-logo.png";
 
@@ -394,6 +395,7 @@ export const me: Dict = {
         text: "Cijelu sedmicu vidimo na jedan pogled, za svakog zaposlenog posebno. Slobodan termin nađem za nekoliko sekundi, dok je pacijent još na telefonu.",
         name: "Petar",
         role: "Stomatološka ordinacija Maksident Vrshkovski",
+        logo: maksidentLogo,
       },
       {
         text: "Klijenti dobijaju SMS podsjetnik prije svakog tretmana, pa rijetko ko zaboravi termin. Cijeli dan vidim na jedan pogled i zakazujem za nekoliko sekundi.",

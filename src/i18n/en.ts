@@ -2,6 +2,7 @@ import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
+import maksidentLogo from "../assets/testimonials/maksident-logo.jpg";
 import naturalijaLogo from "../assets/testimonials/naturalija-logo.jpg";
 import terzievskiLogo from "../assets/testimonials/terzievski-logo.png";
 
@@ -394,6 +395,7 @@ export const en: Dict = {
         text: "We see the whole week at a glance, for each staff member separately. I find a free slot in seconds, while the patient is still on the phone.",
         name: "Petar",
         role: "Maksident Vrshkovski dental practice",
+        logo: maksidentLogo,
       },
       {
         text: "Clients get an SMS reminder before every treatment, so hardly anyone forgets their appointment. I see the whole day at a glance and book in seconds.",
