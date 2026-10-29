@@ -354,7 +354,7 @@ export function Proof() {
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerUp}
             onClickCapture={onClickCapture}
-            className={`-mx-4 -mb-6 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto px-4 pb-8 pt-2 [scrollbar-width:none] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 md:gap-5 md:select-none [&::-webkit-scrollbar]:hidden ${
+            className={`-mx-4 -mb-6 flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain px-4 pb-8 pt-2 [scrollbar-width:none] focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30 md:gap-5 md:select-none [&::-webkit-scrollbar]:hidden ${
               dragging ? "cursor-grabbing select-none" : "md:cursor-grab"
             }`}
           >

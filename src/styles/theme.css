@@ -141,6 +141,13 @@
     @apply border-border outline-ring/50;
   }
 
+  /* Nothing may pan the page sideways. Body alone is not enough: some
+     phone browsers (Safari on iPhone) still let it pan unless html
+     clips too. */
+  html {
+    overflow-x: clip;
+  }
+
   body {
     @apply bg-background text-foreground;
     overflow-x: clip;
@@ -247,6 +254,16 @@
 
 .js .reveal-right {
   transform: translateX(26px);
+}
+
+/* Below lg the two columns stack and the page gutter is only 16px, so a
+   box waiting 26px to the side would stick out past the screen. There
+   they rise like everything else. */
+@media (max-width: 1023.98px) {
+  .js .reveal-left,
+  .js .reveal-right {
+    transform: translateY(22px);
+  }
 }
 
 /* Higher specificity than every hiding rule above. */
