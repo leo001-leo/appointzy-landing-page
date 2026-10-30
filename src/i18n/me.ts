@@ -1,7 +1,7 @@
 import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
+import bojanPhoto from "../assets/testimonials/bojan-fizio-dinamik.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
-import fizioDinamikLogo from "../assets/testimonials/fizio-dinamik-logo.png";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
 import maksidentLogo from "../assets/testimonials/maksident-logo.jpg";
 import naturalijaLogo from "../assets/testimonials/naturalija-logo.jpg";
@@ -360,6 +360,12 @@ export const me: Dict = {
         photo: aleksandraPhoto,
       },
       {
+        text: "Raspored gledam na telefonu, gdje god da sam. Podsjetnici idu sami, pa pacijenti rijetko zaborave termin, a ja ne gubim vrijeme na pozive.",
+        name: "Bojan",
+        role: "Fizioterapeutska ordinacija Fizio Dinamik",
+        photo: bojanPhoto,
+      },
+      {
         text: "Naši pacijenti dolaze na serije od više terapija. Seriju unesem jednom i za svaku terapiju stiže poseban podsjetnik. Ranije sam svaki termin potvrđivao pozivom.",
         name: "Mite",
         role: "Fizioterapeutska ordinacija IVΛNUM",
@@ -369,12 +375,6 @@ export const me: Dict = {
         text: "Sa Appointzy-jem više nemamo problema sa duplim terminima i propuštenim zakazivanjima. Sve je jasno i pregledno, a osoblje je brzo savladalo sistem.",
         name: "Blaženka",
         role: "Stomatološka ordinacija Badent",
-      },
-      {
-        text: "Raspored gledam na telefonu, gdje god da sam. Podsjetnici idu sami, pa pacijenti rijetko zaborave termin, a ja ne gubim vrijeme na pozive.",
-        name: "Bojan",
-        role: "Fizioterapeutska ordinacija Fizio Dinamik",
-        logo: fizioDinamikLogo,
       },
       {
         text: "Konačno imamo pregled cijele sedmice bez telefonskih poziva i sveske. Pacijenti dolaze na vrijeme zahvaljujući podsjetnicima.",

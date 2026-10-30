@@ -1,7 +1,7 @@
 import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
+import bojanPhoto from "../assets/testimonials/bojan-fizio-dinamik.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
-import fizioDinamikLogo from "../assets/testimonials/fizio-dinamik-logo.png";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
 import maksidentLogo from "../assets/testimonials/maksident-logo.jpg";
 import naturalijaLogo from "../assets/testimonials/naturalija-logo.jpg";
@@ -360,6 +360,12 @@ export const en: Dict = {
         photo: aleksandraPhoto,
       },
       {
+        text: "I check my schedule on my phone, wherever I am. The reminders go out on their own, so patients rarely forget an appointment and I don't waste time on calls.",
+        name: "Bojan",
+        role: "Fizio Dinamik physiotherapy practice",
+        photo: bojanPhoto,
+      },
+      {
         text: "Our patients come for a series of sessions. I enter the series once and a separate reminder goes out for each session. I used to confirm every appointment with a phone call.",
         name: "Mite",
         role: "IVΛNUM physiotherapy practice",
@@ -369,12 +375,6 @@ export const en: Dict = {
         text: "With Appointzy we no longer have double bookings or missed appointments. Everything is clear and easy to follow, and our staff picked up the system quickly.",
         name: "Blazhenka",
         role: "Badent dental practice",
-      },
-      {
-        text: "I check my schedule on my phone, wherever I am. The reminders go out on their own, so patients rarely forget an appointment and I don't waste time on calls.",
-        name: "Bojan",
-        role: "Fizio Dinamik physiotherapy practice",
-        logo: fizioDinamikLogo,
       },
       {
         text: "Finally we can see the whole week without phone calls or a notebook. Patients arrive on time thanks to the reminders.",
