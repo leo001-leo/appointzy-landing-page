@@ -1,6 +1,7 @@
 import type { DentalRecordText, TemplatePart } from "./types";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import bojanPhoto from "../assets/testimonials/bojan-fizio-dinamik.jpg";
+import danchePhoto from "../assets/testimonials/danche-velvettouch.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
 import maksidentLogo from "../assets/testimonials/maksident-logo.jpg";
@@ -403,6 +404,7 @@ export const mk = {
         text: "Клиентите добиваат СМС потсетник пред секој третман, па ретко некој го заборава терминот. Целиот ден го гледам на еден поглед и закажувам за неколку секунди.",
         name: "Данче",
         role: "Студио за убавина VelvetTouch",
+        photo: danchePhoto,
       },
     ],
   },

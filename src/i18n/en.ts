@@ -1,6 +1,7 @@
 import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import bojanPhoto from "../assets/testimonials/bojan-fizio-dinamik.jpg";
+import danchePhoto from "../assets/testimonials/danche-velvettouch.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
 import maksidentLogo from "../assets/testimonials/maksident-logo.jpg";
@@ -403,6 +404,7 @@ export const en: Dict = {
         text: "Clients get an SMS reminder before every treatment, so hardly anyone forgets their appointment. I see the whole day at a glance and book in seconds.",
         name: "Danche",
         role: "VelvetTouch beauty studio",
+        photo: danchePhoto,
       },
     ],
   },

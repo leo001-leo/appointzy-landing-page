@@ -1,6 +1,7 @@
 import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
 import bojanPhoto from "../assets/testimonials/bojan-fizio-dinamik.jpg";
+import danchePhoto from "../assets/testimonials/danche-velvettouch.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
 import maksidentLogo from "../assets/testimonials/maksident-logo.jpg";
@@ -403,6 +404,7 @@ export const me: Dict = {
         text: "Klijenti dobijaju SMS podsjetnik prije svakog tretmana, pa rijetko ko zaboravi termin. Cijeli dan vidim na jedan pogled i zakazujem za nekoliko sekundi.",
         name: "Danče",
         role: "Studio ljepote VelvetTouch",
+        photo: danchePhoto,
       },
     ],
   },
