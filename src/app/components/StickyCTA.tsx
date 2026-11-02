@@ -31,11 +31,15 @@ export function StickyCTA() {
 
   const show = heroGone && !ctaVisible;
 
+  // Hidden means invisible too, not only slid down by its own height: iOS
+  // Safari's floating address bar puts bottom: 0 above the screen edge and
+  // then shows the page below it, so a slid-out bar peeked out under the bar.
+  // Visibility flips after the slide, so the slide out still animates.
   return (
     <div
       aria-hidden={!show}
-      className={`fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/90 p-3 backdrop-blur-md transition-transform duration-300 md:hidden ${
-        show ? "translate-y-0" : "translate-y-full"
+      className={`fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/90 p-3 backdrop-blur-md transition-[translate,visibility] duration-300 md:hidden ${
+        show ? "visible translate-y-0" : "invisible translate-y-full"
       }`}
     >
       <a
