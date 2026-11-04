@@ -348,21 +348,95 @@
 .float-y { animation: float-y 7s ease-in-out infinite; }
 .float-y-slow { animation: float-y 9.5s ease-in-out infinite; }
 
-/* Hero micro-animation: SMS reminder card arriving */
-@keyframes sms-arrive {
-  from {
-    opacity: 0;
-    transform: translateY(16px) scale(0.96);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+/* Hero layout. Phones read it top to bottom: the claim, the app, Драган's
+   word, then the form, so a visitor sees what it is before being asked
+   anything. From lg the app sits in its own column beside the rest. */
+.hero-grid {
+  display: grid;
+  row-gap: 2.25rem;
+  grid-template-areas: "copy" "demo" "proof" "form";
 }
 
-.js .sms-arrive {
-  animation: sms-arrive 0.55s cubic-bezier(0.22, 1, 0.36, 1) 1.1s both;
+.hero-copy { grid-area: copy; }
+.hero-demo { grid-area: demo; }
+.hero-proof { grid-area: proof; }
+.hero-form { grid-area: form; }
+
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1.05fr 1fr;
+    grid-template-rows: auto auto 1fr;
+    column-gap: 4rem;
+    row-gap: 2rem;
+    grid-template-areas: "copy demo" "proof demo" "form demo";
+  }
+
+  .hero-demo { align-self: center; }
 }
+
+/* Hero phone: one 10s loop in three scenes (PhoneDemo). The booking screen
+   is always underneath; the calendar and then the reminder cover it, and both
+   fade away together to start over. Every step label is lit in its scene. */
+.phone-demo {
+  --demo: 10s;
+}
+
+@keyframes demo-s2 {
+  0%, 30% { opacity: 0; }
+  33%, 96% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo-s3 {
+  0%, 63% { opacity: 0; }
+  66%, 96% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes demo-tap {
+  0%, 19% { opacity: 0; transform: translate(-50%, -50%) scale(0.4); }
+  22% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  28%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.7); }
+}
+
+@keyframes demo-ring {
+  0%, 37% { opacity: 0; }
+  41%, 60% { opacity: 1; }
+  64%, 100% { opacity: 0; }
+}
+
+@keyframes demo-sms {
+  0%, 68% { opacity: 0; transform: translateY(-40%) scale(0.96); }
+  72%, 96% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: none; }
+}
+
+@keyframes demo-l1 {
+  0%, 31% { opacity: 1; }
+  34%, 97% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+@keyframes demo-l2 {
+  0%, 31% { opacity: 0.4; }
+  34%, 64% { opacity: 1; }
+  67%, 100% { opacity: 0.4; }
+}
+
+@keyframes demo-l3 {
+  0%, 64% { opacity: 0.4; }
+  67%, 97% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+.phone-demo .demo-s2 { animation: demo-s2 var(--demo) linear infinite both; }
+.phone-demo .demo-s3 { animation: demo-s3 var(--demo) linear infinite both; }
+.phone-demo .demo-tap { animation: demo-tap var(--demo) ease-out infinite both; }
+.phone-demo .demo-ring { animation: demo-ring var(--demo) linear infinite both; }
+.phone-demo .demo-sms { animation: demo-sms var(--demo) cubic-bezier(0.22, 1, 0.36, 1) infinite both; }
+.phone-demo .demo-l1 { animation: demo-l1 var(--demo) linear infinite both; }
+.phone-demo .demo-l2 { animation: demo-l2 var(--demo) linear infinite both; }
+.phone-demo .demo-l3 { animation: demo-l3 var(--demo) linear infinite both; }
 
 /* Typing caret for the SMS-template card */
 @keyframes caret {
@@ -487,7 +561,6 @@
   }
 
   .js .rise,
-  .js .sms-arrive,
   .js .tooth-panel-in,
   .js .pop-in,
   .aurora-a,
@@ -501,5 +574,23 @@
 
   .lift:hover {
     transform: none;
+  }
+
+  /* The phone holds still on its last scene: the reminder on the lock screen. */
+  .phone-demo .demo-s2,
+  .phone-demo .demo-s3,
+  .phone-demo .demo-sms,
+  .phone-demo .demo-l1,
+  .phone-demo .demo-l2,
+  .phone-demo .demo-l3 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .phone-demo .demo-tap,
+  .phone-demo .demo-ring {
+    animation: none;
+    opacity: 0;
   }
 }

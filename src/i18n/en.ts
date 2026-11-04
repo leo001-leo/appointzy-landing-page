@@ -41,9 +41,15 @@ export const en: Dict = {
     titleAfter: ".",
     subtitle:
       "Appointzy is appointment scheduling software with automatic SMS reminders. For our customers, missed appointments dropped from 9 to 1 a month.",
-    screenshotAlt: "Weekly calendar in Appointzy with booked appointments",
-    smsTitle: "SMS to Marija P.",
-    smsText: "Reminder: you have an appointment tomorrow at 10:00. See you then!",
+    demoSteps: [
+      "You book an appointment in seconds",
+      "It is in the calendar right away",
+      "The patient gets an SMS the day before",
+    ],
+    demoBookingAlt: "Booking an appointment in Appointzy on a phone",
+    demoCalendarAlt: "Day calendar in Appointzy with the booked appointments",
+    demoLockDate: "Wednesday, 4 November",
+    demoNow: "now",
     clientsBefore: "Already used by ",
     clientsCount: "30+ practices",
     clientsAfter: ": dental, physiotherapy and more.",
@@ -63,8 +69,9 @@ export const en: Dict = {
   },
 
   form: {
-    title: "Start for free",
-    practiceName: "Name of the practice or salon",
+    title: "Free 15 minute demo",
+    contactName: "Your name",
+    phone: "Phone",
     practiceType: "Field",
     choose: "Choose",
     // Values are the API's: 1 dentist, 2 physiotherapist, 3 beauty salon, 4 cardiologist, 99 other.
@@ -76,17 +83,7 @@ export const en: Dict = {
       { value: 99, label: "Other" },
     ],
     practiceTypeOther: "Which field?",
-    city: "City",
-    country: "Country",
-    countries: [
-      { code: "MK", label: "North Macedonia" },
-      { code: "ME", label: "Montenegro" },
-      { code: "XX", label: "Another country" },
-    ],
-    contactName: "Your full name",
-    email: "Email",
-    phone: "Phone",
-    submit: "Start for free",
+    submit: "I want a demo",
     sending: "Sending...",
     errors: {
       required: "Fill in every field.",
@@ -95,12 +92,19 @@ export const en: Dict = {
       tooMany: "Too many tries from this network. Try again later.",
       failed: "Something went wrong and your request wasn't saved. Please try again.",
     },
-    successTitle: "Thank you!",
-    successBefore: "We received your request. We will contact you soon at ",
-    successAfter: ".",
-    contact: "Our team will contact you within 24 hours.",
+    contact: "We call you and in 15 minutes show you how it would look for your practice. No commitment.",
     price: "30 days free, then from 1,500 MKD a month.",
     noCard: "No card. No installation.",
+    successTitle: "Thank you!",
+    successBefore: "We will call you soon at ",
+    successAfter: ".",
+    // The optional second step, once the request is in.
+    detailsTitle: "To help us prepare for the call",
+    optional: "(optional)",
+    practiceName: "Name of the practice or salon",
+    city: "City",
+    email: "Email",
+    detailsSubmit: "Send",
   },
 
   migration: {
@@ -137,8 +141,8 @@ export const en: Dict = {
     subtitle: "Three steps, nothing more.",
     steps: [
       {
-        title: "Leave your email",
-        text: "We contact you and set everything up for your practice. We enter your existing appointments together.",
+        title: "Leave your phone",
+        text: "We call you, show you how it works and set everything up for your practice. We enter your existing appointments together.",
       },
       {
         title: "Add appointments",
@@ -451,7 +455,7 @@ export const en: Dict = {
     eyebrow: "Get started",
     titleBefore: "Start ",
     titleHighlight: "this week",
-    text: "Leave your email and we'll get in touch to set everything up. No commitment, no card.",
+    text: "Leave your phone and we'll call you to show you how it works in 15 minutes. No commitment, no card.",
     checklist: [
       "30 days free, then from 1,500 MKD a month",
       "SMS messages are included in the price",

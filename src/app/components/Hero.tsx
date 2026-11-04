@@ -1,10 +1,13 @@
 import { LeadForm } from "./LeadForm";
-import calendarScreenshot from "../../assets/calendarScreenshot.png";
+import { PhoneDemo } from "./PhoneDemo";
 import { useT } from "../../i18n";
 
 export function Hero() {
-  const t = useT().hero;
+  const all = useT();
+  const t = all.hero;
   const clients = t.clients;
+  // Драган from Vesna Dent, the first of the page's testimonials.
+  const quote = all.proof.quotes[0];
   return (
     <section id="hero" className="grain relative overflow-hidden bg-ink text-ink-fg">
       {/* Ambient light: two slow-drifting colour fields + a fine grid */}
@@ -14,12 +17,10 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_50%_0%,#000_35%,transparent_78%)]" />
       </div>
 
-      {/* pt matches the height the fixed nav used to occupy in flow, so the
-          form stays above the fold on a 390px phone */}
+      {/* pt matches the height the fixed nav used to occupy in flow */}
       <div className="relative mx-auto max-w-6xl px-4 pb-16 pt-24 md:pb-24 md:pt-32">
-        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
-          {/* Copy + form — first in the DOM so it stays above the fold on phones */}
-          <div>
+        <div className="hero-grid">
+          <div className="hero-copy">
             <div className="rise mb-5 flex flex-wrap gap-2" style={{ "--d": "60ms" } as React.CSSProperties}>
               <span className="rounded-full border border-white/12 bg-white/[0.06] px-3 py-1 text-sm text-ink-muted backdrop-blur-sm">
                 {t.badgeAudience}
@@ -46,57 +47,42 @@ export function Hero() {
             >
               {t.subtitle}
             </p>
-
-            <div
-              className="rise mt-8 max-w-xl"
-              style={{ "--d": "320ms" } as React.CSSProperties}
-            >
-              <LeadForm />
-            </div>
           </div>
 
-          {/* Product visual */}
-          <div
-            className="rise relative lg:pl-4"
-            style={{ "--d": "420ms" } as React.CSSProperties}
-          >
-            <div className="float-y-slow relative">
-              <div
-                aria-hidden="true"
-                className="absolute -inset-8 rounded-[2.5rem] bg-[radial-gradient(circle_at_50%_40%,rgba(234,88,12,0.35),transparent_70%)] blur-2xl"
-              />
-              <div className="relative overflow-hidden rounded-2xl border border-white/12 bg-white shadow-[0_40px_100px_-30px_rgba(0,0,0,0.9)]">
-                <img
-                  src={calendarScreenshot}
-                  alt={t.screenshotAlt}
-                  width={1607}
-                  height={797}
-                  className="h-auto w-full"
-                />
-              </div>
-            </div>
+          {/* The product, before anything is asked */}
+          <div className="hero-demo rise lg:pl-4" style={{ "--d": "300ms" } as React.CSSProperties}>
+            <PhoneDemo />
+          </div>
 
-            {/* The core action, arriving */}
-            <div className="sms-arrive absolute -bottom-6 left-2 right-2 sm:left-auto sm:right-4 sm:w-80">
-              <div className="rounded-2xl border border-white/12 bg-ink-soft/95 p-4 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.95)] backdrop-blur-md">
-                <div className="flex items-start gap-3">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-flame/15 text-flame">
-                    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                  </span>
-                  <div className="min-w-0">
-                    <div className="text-sm font-medium text-ink-fg">{t.smsTitle}</div>
-                    <p className="mt-0.5 text-sm leading-snug text-ink-muted">
-                      {t.smsText}
-                    </p>
-                  </div>
-                  <svg className="ml-auto h-4 w-4 shrink-0 text-success" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M20 6 9 17l-5-5" />
-                  </svg>
-                </div>
-              </div>
-            </div>
+          {/* A dentist who uses it, in his own words */}
+          <figure
+            className="hero-proof rise max-w-xl rounded-2xl border border-white/10 bg-white/[0.05] p-5 backdrop-blur-sm"
+            style={{ "--d": "380ms" } as React.CSSProperties}
+          >
+            <blockquote className="text-[0.95rem] leading-relaxed text-ink-fg">
+              {all.proof.quoteOpen}
+              {quote.text}
+              {all.proof.quoteClose}
+            </blockquote>
+            <figcaption className="mt-4 flex items-center gap-3">
+              {"photo" in quote && quote.photo && (
+                <img
+                  src={quote.photo}
+                  alt=""
+                  width={44}
+                  height={44}
+                  className="h-11 w-11 shrink-0 rounded-full object-cover ring-2 ring-flame/40"
+                />
+              )}
+              <span className="text-sm leading-snug">
+                <span className="block font-semibold text-ink-fg">{quote.name}</span>
+                <span className="block text-ink-muted">{quote.role}</span>
+              </span>
+            </figcaption>
+          </figure>
+
+          <div className="hero-form rise max-w-xl" style={{ "--d": "450ms" } as React.CSSProperties}>
+            <LeadForm />
           </div>
         </div>
 

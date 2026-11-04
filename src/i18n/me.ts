@@ -41,9 +41,15 @@ export const me: Dict = {
     titleAfter: ".",
     subtitle:
       "Appointzy je softver za zakazivanje termina sa automatskim SMS podsjetnicima. Kod naših korisnika, propušteni termini su pali sa 9 na 1 mjesečno.",
-    screenshotAlt: "Sedmični kalendar u Appointzy-ju sa zakazanim terminima",
-    smsTitle: "SMS za Mariju P.",
-    smsText: "Podsjećamo: sjutra u 10:00 imate termin. Očekujemo vas!",
+    demoSteps: [
+      "Zakazujete termin za nekoliko sekundi",
+      "Termin je odmah u kalendaru",
+      "Pacijent dobija SMS dan prije termina",
+    ],
+    demoBookingAlt: "Zakazivanje termina u Appointzy-ju na telefonu",
+    demoCalendarAlt: "Dnevni kalendar u Appointzy-ju sa zakazanim terminima",
+    demoLockDate: "srijeda, 4. novembar",
+    demoNow: "sada",
     clientsBefore: "Već ga koristi ",
     clientsCount: "30+ ordinacija",
     clientsAfter: ": stomatoloških, fizioterapeutskih i drugih.",
@@ -63,8 +69,9 @@ export const me: Dict = {
   },
 
   form: {
-    title: "Započni besplatno",
-    practiceName: "Naziv ordinacije ili salona",
+    title: "Besplatna prezentacija od 15 minuta",
+    contactName: "Vaše ime",
+    phone: "Telefon",
     practiceType: "Djelatnost",
     choose: "Izaberite",
     // Values are the API's: 1 dentist, 2 physiotherapist, 3 beauty salon, 4 cardiologist, 99 other.
@@ -76,17 +83,7 @@ export const me: Dict = {
       { value: 99, label: "Drugo" },
     ],
     practiceTypeOther: "Koja djelatnost?",
-    city: "Grad",
-    country: "Država",
-    countries: [
-      { code: "MK", label: "Sjeverna Makedonija" },
-      { code: "ME", label: "Crna Gora" },
-      { code: "XX", label: "Druga država" },
-    ],
-    contactName: "Vaše ime i prezime",
-    email: "Email",
-    phone: "Telefon",
-    submit: "Započni besplatno",
+    submit: "Želim prezentaciju",
     sending: "Šalje se...",
     errors: {
       required: "Popunite sva polja.",
@@ -95,12 +92,19 @@ export const me: Dict = {
       tooMany: "Previše pokušaja sa ove mreže. Pokušajte ponovo kasnije.",
       failed: "Nešto nije u redu i prijava nije sačuvana. Pokušajte ponovo.",
     },
-    successTitle: "Hvala vam!",
-    successBefore: "Primili smo vaš zahtjev. Kontaktiraćemo vas uskoro na ",
-    successAfter: ".",
-    contact: "Naš tim će vas kontaktirati u roku od 24 sata.",
+    contact: "Pozovemo vas i za 15 minuta pokažemo kako bi izgledalo kod vas. Bez obaveza.",
     price: "30 dana besplatno, zatim od 40 € mjesečno.",
     noCard: "Bez kartice. Bez instalacije.",
+    successTitle: "Hvala vam!",
+    successBefore: "Pozvaćemo vas uskoro na ",
+    successAfter: ".",
+    // The optional second step, once the request is in.
+    detailsTitle: "Da se pripremimo za razgovor",
+    optional: "(nije obavezno)",
+    practiceName: "Naziv ordinacije ili salona",
+    city: "Grad",
+    email: "Email",
+    detailsSubmit: "Pošalji",
   },
 
   migration: {
@@ -137,8 +141,8 @@ export const me: Dict = {
     subtitle: "Tri koraka, ništa više.",
     steps: [
       {
-        title: "Ostavite e-mail",
-        text: "Mi vas kontaktiramo i podešavamo sve za vašu ordinaciju. Postojeće termine unosimo zajedno.",
+        title: "Ostavite telefon",
+        text: "Pozovemo vas, pokažemo kako radi i podesimo sve za vašu ordinaciju. Postojeće termine unosimo zajedno.",
       },
       {
         title: "Unosite termine",
@@ -451,7 +455,7 @@ export const me: Dict = {
     eyebrow: "Počnite",
     titleBefore: "Počnite još ",
     titleHighlight: "ove sedmice",
-    text: "Ostavite e-mail i javićemo vam se da sve podesimo. Bez obaveza, bez kartice.",
+    text: "Ostavite telefon i pozvaćemo vas da vam za 15 minuta pokažemo kako radi. Bez obaveza, bez kartice.",
     checklist: [
       "30 dana besplatno, zatim od 40 € mjesečno",
       "SMS poruke su uključene u cijenu",
