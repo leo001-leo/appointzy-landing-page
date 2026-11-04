@@ -86,11 +86,10 @@ export const en: Dict = {
     contactName: "Your full name",
     email: "Email",
     phone: "Phone",
-    optional: "(optional)",
     submit: "Start for free",
     sending: "Sending...",
     errors: {
-      required: "Fill in every field. Only the phone is optional.",
+      required: "Fill in every field.",
       email: "Enter a valid email.",
       phone: "The phone needs at least 6 digits.",
       tooMany: "Too many tries from this network. Try again later.",

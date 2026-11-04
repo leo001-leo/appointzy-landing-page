@@ -126,7 +126,8 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
     const empty = required.find((f) => !v[f]);
     if (empty) return { message: t.errors.required, field: empty };
     if (!EMAIL.test(v.email)) return { message: t.errors.email, field: "email" };
-    if (v.phone && (!PHONE.test(v.phone) || v.phone.replace(/\D/g, "").length < 6)) {
+    if (!v.phone) return { message: t.errors.required, field: "phone" };
+    if (!PHONE.test(v.phone) || v.phone.replace(/\D/g, "").length < 6) {
       return { message: t.errors.phone, field: "phone" };
     }
     return null;
@@ -198,7 +199,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
           country: v.country,
           contactName: v.contactName,
           email: v.email,
-          phone: v.phone || null,
+          phone: v.phone,
           language: LANGS[lang].htmlLang,
           source: "landing",
           website: v.website,
@@ -384,13 +385,7 @@ export function LeadForm({ showPrice = true }: { showPrice?: boolean }) {
           })
         )}
 
-        {field(
-          "phone",
-          <>
-            {t.phone} <span className="text-white/35">{t.optional}</span>
-          </>,
-          text("phone", MAX_PHONE, { type: "tel", inputMode: "tel", autoComplete: "tel" })
-        )}
+        {field("phone", t.phone, text("phone", MAX_PHONE, { type: "tel", inputMode: "tel", autoComplete: "tel" }))}
       </div>
 
       {/* Not for people: off screen, hidden from screen readers and the tab

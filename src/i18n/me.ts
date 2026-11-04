@@ -86,11 +86,10 @@ export const me: Dict = {
     contactName: "Vaše ime i prezime",
     email: "Email",
     phone: "Telefon",
-    optional: "(nije obavezno)",
     submit: "Započni besplatno",
     sending: "Šalje se...",
     errors: {
-      required: "Popunite sva polja. Samo telefon nije obavezan.",
+      required: "Popunite sva polja.",
       email: "Unesite ispravan email.",
       phone: "Telefon treba da ima najmanje 6 cifara.",
       tooMany: "Previše pokušaja sa ove mreže. Pokušajte ponovo kasnije.",
