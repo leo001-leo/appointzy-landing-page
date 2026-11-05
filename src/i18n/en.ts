@@ -1,5 +1,6 @@
 import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
+import blazhenkaPhoto from "../assets/testimonials/blazhenka-badent.jpg";
 import bojanPhoto from "../assets/testimonials/bojan-fizio-dinamik.jpg";
 import danchePhoto from "../assets/testimonials/danche-velvettouch.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
@@ -379,6 +380,8 @@ export const en: Dict = {
         text: "With Appointzy we no longer have double bookings or missed appointments. Everything is clear and easy to follow, and our staff picked up the system quickly.",
         name: "Blazhenka",
         role: "Badent dental practice",
+        photo: blazhenkaPhoto,
+        focus: "50% 60%",
       },
       {
         text: "Finally we can see the whole week without phone calls or a notebook. Patients arrive on time thanks to the reminders.",

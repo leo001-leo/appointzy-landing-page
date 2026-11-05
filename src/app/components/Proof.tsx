@@ -6,8 +6,9 @@ import { useT } from "../../i18n";
 // sent by the practice) or the practice's `logo` also shows it large above
 // the quote. A `photo` fills its space, so a logo that comes on its own
 // background (Naturalija) is given as a photo; a `logo` is shown whole on
-// white. We do not use stock or AI-generated faces for real, named
-// customers.
+// white. A photo is cropped around a point 30% from its top unless its
+// `focus` says otherwise. We do not use stock or AI-generated faces for
+// real, named customers.
 const avatarTints = [
   "from-primary to-accent",
   "from-accent to-[#f59e0b]",
@@ -407,6 +408,7 @@ export function Proof() {
                         className={`absolute inset-0 h-full w-full ${
                           q.photo ? "object-cover object-[50%_30%]" : "object-contain p-10"
                         }`}
+                        style={q.focus ? { objectPosition: q.focus } : undefined}
                       />
                     </div>
                     <div className="flex flex-col p-7">{quote}</div>

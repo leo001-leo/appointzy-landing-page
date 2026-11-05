@@ -1,5 +1,6 @@
 import type { Dict } from "./mk";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
+import blazhenkaPhoto from "../assets/testimonials/blazhenka-badent.jpg";
 import bojanPhoto from "../assets/testimonials/bojan-fizio-dinamik.jpg";
 import danchePhoto from "../assets/testimonials/danche-velvettouch.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
@@ -379,6 +380,8 @@ export const me: Dict = {
         text: "Sa Appointzy-jem više nemamo problema sa duplim terminima i propuštenim zakazivanjima. Sve je jasno i pregledno, a osoblje je brzo savladalo sistem.",
         name: "Blaženka",
         role: "Stomatološka ordinacija Badent",
+        photo: blazhenkaPhoto,
+        focus: "50% 60%",
       },
       {
         text: "Konačno imamo pregled cijele sedmice bez telefonskih poziva i sveske. Pacijenti dolaze na vrijeme zahvaljujući podsjetnicima.",

@@ -1,5 +1,6 @@
 import type { DentalRecordText, TemplatePart } from "./types";
 import aleksandraPhoto from "../assets/testimonials/aleksandra-ortoalex.jpg";
+import blazhenkaPhoto from "../assets/testimonials/blazhenka-badent.jpg";
 import bojanPhoto from "../assets/testimonials/bojan-fizio-dinamik.jpg";
 import danchePhoto from "../assets/testimonials/danche-velvettouch.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
@@ -379,6 +380,8 @@ export const mk = {
         text: "Со Appointzy немаме повеќе проблеми со двојни термини и пропуштени закажувања. Сè е јасно, прегледно и персоналот брзо го совлада системот.",
         name: "Блаженка",
         role: "Стоматолошка ординација Бадент",
+        photo: blazhenkaPhoto,
+        focus: "50% 60%",
       },
       {
         text: "Конечно имаме преглед на целата недела без телефонски повици и тетратка. Пациентите доаѓаат навреме благодарение на потсетниците.",
