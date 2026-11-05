@@ -265,9 +265,9 @@ export function Proof() {
     e.stopPropagation();
   }
 
-  const statCount = (
+  const statNumber = (value: string) => (
     <span className="block bg-gradient-to-r from-[#fdba74] to-[#f97316] bg-clip-text font-[Manrope] text-6xl font-extrabold tracking-[-0.04em] text-transparent md:text-7xl">
-      {t.statCount}
+      {value}
     </span>
   );
   const ctaLink = (
@@ -304,14 +304,22 @@ export function Proof() {
           </p>
         </Reveal>
 
-        {/* The same count as a strip, the first thing seen before the cards */}
+        {/* The counts as a strip, the first thing seen before the cards.
+            Stacked on phones, side by side from tablet width, and the link
+            joins them on the same row once there is room. */}
         <Reveal className="mt-10">
-          <div className="grain relative flex flex-col gap-6 overflow-hidden rounded-2xl bg-ink p-7 text-ink-fg md:flex-row md:items-center md:justify-between md:px-10">
+          <div className="grain relative flex flex-col gap-7 overflow-hidden rounded-2xl bg-ink p-7 text-ink-fg md:px-10 lg:flex-row lg:items-center lg:justify-between">
             {glow}
-            <p className="relative flex flex-wrap items-center gap-x-6 gap-y-1">
-              {statCount}
-              <span className="block text-lg text-ink-muted md:text-xl">{t.statLabel}</span>
-            </p>
+            <div className="relative flex flex-col gap-6 md:flex-row md:gap-14">
+              <p>
+                {statNumber(t.statCount)}
+                <span className="mt-1 block max-w-64 text-lg text-ink-muted md:text-xl">{t.statLabel}</span>
+              </p>
+              <p>
+                {statNumber(t.appointmentsCount)}
+                <span className="mt-1 block max-w-64 text-lg text-ink-muted md:text-xl">{t.appointmentsLabel}</span>
+              </p>
+            </div>
             {ctaLink}
           </div>
         </Reveal>
@@ -428,7 +436,7 @@ export function Proof() {
               <div className="grain relative flex h-full flex-col justify-between overflow-hidden rounded-2xl bg-ink p-7 text-ink-fg">
                 {glow}
                 <p className="relative">
-                  {statCount}
+                  {statNumber(t.statCount)}
                   <span className="mt-2 block text-lg text-ink-muted">{t.statLabel}</span>
                 </p>
                 <div className="relative mt-10">{ctaLink}</div>

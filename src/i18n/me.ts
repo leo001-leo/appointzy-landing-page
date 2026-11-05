@@ -347,6 +347,8 @@ export const me: Dict = {
       "Appointzy je razvijen u Sjevernoj Makedoniji, uz prijedloge ordinacija i studija koji ga koriste svaki dan.",
     statCount: "30+",
     statLabel: "ordinacija i studija ga već koristi",
+    appointmentsCount: "60.000+",
+    appointmentsLabel: "zakazanih termina do sada",
     quoteOpen: "„",
     quoteClose: "“",
     prev: "Prethodna mišljenja",

@@ -94,7 +94,7 @@ export const en: Dict = {
       failed: "Something went wrong and your request wasn't saved. Please try again.",
     },
     contact: "We call you and in 15 minutes show you how it would look for your practice. No commitment.",
-    price: "30 days free, then from 1,500 MKD a month.",
+    price: "30 days free, then from 1500 MKD a month.",
     noCard: "No card. No installation.",
     successTitle: "Thank you!",
     successBefore: "We will call you soon at ",
@@ -347,6 +347,8 @@ export const en: Dict = {
       "Appointzy is developed in North Macedonia, with input from the practices and studios that use it every day.",
     statCount: "30+",
     statLabel: "practices and studios already use it",
+    appointmentsCount: "60,000+",
+    appointmentsLabel: "appointments booked so far",
     quoteOpen: "“",
     quoteClose: "”",
     prev: "Previous testimonials",
@@ -421,7 +423,7 @@ export const en: Dict = {
     items: [
       {
         q: "How much does it cost?",
-        a: "The first 30 days are free. After that it's from 1,500 MKD a month with SMS messages included, so there's no separate charge for each message sent. We'll tell you the exact price for your practice when we get in touch, with no obligation.",
+        a: "The first 30 days are free. After that it's from 1500 MKD a month with SMS messages included, so there's no separate charge for each message sent. We'll tell you the exact price for your practice when we get in touch, with no obligation.",
       },
       {
         q: "Is Appointzy software for dental practices?",
@@ -460,7 +462,7 @@ export const en: Dict = {
     titleHighlight: "this week",
     text: "Leave your phone and we'll call you to show you how it works in 15 minutes. No commitment, no card.",
     checklist: [
-      "30 days free, then from 1,500 MKD a month",
+      "30 days free, then from 1500 MKD a month",
       "SMS messages are included in the price",
       "We enter your existing appointments together",
       "Support from a local team",
