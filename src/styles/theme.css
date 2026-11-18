@@ -506,6 +506,19 @@
   transition-delay: 0.8s;
 }
 
+/* The AI assistant's chat has two more turns */
+.js .reveal-in .chat-bubble-3 {
+  opacity: 1;
+  transform: none;
+  transition-delay: 1.5s;
+}
+
+.js .reveal-in .chat-bubble-4 {
+  opacity: 1;
+  transform: none;
+  transition-delay: 2.1s;
+}
+
 /* Dental chart: the tooth panel eases in each time a tooth is picked */
 @keyframes tooth-panel {
   from {
@@ -553,7 +566,9 @@
   .js .reveal-in .chart-bar,
   .js .chat-bubble,
   .js .reveal-in .chat-bubble-1,
-  .js .reveal-in .chat-bubble-2 {
+  .js .reveal-in .chat-bubble-2,
+  .js .reveal-in .chat-bubble-3,
+  .js .reveal-in .chat-bubble-4 {
     opacity: 1;
     transform: none;
     transition: none;

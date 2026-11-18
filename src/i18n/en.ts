@@ -230,6 +230,24 @@ export const en: Dict = {
     },
   },
 
+  assistant: {
+    eyebrow: "AI assistant",
+    titleBefore: "You type. ",
+    titleHighlight: "The AI assistant books.",
+    text: "Write what you need, the way you would to a colleague. The assistant finds the free time and puts it in the calendar.",
+    actions: ["Books", "Edits", "Moves", "Cancels"],
+    chatTitle: "AI Assistant",
+    // You, the assistant, you, the assistant.
+    chat: [
+      "Move Ana Nikolova from tomorrow to Friday afternoon.",
+      "On Friday afternoon 14:00 and 16:30 are free. Which of the two should I book?",
+      "14:00",
+      "Done, the appointment has been moved.",
+    ],
+    done: "Ana Nikolova · Friday, 14:00",
+    placeholder: "Type a message…",
+  },
+
   dental: {
     eyebrow: "For dental practices",
     titleBefore: "A dental chart with a history for ",
@@ -448,6 +466,10 @@ export const en: Dict = {
       {
         q: "Does it work on a phone?",
         a: "Yes. Appointzy opens in the browser on any phone, tablet or computer, with no installation.",
+      },
+      {
+        q: "Does Appointzy have an AI assistant?",
+        a: "Yes. You write what you need, the way you would to a colleague, and the AI assistant books, edits, moves and cancels appointments. It only offers times that are free.",
       },
       {
         q: "Who sends the reminders?",

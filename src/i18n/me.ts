@@ -230,6 +230,24 @@ export const me: Dict = {
     },
   },
 
+  assistant: {
+    eyebrow: "AI asistent",
+    titleBefore: "Vi pišete. ",
+    titleHighlight: "AI asistent zakazuje.",
+    text: "Napišite šta vam treba, kao kolegi. Asistent pronalazi slobodan termin i upisuje ga u kalendar.",
+    actions: ["Zakazuje", "Mijenja", "Pomjera", "Otkazuje"],
+    chatTitle: "AI Asistent",
+    // You, the assistant, you, the assistant.
+    chat: [
+      "Pomjeri Anu Popović sa sjutra na petak popodne.",
+      "U petak popodne slobodni su 14:00 i 16:30. Koji od njih da zakažem?",
+      "14:00",
+      "Gotovo, termin je pomjeren.",
+    ],
+    done: "Ana Popović · petak, 14:00",
+    placeholder: "Napišite poruku…",
+  },
+
   dental: {
     eyebrow: "Za stomatološke ordinacije",
     titleBefore: "Stomatološki karton sa istorijom za ",
@@ -448,6 +466,10 @@ export const me: Dict = {
       {
         q: "Radi li na telefonu?",
         a: "Da. Appointzy se otvara u pretraživaču na bilo kom telefonu, tabletu ili računaru, bez instalacije.",
+      },
+      {
+        q: "Da li Appointzy ima AI asistenta?",
+        a: "Da. Napišete šta vam treba, kao kolegi, a AI asistent zakazuje, mijenja, pomjera i otkazuje termine. Nudi samo slobodne termine.",
       },
       {
         q: "Ko šalje podsjetnike?",
