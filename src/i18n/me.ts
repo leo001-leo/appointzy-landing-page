@@ -248,6 +248,36 @@ export const me: Dict = {
     placeholder: "Napišite poruku…",
   },
 
+  calculator: {
+    eyebrow: "Računica",
+    title: "Koliko vas koštaju propušteni termini?",
+    text: "Podesite brojeve prema vašoj ordinaciji.",
+    missedLabel: "Propuštenih termina mjesečno",
+    priceLabel: "Prosječna cijena jednog termina",
+    monthLabel: "Gubite mjesečno",
+    yearLabel: "Gubite godišnje",
+    // Sums in this page's currency. monthlyPrice is the "from" price the
+    // rest of the page names; missedStart is the page's own "9" figure.
+    currency: "€",
+    thousands: ".",
+    monthlyPrice: 40,
+    priceMin: 5,
+    priceMax: 80,
+    priceStep: 1,
+    priceStart: 15,
+    missedStart: 9,
+    // One sentence per number form, as the verb changes with it too. {n} is
+    // how many more patients pay for Appointzy; the middle part is bold.
+    paysOff: {
+      one: { before: "Dovoljno je da mjesečno dođe još ", bold: "{n} pacijent", after: " i Appointzy se isplatio." },
+      few: { before: "Dovoljno je da mjesečno dođu još ", bold: "{n} pacijenta", after: " i Appointzy se isplatio." },
+      many: { before: "Dovoljno je da mjesečno dođe još ", bold: "{n} pacijenata", after: " i Appointzy se isplatio." },
+    },
+    otherwise:
+      "Automatski SMS podsjetnici smanjuju propuštene termine. Dobijate i kalendar, kartone pacijenata i AI asistenta.",
+    cta: "Probajte 30 dana besplatno",
+  },
+
   dental: {
     eyebrow: "Za stomatološke ordinacije",
     titleBefore: "Stomatološki karton sa istorijom za ",

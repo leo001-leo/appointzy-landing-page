@@ -248,6 +248,36 @@ export const mk = {
     placeholder: "Напишете порака…",
   },
 
+  calculator: {
+    eyebrow: "Пресметка",
+    title: "Колку ве чинат пропуштените термини?",
+    text: "Наместете ги бројките според вашата пракса.",
+    missedLabel: "Пропуштени термини месечно",
+    priceLabel: "Просечна цена на еден термин",
+    monthLabel: "Губите месечно",
+    yearLabel: "Губите годишно",
+    // Sums in this page's currency. monthlyPrice is the "from" price the
+    // rest of the page names; missedStart is the page's own "9" figure.
+    currency: "ден.",
+    thousands: ".",
+    monthlyPrice: 1500,
+    priceMin: 300,
+    priceMax: 5000,
+    priceStep: 100,
+    priceStart: 1000,
+    missedStart: 9,
+    // One sentence per number form, as the verb changes with it too. {n} is
+    // how many more patients pay for Appointzy; the middle part is bold.
+    paysOff: {
+      one: { before: "Доволно е уште ", bold: "{n} пациент", after: " месечно да дојде на термин и Appointzy се исплатил." },
+      few: { before: "Доволно е уште ", bold: "{n} пациенти", after: " месечно да дојдат на термин и Appointzy се исплатил." },
+      many: { before: "Доволно е уште ", bold: "{n} пациенти", after: " месечно да дојдат на термин и Appointzy се исплатил." },
+    },
+    otherwise:
+      "Автоматските СМС потсетници ги намалуваат пропуштените термини. Добивате и календар, картони на пациенти и AI асистент.",
+    cta: "Пробајте 30 дена бесплатно",
+  },
+
   dental: {
     eyebrow: "За стоматолошки ординации",
     titleBefore: "Забен картон со историја за ",

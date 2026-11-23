@@ -5,6 +5,7 @@ import { Problem } from "./components/Problem";
 import { HowItWorks } from "./components/HowItWorks";
 import { Features } from "./components/Features";
 import { AiAssistant } from "./components/AiAssistant";
+import { LossCalculator } from "./components/LossCalculator";
 import { DentalChart } from "./components/DentalChart";
 import { Proof } from "./components/Proof";
 import { FAQ } from "./components/FAQ";
@@ -21,6 +22,7 @@ export default function App() {
         <Proof />
         <Features />
         <AiAssistant />
+        <LossCalculator />
         <Migration />
         <Problem />
         <HowItWorks />

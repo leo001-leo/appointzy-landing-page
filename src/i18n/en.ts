@@ -248,6 +248,36 @@ export const en: Dict = {
     placeholder: "Type a message…",
   },
 
+  calculator: {
+    eyebrow: "Calculator",
+    title: "What do missed appointments cost you?",
+    text: "Set the numbers to match your practice.",
+    missedLabel: "Missed appointments a month",
+    priceLabel: "Average price of one appointment",
+    monthLabel: "You lose a month",
+    yearLabel: "You lose a year",
+    // Sums in this page's currency. monthlyPrice is the "from" price the
+    // rest of the page names; missedStart is the page's own "9" figure.
+    currency: "MKD",
+    thousands: ",",
+    monthlyPrice: 1500,
+    priceMin: 300,
+    priceMax: 5000,
+    priceStep: 100,
+    priceStart: 1000,
+    missedStart: 9,
+    // One sentence per number form, as the verb changes with it too. {n} is
+    // how many more patients pay for Appointzy; the middle part is bold.
+    paysOff: {
+      one: { before: "Just ", bold: "{n} more patient", after: " a month showing up, and Appointzy has paid for itself." },
+      few: { before: "Just ", bold: "{n} more patients", after: " a month showing up, and Appointzy has paid for itself." },
+      many: { before: "Just ", bold: "{n} more patients", after: " a month showing up, and Appointzy has paid for itself." },
+    },
+    otherwise:
+      "Automatic SMS reminders cut missed appointments. You also get a calendar, patient records and an AI assistant.",
+    cta: "Try it free for 30 days",
+  },
+
   dental: {
     eyebrow: "For dental practices",
     titleBefore: "A dental chart with a history for ",
