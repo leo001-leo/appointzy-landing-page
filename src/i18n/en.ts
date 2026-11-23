@@ -511,7 +511,7 @@ export const en: Dict = {
   cta: {
     eyebrow: "Get started",
     titleBefore: "Start ",
-    titleHighlight: "this week",
+    titleHighlight: "today",
     text: "Leave your phone and we'll call you to show you how it works in 15 minutes. No commitment, no card.",
     checklist: [
       "30 days free, then from 1500 MKD a month",

@@ -511,7 +511,7 @@ export const me: Dict = {
   cta: {
     eyebrow: "Počnite",
     titleBefore: "Počnite još ",
-    titleHighlight: "ove sedmice",
+    titleHighlight: "danas",
     text: "Ostavite telefon i pozvaćemo vas da vam za 15 minuta pokažemo kako radi. Bez obaveza, bez kartice.",
     checklist: [
       "30 dana besplatno, zatim od 40 € mjesečno",
