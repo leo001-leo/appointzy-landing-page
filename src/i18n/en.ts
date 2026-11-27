@@ -5,7 +5,6 @@ import bojanPhoto from "../assets/testimonials/bojan-fizio-dinamik.jpg";
 import danchePhoto from "../assets/testimonials/danche-velvettouch.jpg";
 import draganPhoto from "../assets/testimonials/dragan-vesna-dent.jpg";
 import ivanumLogo from "../assets/testimonials/ivanum-logo.jpg";
-import maksidentLogo from "../assets/testimonials/maksident-logo.jpg";
 import naturalijaLogo from "../assets/testimonials/naturalija-logo.jpg";
 import terzievskiLogo from "../assets/testimonials/terzievski-logo.png";
 
@@ -64,7 +63,6 @@ export const en: Dict = {
       "Fizio Dinamik",
       "Terzievski",
       "Naturalija",
-      "Maksident Vrshkovski",
       "VelvetTouch",
     ],
   },
@@ -449,12 +447,6 @@ export const en: Dict = {
         name: "Viktor",
         role: "Naturalija dental practice",
         photo: naturalijaLogo,
-      },
-      {
-        text: "We see the whole week at a glance, for each staff member separately. I find a free slot in seconds, while the patient is still on the phone.",
-        name: "Petar",
-        role: "Maksident Vrshkovski dental practice",
-        logo: maksidentLogo,
       },
       {
         text: "Clients get an SMS reminder before every treatment, so hardly anyone forgets their appointment. I see the whole day at a glance and book in seconds.",
